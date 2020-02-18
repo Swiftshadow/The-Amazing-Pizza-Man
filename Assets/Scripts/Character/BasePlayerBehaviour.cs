@@ -1,20 +1,50 @@
 ﻿/*****************************************************************************
 // File Name :         BasePlayerBehaviour.cs
 // Author :            Andrew Krenzel
-// Creation Date :     #CREATIONDATE#
+// Creation Date :     2/13/2020
 //
-// Brief Description : ADD BRIEF DESCRIPTION OF THE FILE HERE
+// Brief Description : Controls the overall behaviors of the players that 
+                       transfer across forms.
 *****************************************************************************/
 using UnityEngine;
 
+// Required Components
+[RequireComponent(typeof(Rigidbody2D))] //(AK 8)
+[RequireComponent(typeof(SpriteRenderer))] //(AK 9)
+[RequireComponent(typeof(Animator))] //(AK 10)
+
 public class BasePlayerBehaviour : MonoBehaviour
 {
+    // Player Stats
+    // Health
+    // Lives
+    // Speed
+
+    // Component References
+    private Rigidbody2D rb2d; //(AK 11)
+    private SpriteRenderer sR; //(AK 12)
+    private Animator anim; //(AK 13)
+
+    // Object References
+    [Header("Sprites")]
+    [Tooltip("The default sprite for the human form")]
+    public Sprite humanDefaultSprite;
+    [Tooltip("The default sprite for the pizza form")]
+    public Sprite pizzaDefaultSprite;
+
+
+    public bool playerHuman; //(AK 1)
+    
     /// <summary>
     /// Start is called before the first frame update
     /// </summary>
     void Start()
     {
-        
+        rb2d = GetComponent<Rigidbody2D>(); //(AK 14)
+        sR = GetComponent<SpriteRenderer>(); //(AK 15)
+        anim = GetComponent<Animator>(); //(AK 16)
+
+        playerHuman = true; //(AK 2)
     }
 
     /// <summary>
@@ -22,6 +52,20 @@ public class BasePlayerBehaviour : MonoBehaviour
     /// </summary>
     void Update()
     {
-        
+        if(Input.GetButtonDown("FormSwitch")) //(AK 4)
+        {
+            playerHuman = !playerHuman; //(AK 5)
+
+            if(playerHuman == true) //(AK 6)
+            {
+                sR.sprite = humanDefaultSprite; //(AK 17)
+            }
+            else //(AK 7)
+            {
+                sR.sprite = pizzaDefaultSprite; //(AK 18)
+            }
+        }
     }
+
+    
 }
