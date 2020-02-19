@@ -22,4 +22,7 @@ public class RoomHolder : MonoBehaviour
     [Tooltip("Holds all rooms with a door on the right")]
     public GameObject[] rightRooms;
 
+    [Tooltip("The starting room for a floor")]
+    public GameObject startRoom;
+
 }
