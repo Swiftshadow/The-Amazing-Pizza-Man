@@ -16,8 +16,8 @@ using UnityEngine;
 public class BasePlayerBehaviour : MonoBehaviour
 {
     // Player Stats
-    public int health;
-    public int lives;
+    public int health; //(AK 21)
+    public int lives; //(AK 22)
 
     public float speed;
     public float pizzaMultiplier;
@@ -82,37 +82,37 @@ public class BasePlayerBehaviour : MonoBehaviour
 
     private void PlayerMovement()
     {
-        if (playerHuman == true)
+        if (playerHuman == true) //(AK 23)
         {
-            float xMove = Input.GetAxis("Horizontal");
-            float yMove = Input.GetAxis("Vertical");
+            float xMove = Input.GetAxis("Horizontal"); //(AK 24)
+            float yMove = Input.GetAxis("Vertical"); //(AK 25)
             
-            Vector3 newPos = transform.position;
+            Vector3 newPos = transform.position;//(AK 26)
 
-            newPos.x += xMove * Time.deltaTime * speed;
-            newPos.y += yMove * Time.deltaTime * speed;
+            newPos.x += xMove * Time.deltaTime * speed; //(AK 27)
+            newPos.y += yMove * Time.deltaTime * speed; //(AK 28)
 
-            transform.position = newPos;
+            transform.position = newPos; //(AK 29)
         }
-        else if (playerHuman == false)
+        else if (playerHuman == false) //(AK 30)
         {
             // Gets the player inputs 
             float xMove = Input.GetAxis("Horizontal"); //(AK 19)
             float yMove = Input.GetAxis("Vertical"); //(AK 20)
 
         
-            xMove = xMove * speed * Time.deltaTime * pizzaMultiplier;
+            xMove = xMove * speed * Time.deltaTime * pizzaMultiplier; //(AK 31)
         
-            Vector2 moveForce = new Vector2(xMove, yMove);
+            Vector2 moveForce = new Vector2(xMove, yMove); //(AK 32)
         
-            float velocityCap = 10f;
+            float velocityCap = 10f; //(AK 33)
 
-            moveForce.x = Mathf.Clamp(moveForce.x, -velocityCap, velocityCap);
-            moveForce.y = Mathf.Clamp(moveForce.y, -velocityCap, velocityCap);
+            moveForce.x = Mathf.Clamp(moveForce.x, -velocityCap, velocityCap); //(AK 34)
+            moveForce.y = Mathf.Clamp(moveForce.y, -velocityCap, velocityCap); //(AK 35)
         
-            rb2d.AddForce(moveForce);
+            rb2d.AddForce(moveForce); //(AK 36)
             
-            Debug.Log(moveForce);
+            Debug.Log(moveForce); //(AK 37)
         }
         /*
         if(Input.GetButton("Horizontal")||Input.GetButton(("Vertical")))
