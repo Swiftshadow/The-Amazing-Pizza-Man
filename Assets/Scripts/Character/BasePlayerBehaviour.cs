@@ -20,6 +20,8 @@ public class BasePlayerBehaviour : MonoBehaviour
     public int lives;
 
     public float speed;
+    public float pizzaMultiplier;
+    
     // Lives
     // Speed
 
@@ -52,8 +54,7 @@ public class BasePlayerBehaviour : MonoBehaviour
         anim = GetComponent<Animator>(); //(AK 16)
 
         playerHuman = true; //(AK 2)
-
-        speed = 500f;
+        
     }
 
     /// <summary>
@@ -68,6 +69,7 @@ public class BasePlayerBehaviour : MonoBehaviour
             if(playerHuman == true) //(AK 6)
             {
                 sR.sprite = humanDefaultSprite; //(AK 17)
+                rb2d.velocity = Vector2.zero;
             }
             else //(AK 7)
             {
@@ -75,25 +77,70 @@ public class BasePlayerBehaviour : MonoBehaviour
             }
         }
         
-        //PlayerMovement();
+        PlayerMovement();
     }
 
     private void PlayerMovement()
     {
-        // Gets the player inputs 
-        float xMove = Input.GetAxis("Horizontal"); //(AK 19)
-        float yMove = Input.GetAxis("Vertical"); //(AK 20)
+        if (playerHuman == true)
+        {
+            float xMove = Input.GetAxis("Horizontal");
+            float yMove = Input.GetAxis("Vertical");
+            
+            Vector3 newPos = transform.position;
 
-        xMove = xMove * speed * Time.deltaTime;
-        
-        Vector2 moveForce = new Vector2(xMove, yMove);
-        
-        float velocityCap = 5f;
+            newPos.x += xMove * Time.deltaTime * speed;
+            newPos.y += yMove * Time.deltaTime * speed;
 
-        moveForce.x = Mathf.Clamp(moveForce.x, -velocityCap, velocityCap);
-        moveForce.y = Mathf.Clamp(moveForce.y, -velocityCap, velocityCap);
+            transform.position = newPos;
+        }
+        else if (playerHuman == false)
+        {
+            // Gets the player inputs 
+            float xMove = Input.GetAxis("Horizontal"); //(AK 19)
+            float yMove = Input.GetAxis("Vertical"); //(AK 20)
+
         
-        rb2d.AddForce(moveForce);
+            xMove = xMove * speed * Time.deltaTime * pizzaMultiplier;
+        
+            Vector2 moveForce = new Vector2(xMove, yMove);
+        
+            float velocityCap = 10f;
+
+            moveForce.x = Mathf.Clamp(moveForce.x, -velocityCap, velocityCap);
+            moveForce.y = Mathf.Clamp(moveForce.y, -velocityCap, velocityCap);
+        
+            rb2d.AddForce(moveForce);
+            
+            Debug.Log(moveForce);
+        }
+        /*
+        if(Input.GetButton("Horizontal")||Input.GetButton(("Vertical")))
+        {
+            // Gets the player inputs 
+            float xMove = Input.GetAxis("Horizontal"); //(AK 19)
+            float yMove = Input.GetAxis("Vertical"); //(AK 20)
+
+        
+            xMove = xMove * speed * Time.deltaTime;
+        
+            Vector2 moveForce = new Vector2(xMove, yMove);
+        
+            float velocityCap = 10f;
+
+            moveForce.x = Mathf.Clamp(moveForce.x, -velocityCap, velocityCap);
+            moveForce.y = Mathf.Clamp(moveForce.y, -velocityCap, velocityCap);
+        
+            rb2d.AddForce(moveForce);
+            
+            Debug.Log(moveForce);
+        }
+        else
+        {
+            rb2d.velocity = Vector2.zero;
+        }
+        */
+         
     }
 
     
