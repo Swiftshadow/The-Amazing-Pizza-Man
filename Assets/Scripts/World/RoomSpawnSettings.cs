@@ -3,10 +3,9 @@
 // Author :            Doug Guzman
 // Creation Date :     February 19, 2020
 //
-// Brief Description : ADD BRIEF DESCRIPTION OF THE FILE HERE
+// Brief Description : The settings of each individual room
 *****************************************************************************/
 
-using System;
 using UnityEngine;
 
 /// <summary>

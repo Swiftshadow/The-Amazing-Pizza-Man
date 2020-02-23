@@ -3,13 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-<<<<<<< HEAD
-  tags:
-  - RoomSpawnpoint
-  - Room
-=======
   tags: []
->>>>>>> 487903eeda3fe9d3aa2b559d2e2de9510b6fcd07
   layers:
   - Default
   - TransparentFX

@@ -3,7 +3,7 @@
 // Author :            Doug Guzman
 // Creation Date :     February 12, 2020
 //
-// Brief Description : Generates the layout for a specific room of the level
+// Brief Description : Generates the room layout for the current level
 *****************************************************************************/
 
 using System;
@@ -17,6 +17,9 @@ public class RoomGenerator : MonoBehaviour
     [Tooltip("What difficulty of rooms to spawn")]
     public EnumList.RoomDifficulty difficulty;
 
+    /// <summary>
+    /// Holds all the room prebafs
+    /// </summary>
     private RoomHolder rooms;
 
     [Tooltip("How many times to run the room spawning loop")]
@@ -37,7 +40,8 @@ public class RoomGenerator : MonoBehaviour
         SpawnRooms();
     }
 
-
+    public GameObject[] roomSpawnpoints;
+    
     /// <summary>
     /// Spawns all the rooms on a floor
     /// </summary>
@@ -47,7 +51,7 @@ public class RoomGenerator : MonoBehaviour
         Instantiate(rooms.startRoom);
 
         for (int i = 0; i < spawnRuns; ++i) {
-            GameObject[] roomSpawnpoints =
+            roomSpawnpoints =
                 GameObject.FindGameObjectsWithTag("RoomSpawnpoint");
             Debug.Log("Iteration " + i + ", " + (roomSpawnpoints.Length) + " spawnpoints");
             foreach (var spawnpoint in roomSpawnpoints)
@@ -57,7 +61,8 @@ public class RoomGenerator : MonoBehaviour
 
                 Vector3 spawnLocation = spawnpoint.transform.position;
                 
-                Destroy(spawnpoint);
+                Destroy(spawnpoint.gameObject);
+                
                 if (Random.Range(0,spawnThresholdMax) < spawnThreshold)
                 {
                     Debug.Log("Not spawning room from " + spawnpoint.name + " on " + spawnpoint.transform.parent.name);
@@ -86,8 +91,8 @@ public class RoomGenerator : MonoBehaviour
                 }
                 
             }
-            
-            Array.Clear(roomSpawnpoints, 0, roomSpawnpoints.Length);
+
+            //Array.Clear(roomSpawnpoints, 0, roomSpawnpoints.Length);
             Debug.Log("End of iteration, " + roomSpawnpoints.Length + " spawnpoints remain");
         }
         

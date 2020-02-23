@@ -3,7 +3,7 @@
 // Author :            Doug Guzman
 // Creation Date :     February 17, 2020
 //
-// Brief Description : ADD BRIEF DESCRIPTION OF THE FILE HERE
+// Brief Description : Holds the room prefabs to be spawned
 *****************************************************************************/
 using UnityEngine;
 
