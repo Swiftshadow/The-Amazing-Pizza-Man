@@ -5,22 +5,11 @@
     <e p="C:\Users\Auri\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_The-Amazing-Pizza-Man.-312587509.00" t="ExcludeRecursive" />
     <e p="H:\Bradley\2019-2020\Semester 2\IM 289\The-Amazing-Pizza-Man" t="IncludeRecursive">
       <e p=".git\info\exclude" t="IncludeRecursive" />
-      <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Editor" t="Include">
           <e p="ScriptKeywordProcessor.cs" t="Include" />
-        </e>
-        <e p="Plugins" t="Include">
-          <e p="GitHub" t="Include">
-            <e p="Editor" t="Include">
-              <e p="credits.txt" t="Include" />
-              <e p="eula.txt" t="Include" />
-              <e p="ExtensionLoader.cs" t="Include" />
-              <e p="UnityAPIWrapper.cs" t="Include" />
-            </e>
-          </e>
         </e>
         <e p="Scripts" t="Include">
           <e p="Character" t="Include">
@@ -28,12 +17,9 @@
             <e p="HumanPlayerBehaviour.cs" t="Include" />
             <e p="PizzaPlayerBehaviour.cs" t="Include" />
           </e>
-          <e p="EnumList.cs" t="Include" />
           <e p="GameControllerBehaviour.cs" t="Include" />
-          <e p="World" t="Include">
-            <e p="RoomGenerator.cs" t="Include" />
-            <e p="RoomHolder.cs" t="Include" />
-            <e p="RoomSpawnSettings.cs" t="Include" />
+          <e p="Map" t="Include">
+            <e p="Room.cs" t="Include" />
           </e>
         </e>
       </e>
