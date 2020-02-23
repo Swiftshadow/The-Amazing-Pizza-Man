@@ -25,4 +25,7 @@ public class RoomHolder : MonoBehaviour
     [Tooltip("The starting room for a floor")]
     public GameObject startRoom;
 
+    [Tooltip("A room with no doors. Used to block extra exits")]
+    public GameObject[] walls;
+
 }

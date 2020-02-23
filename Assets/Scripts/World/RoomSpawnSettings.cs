@@ -5,6 +5,8 @@
 //
 // Brief Description : ADD BRIEF DESCRIPTION OF THE FILE HERE
 *****************************************************************************/
+
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -27,5 +29,5 @@ public class RoomSpawnSettings : MonoBehaviour
     {
         doorAttachSide = doorAttachSide | doorToAdd;
     }
-    
+
 }

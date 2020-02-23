@@ -49,40 +49,58 @@ public class RoomGenerator : MonoBehaviour
         for (int i = 0; i < spawnRuns; ++i) {
             GameObject[] roomSpawnpoints =
                 GameObject.FindGameObjectsWithTag("RoomSpawnpoint");
-
+            Debug.Log("Iteration " + i + ", " + (roomSpawnpoints.Length) + " spawnpoints");
             foreach (var spawnpoint in roomSpawnpoints)
             {
-                if (Random.Range(0,spawnThresholdMax) < spawnThreshold)
-                {
-                    continue;
-                }
                 RoomSpawnSettings spawnSettings =
                     spawnpoint.GetComponent<RoomSpawnSettings>();
 
                 Vector3 spawnLocation = spawnpoint.transform.position;
+                
+                Destroy(spawnpoint);
+                if (Random.Range(0,spawnThresholdMax) < spawnThreshold)
+                {
+                    Debug.Log("Not spawning room from " + spawnpoint.name + " on " + spawnpoint.transform.parent.name);
+                    continue;
+                }
 
                 if (CheckDoorAttachSide(spawnSettings, EnumList.RoomDoors.DOOR_RIGHT))
                 {
+                    Debug.Log("Spawning right from " + spawnpoint.name + " on " + spawnpoint.transform.parent.name);
                     SpawnRoom(EnumList.RoomDoors.DOOR_RIGHT, spawnLocation);
-                    Destroy(spawnpoint);
                 }
                 else if (CheckDoorAttachSide(spawnSettings, EnumList.RoomDoors.DOOR_LEFT))
                 {
+                    Debug.Log("Spawning left from " + spawnpoint.name + " on " + spawnpoint.transform.parent.name);
                     SpawnRoom(EnumList.RoomDoors.DOOR_LEFT, spawnLocation);
-                    Destroy(spawnpoint);
                 }
                 else if (CheckDoorAttachSide(spawnSettings, EnumList.RoomDoors.DOOR_UP))
                 {
+                    Debug.Log("Spawning up from " + spawnpoint.name + " on " + spawnpoint.transform.parent.name);
                     SpawnRoom(EnumList.RoomDoors.DOOR_UP, spawnLocation);
-                    Destroy(spawnpoint);
                 }
                 else if (CheckDoorAttachSide(spawnSettings, EnumList.RoomDoors.DOOR_DOWN))
                 {
+                    Debug.Log("Spawning down from " + spawnpoint.name + " on " + spawnpoint.transform.parent.name);
                     SpawnRoom(EnumList.RoomDoors.DOOR_DOWN, spawnLocation);
-                    Destroy(spawnpoint);
                 }
+                
             }
+            
+            Array.Clear(roomSpawnpoints, 0, roomSpawnpoints.Length);
+            Debug.Log("End of iteration, " + roomSpawnpoints.Length + " spawnpoints remain");
         }
+        
+        /*
+        // Fills the extra spawnpoints in with solid walls so they are not leading to the void
+        GameObject[] roomSpawns =
+            GameObject.FindGameObjectsWithTag("RoomSpawnpoint");
+        foreach (var spawnpoint in roomSpawns)
+        {
+            Vector3 spawnLocation = spawnpoint.transform.position;
+            SpawnRoom(EnumList.RoomDoors.DOOR_NONE, spawnLocation);
+        }
+        */
     }
 
     /// <summary>
@@ -121,7 +139,7 @@ public class RoomGenerator : MonoBehaviour
                 toSpawnFrom = rooms.rightRooms;
                 break;
             default:
-                toSpawnFrom = new GameObject[0];
+                toSpawnFrom = rooms.walls;
                 break;
         }
 
