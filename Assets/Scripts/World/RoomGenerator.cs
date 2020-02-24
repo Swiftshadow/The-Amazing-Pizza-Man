@@ -52,51 +52,7 @@ public class RoomGenerator : MonoBehaviour
         // Spawns the starting room
         Instantiate(rooms.startRoom);
 
-        for (int i = 0; i < spawnRuns; ++i) {
-            GameObject[] roomSpawnpoints =
-                GameObject.FindGameObjectsWithTag("RoomSpawnpoint");
-            Debug.Log("Iteration " + i + ", " + (roomSpawnpoints.Length) + " spawnpoints");
-
-            // Need to wait for one frame between spawn cycles
-            
-            foreach (var spawnpoint in roomSpawnpoints)
-            {
-                RoomSpawnSettings spawnSettings =
-                    spawnpoint.GetComponent<RoomSpawnSettings>();
-
-                Vector3 spawnLocation = spawnpoint.transform.position;
-                
-                //DestroyImmediate(spawnpoint.gameObject);
-                
-                if (Random.Range(0,spawnThresholdMax) < spawnThreshold)
-                {
-                    continue;
-                }
-
-                if (CheckDoorAttachSide(spawnSettings, EnumList.RoomDoors.DOOR_RIGHT))
-                {
-                    SpawnRoom(EnumList.RoomDoors.DOOR_RIGHT, spawnLocation);
-                }
-                else if (CheckDoorAttachSide(spawnSettings, EnumList.RoomDoors.DOOR_LEFT))
-                {
-                    SpawnRoom(EnumList.RoomDoors.DOOR_LEFT, spawnLocation);
-                }
-                else if (CheckDoorAttachSide(spawnSettings, EnumList.RoomDoors.DOOR_UP))
-                {
-                    SpawnRoom(EnumList.RoomDoors.DOOR_UP, spawnLocation);
-                }
-                else if (CheckDoorAttachSide(spawnSettings, EnumList.RoomDoors.DOOR_DOWN))
-                {
-                    SpawnRoom(EnumList.RoomDoors.DOOR_DOWN, spawnLocation);
-                }
-                
-            }
-
-            Array.Clear(roomSpawnpoints, 0, roomSpawnpoints.Length);
-            Debug.Log("End of iteration, " + roomSpawnpoints.Length + " spawnpoints remain");
-        }
-
-        StartCoroutine("SpawnWalls");
+        StartCoroutine("SpawnRooms");
     }
 
     /// <summary>
@@ -153,9 +109,24 @@ public class RoomGenerator : MonoBehaviour
     void RemoveRooms()
     {
         GameObject[] allRooms = GameObject.FindGameObjectsWithTag("Room");
+        GameObject[] allSpawnpoints = GameObject.FindGameObjectsWithTag("RoomSpawnpoint");
+        GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
+        GameObject startpoint = GameObject.FindWithTag("Startpoint");
+        
+        Destroy(startpoint);
         foreach (var room in allRooms)
         {
             DestroyImmediate(room);
+        }
+
+        foreach (var spawnpoint in allSpawnpoints)
+        {
+            DestroyImmediate(spawnpoint);
+        }
+
+        foreach (var wall in walls)
+        {
+            Destroy(wall);
         }
     }
 
@@ -175,6 +146,59 @@ public class RoomGenerator : MonoBehaviour
             SpawnRoom(EnumList.RoomDoors.DOOR_NONE, spawnLocation);
         }
         
+    }
+    
+    /// <summary>
+    /// Runs the loop that spawns all the walls.
+    /// </summary>
+    /// <returns>Waits a frame between spawning</returns>
+    private IEnumerator SpawnRooms() {
+        for (int i = 0; i < spawnRuns; ++i)
+        {
+            yield return 0;
+            GameObject[] roomSpawnpoints =
+                GameObject.FindGameObjectsWithTag("RoomSpawnpoint");
+            Debug.Log("Iteration " + i + ", " + (roomSpawnpoints.Length) + " spawnpoints");
+            
+            
+            foreach (var spawnpoint in roomSpawnpoints)
+            {
+                RoomSpawnSettings spawnSettings =
+                    spawnpoint.GetComponent<RoomSpawnSettings>();
+                
+                Vector3 spawnLocation = spawnpoint.transform.position;
+                
+                //DestroyImmediate(spawnpoint.gameObject);
+                
+                if (Random.Range(0,spawnThresholdMax) < spawnThreshold)
+                {
+                    continue;
+                }
+
+                if (CheckDoorAttachSide(spawnSettings, EnumList.RoomDoors.DOOR_RIGHT))
+                {
+                    SpawnRoom(EnumList.RoomDoors.DOOR_RIGHT, spawnLocation);
+                }
+                else if (CheckDoorAttachSide(spawnSettings, EnumList.RoomDoors.DOOR_LEFT))
+                {
+                    SpawnRoom(EnumList.RoomDoors.DOOR_LEFT, spawnLocation);
+                }
+                else if (CheckDoorAttachSide(spawnSettings, EnumList.RoomDoors.DOOR_UP))
+                {
+                    SpawnRoom(EnumList.RoomDoors.DOOR_UP, spawnLocation);
+                }
+                else if (CheckDoorAttachSide(spawnSettings, EnumList.RoomDoors.DOOR_DOWN))
+                {
+                    SpawnRoom(EnumList.RoomDoors.DOOR_DOWN, spawnLocation);
+                }
+
+            }
+
+            Array.Clear(roomSpawnpoints, 0, roomSpawnpoints.Length);
+            Debug.Log("End of iteration, " + roomSpawnpoints.Length + " spawnpoints remain");
+        }
+        
+        StartCoroutine("SpawnWalls");
     }
 
     /// <summary>
