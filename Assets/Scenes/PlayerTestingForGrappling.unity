@@ -321,73 +321,12 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!1 &511652980 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3380449344292650395, guid: bbc2c1db6c8653c47a72d923f99a325e,
-    type: 3}
-  m_PrefabInstance: {fileID: 743906825}
-  m_PrefabAsset: {fileID: 0}
 --- !u!50 &511652982 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 3380449344292650394, guid: bbc2c1db6c8653c47a72d923f99a325e,
     type: 3}
   m_PrefabInstance: {fileID: 743906825}
   m_PrefabAsset: {fileID: 0}
---- !u!58 &511652985
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 511652980}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.47
---- !u!257 &511652986
-TargetJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 511652980}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 1
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_Anchor: {x: 0, y: 0}
-  m_Target: {x: -0.44, y: -2.25}
-  m_AutoConfigureTarget: 1
-  m_MaxForce: 10000
-  m_DampingRatio: 1
-  m_Frequency: 5
---- !u!68 &511652987
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 511652980}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: 0.38246185, y: -0.22061539}
-  - {x: -0.36630422, y: -0.21968842}
-  - {x: -0.008211911, y: 0.4213271}
-  - {x: 0.3824618, y: -0.2206154}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -478,6 +417,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 229816897934578641, guid: bbc2c1db6c8653c47a72d923f99a325e,
+        type: 3}
+      propertyPath: m_Distance
+      value: 2.2926185
+      objectReference: {fileID: 0}
+    - target: {fileID: 229816897934578641, guid: bbc2c1db6c8653c47a72d923f99a325e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 229816897934578641, guid: bbc2c1db6c8653c47a72d923f99a325e,
+        type: 3}
+      propertyPath: m_MaxDistanceOnly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3380449344292650392, guid: bbc2c1db6c8653c47a72d923f99a325e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -533,20 +487,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3380449344292650394, guid: bbc2c1db6c8653c47a72d923f99a325e,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 3380449344292650395, guid: bbc2c1db6c8653c47a72d923f99a325e,
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3380449344292650407, guid: bbc2c1db6c8653c47a72d923f99a325e,
-        type: 3}
-      propertyPath: speed
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbc2c1db6c8653c47a72d923f99a325e, type: 3}

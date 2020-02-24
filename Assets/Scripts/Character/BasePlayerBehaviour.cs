@@ -29,6 +29,7 @@ public class BasePlayerBehaviour : MonoBehaviour
     private Rigidbody2D rb2d; //(AK 11)
     private SpriteRenderer sR; //(AK 12)
     private Animator anim; //(AK 13)
+    private DistanceJoint2D joint; //(AK 37)
 
     // Object References
     [Header("Sprites")]
@@ -49,10 +50,8 @@ public class BasePlayerBehaviour : MonoBehaviour
     /// </summary>
     void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>(); //(AK 14)
-        sR = GetComponent<SpriteRenderer>(); //(AK 15)
-        anim = GetComponent<Animator>(); //(AK 16)
-
+        
+        
         playerHuman = true; //(AK 2)
         
     }
@@ -62,12 +61,36 @@ public class BasePlayerBehaviour : MonoBehaviour
     /// </summary>
     void Update()
     {
+        GetComponents();
+        FormSwitch();
+        PlayerMovement();
+        GrapplingHook();
+    }
+
+    /// <summary>
+    /// Gets all of the components that are called in the code in a condensed
+    /// function.
+    /// </summary>
+    private void GetComponents() //(AK 38)
+    {
+        rb2d = GetComponent<Rigidbody2D>(); //(AK 14)
+        sR = GetComponent<SpriteRenderer>(); //(AK 15)
+        anim = GetComponent<Animator>(); //(AK 16)
+        joint = GetComponent<DistanceJoint2D>(); //(AK 40)
+    }
+
+   
+    private void FormSwitch()
+    {
         if(Input.GetButtonDown("FormSwitch")) //(AK 4)
         {
             playerHuman = !playerHuman; //(AK 5)
 
             if(playerHuman == true) //(AK 6)
             {
+                // Sets the joint to false when the player transform from pizza
+                // to human 
+                joint.enabled = false;
                 sR.sprite = humanDefaultSprite; //(AK 17)
                 rb2d.velocity = Vector2.zero;
             }
@@ -76,10 +99,8 @@ public class BasePlayerBehaviour : MonoBehaviour
                 sR.sprite = pizzaDefaultSprite; //(AK 18)
             }
         }
-        
-        PlayerMovement();
     }
-
+    
     private void PlayerMovement()
     {
         if (playerHuman == true) //(AK 23)
@@ -112,7 +133,7 @@ public class BasePlayerBehaviour : MonoBehaviour
         
             rb2d.AddForce(moveForce); //(AK 36)
             
-            Debug.Log(moveForce); //(AK 37)
+            //Debug.Log(moveForce); 
         }
         /*
         if(Input.GetButton("Horizontal")||Input.GetButton(("Vertical")))
@@ -140,8 +161,30 @@ public class BasePlayerBehaviour : MonoBehaviour
             rb2d.velocity = Vector2.zero;
         }
         */
-         
     }
+    /// <summary>
+    /// Controls the behaviour and functionality of the pizza's grappling hook
+    /// ability
+    /// Written by Andrew Krenzel
+    /// Adapted from Wabble - Unity Tutorials Grappling Hook Tutorial Series
+    /// </summary>
+    private void GrapplingHook()
+    {
+        if (Input.GetButtonDown("Fire1") && playerHuman == false)
+        {
+            Vector3 screenPos = Input.mousePosition;
+            Vector3 targetPos = Camera.main.ScreenToWorldPoint(screenPos);
+            Debug.Log("ScreenPos = " + screenPos + " WorldPos = " + targetPos);
 
+            joint.connectedAnchor = targetPos;
+            //joint.distance = Vector3.Distance(targetPos, transform.position);
+            joint.enabled = true;
+            // On Mouse Up, clears existing values and when it goes down it resests them
+        }
+        else if (Input.GetButtonUp("Fire1") && playerHuman == false)
+        {
+            joint.enabled = false;
+        }
+    }
     
 }
