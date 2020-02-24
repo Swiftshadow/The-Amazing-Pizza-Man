@@ -234,10 +234,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficulty: 0
-  spawnRuns: 1
+  spawnRuns: 3
   spawnThresholdMax: 10
   spawnThreshold: 5
-  roomSpawnpoints: []
 --- !u!4 &1652066472
 Transform:
   m_ObjectHideFlags: 0
@@ -274,4 +273,5 @@ MonoBehaviour:
   - {fileID: 3389792347561933796, guid: 67129f63f59990145a53bf146c354b1c, type: 3}
   startRoom: {fileID: 5586290786118583332, guid: 50c7977bf3a0b66438792ee99981d2dd,
     type: 3}
-  walls: []
+  walls:
+  - {fileID: 4561669525839055504, guid: 1a415d88fee52854c9087b83a1668713, type: 3}

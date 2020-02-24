@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9127681203586606914}
   - component: {fileID: 2509479271460970517}
   - component: {fileID: 726199441923388728}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TopSpawn
   m_TagString: RoomSpawnpoint
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficulty: 0
-  doorAttachSide: 2
+  doorAttachSide: 8
 --- !u!58 &726199441923388728
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 376702133066214156}
   - component: {fileID: 6351531238385481880}
   - component: {fileID: 3877188968030712684}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BottomSpawn
   m_TagString: RoomSpawnpoint
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficulty: 0
-  doorAttachSide: 1
+  doorAttachSide: 4
 --- !u!58 &3877188968030712684
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 3213475565477264888}
   - component: {fileID: 3703707521655358701}
   - component: {fileID: 6667443993904964926}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RightSpawn
   m_TagString: RoomSpawnpoint
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficulty: 0
-  doorAttachSide: 4
+  doorAttachSide: 1
 --- !u!58 &6667443993904964926
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -198,8 +198,8 @@ GameObject:
   - component: {fileID: 7933779611424401496}
   - component: {fileID: 3302902898699502101}
   - component: {fileID: -6991225070418947399}
-  - component: {fileID: -5789179521367369487}
-  m_Layer: 0
+  - component: {fileID: 291442357963144661}
+  m_Layer: 2
   m_Name: LeftRoom
   m_TagString: Room
   m_Icon: {fileID: 0}
@@ -296,7 +296,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &-6991225070418947399
 Rigidbody2D:
@@ -319,7 +319,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-5789179521367369487
+--- !u!114 &291442357963144661
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

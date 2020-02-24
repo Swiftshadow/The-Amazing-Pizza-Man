@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -8160673424691617218}
   - component: {fileID: 6002716802094872946}
   - component: {fileID: -4089512547670983453}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RightRoom
   m_TagString: Room
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &6002716802094872946
 Rigidbody2D:
@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 6137022998118831312}
   - component: {fileID: 2856561344400436652}
   - component: {fileID: 2411659934216206184}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LeftSpawn
   m_TagString: RoomSpawnpoint
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 4592700863243236607}
   - component: {fileID: 7188856275077641128}
   - component: {fileID: 960981867935279792}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TopSpawn
   m_TagString: RoomSpawnpoint
   m_Icon: {fileID: 0}
@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 4911971662070495409}
   - component: {fileID: 1816543471741659941}
   - component: {fileID: 9103634785467378115}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BottomSpawn
   m_TagString: RoomSpawnpoint
   m_Icon: {fileID: 0}

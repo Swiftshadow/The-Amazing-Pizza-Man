@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8613697605059372796}
   - component: {fileID: 7526844337539047401}
   - component: {fileID: 2570984597841516057}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RightSpawn
   m_TagString: RoomSpawnpoint
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficulty: 0
-  doorAttachSide: 4
+  doorAttachSide: 1
 --- !u!58 &2570984597841516057
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 6316288221317308231}
   - component: {fileID: 7075951944308903506}
   - component: {fileID: 4427325674459656724}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BottomRoom
   m_TagString: Room
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &7075951944308903506
 Rigidbody2D:
@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 5704123493754051689}
   - component: {fileID: 4442379465144968469}
   - component: {fileID: 5144428060037510460}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LeftSpawn
   m_TagString: RoomSpawnpoint
   m_Icon: {fileID: 0}
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficulty: 0
-  doorAttachSide: 8
+  doorAttachSide: 2
 --- !u!58 &5144428060037510460
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -280,7 +280,7 @@ GameObject:
   - component: {fileID: 2719759540203764806}
   - component: {fileID: 8773567670621190929}
   - component: {fileID: 7895343361889763468}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TopSpawn
   m_TagString: RoomSpawnpoint
   m_Icon: {fileID: 0}
@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   difficulty: 0
-  doorAttachSide: 2
+  doorAttachSide: 8
 --- !u!58 &7895343361889763468
 CircleCollider2D:
   m_ObjectHideFlags: 0

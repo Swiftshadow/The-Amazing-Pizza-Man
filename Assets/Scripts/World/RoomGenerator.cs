@@ -7,6 +7,7 @@
 *****************************************************************************/
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -30,6 +31,8 @@ public class RoomGenerator : MonoBehaviour
 
     [Tooltip("The lowest number generated that will spawn a room")]
     public float spawnThreshold = 5;
+
+    public static int roomSpawnCount = 0;
     
     /// <summary>
     /// Generates a room array and places the tiles for said room
@@ -37,23 +40,25 @@ public class RoomGenerator : MonoBehaviour
     void Awake()
     {
         rooms = GetComponent<RoomHolder>();
-        SpawnRooms();
+        SpawnMap();
     }
-
-    public GameObject[] roomSpawnpoints;
+    
     
     /// <summary>
     /// Spawns all the rooms on a floor
     /// </summary>
-    private void SpawnRooms()
+    private void SpawnMap()
     {
         // Spawns the starting room
         Instantiate(rooms.startRoom);
 
         for (int i = 0; i < spawnRuns; ++i) {
-            roomSpawnpoints =
+            GameObject[] roomSpawnpoints =
                 GameObject.FindGameObjectsWithTag("RoomSpawnpoint");
             Debug.Log("Iteration " + i + ", " + (roomSpawnpoints.Length) + " spawnpoints");
+
+            // Need to wait for one frame between spawn cycles
+            
             foreach (var spawnpoint in roomSpawnpoints)
             {
                 RoomSpawnSettings spawnSettings =
@@ -61,51 +66,37 @@ public class RoomGenerator : MonoBehaviour
 
                 Vector3 spawnLocation = spawnpoint.transform.position;
                 
-                Destroy(spawnpoint.gameObject);
+                //DestroyImmediate(spawnpoint.gameObject);
                 
                 if (Random.Range(0,spawnThresholdMax) < spawnThreshold)
                 {
-                    Debug.Log("Not spawning room from " + spawnpoint.name + " on " + spawnpoint.transform.parent.name);
                     continue;
                 }
 
                 if (CheckDoorAttachSide(spawnSettings, EnumList.RoomDoors.DOOR_RIGHT))
                 {
-                    Debug.Log("Spawning right from " + spawnpoint.name + " on " + spawnpoint.transform.parent.name);
                     SpawnRoom(EnumList.RoomDoors.DOOR_RIGHT, spawnLocation);
                 }
                 else if (CheckDoorAttachSide(spawnSettings, EnumList.RoomDoors.DOOR_LEFT))
                 {
-                    Debug.Log("Spawning left from " + spawnpoint.name + " on " + spawnpoint.transform.parent.name);
                     SpawnRoom(EnumList.RoomDoors.DOOR_LEFT, spawnLocation);
                 }
                 else if (CheckDoorAttachSide(spawnSettings, EnumList.RoomDoors.DOOR_UP))
                 {
-                    Debug.Log("Spawning up from " + spawnpoint.name + " on " + spawnpoint.transform.parent.name);
                     SpawnRoom(EnumList.RoomDoors.DOOR_UP, spawnLocation);
                 }
                 else if (CheckDoorAttachSide(spawnSettings, EnumList.RoomDoors.DOOR_DOWN))
                 {
-                    Debug.Log("Spawning down from " + spawnpoint.name + " on " + spawnpoint.transform.parent.name);
                     SpawnRoom(EnumList.RoomDoors.DOOR_DOWN, spawnLocation);
                 }
                 
             }
 
-            //Array.Clear(roomSpawnpoints, 0, roomSpawnpoints.Length);
+            Array.Clear(roomSpawnpoints, 0, roomSpawnpoints.Length);
             Debug.Log("End of iteration, " + roomSpawnpoints.Length + " spawnpoints remain");
         }
-        
-        /*
-        // Fills the extra spawnpoints in with solid walls so they are not leading to the void
-        GameObject[] roomSpawns =
-            GameObject.FindGameObjectsWithTag("RoomSpawnpoint");
-        foreach (var spawnpoint in roomSpawns)
-        {
-            Vector3 spawnLocation = spawnpoint.transform.position;
-            SpawnRoom(EnumList.RoomDoors.DOOR_NONE, spawnLocation);
-        }
-        */
+
+        StartCoroutine("SpawnWalls");
     }
 
     /// <summary>
@@ -126,6 +117,7 @@ public class RoomGenerator : MonoBehaviour
     /// <param name="location">Where on the map to spawn the room</param>
     private void SpawnRoom(EnumList.RoomDoors attachSide, Vector3 location)
     {
+        ++roomSpawnCount;
         // Stores the array to spawn rooms from
         GameObject[] toSpawnFrom;
         // Checks what side needs to be open
@@ -153,5 +145,47 @@ public class RoomGenerator : MonoBehaviour
 
         // Spawns the room at the position of the spawnpoint
         GameObject room = Instantiate(toSpawnFrom[roomIndex], location, Quaternion.identity);
+    }
+
+    /// <summary>
+    /// Removes the current map
+    /// </summary>
+    void RemoveRooms()
+    {
+        GameObject[] allRooms = GameObject.FindGameObjectsWithTag("Room");
+        foreach (var room in allRooms)
+        {
+            DestroyImmediate(room);
+        }
+    }
+
+    /// <summary>
+    /// Spawns the walls around the outside of the map
+    /// </summary>
+    private IEnumerator SpawnWalls()
+    {
+        // Forces the function to be called after the triggers
+        yield return 0;
+        // Fills the extra spawnpoints in with solid walls so they are not leading to the void
+        GameObject[] roomSpawns =
+            GameObject.FindGameObjectsWithTag("RoomSpawnpoint");
+        foreach (var spawnpoint in roomSpawns)
+        {
+            Vector3 spawnLocation = spawnpoint.transform.position;
+            SpawnRoom(EnumList.RoomDoors.DOOR_NONE, spawnLocation);
+        }
+        
+    }
+
+    /// <summary>
+    /// Can regenerate the map with the R key
+    /// </summary>
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RemoveRooms();
+            SpawnMap();
+        }
     }
 }
