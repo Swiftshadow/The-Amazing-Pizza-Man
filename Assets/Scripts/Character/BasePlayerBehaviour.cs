@@ -6,7 +6,10 @@
 // Brief Description : Controls the overall behaviors of the players that 
                        transfer across forms.
 *****************************************************************************/
+
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Required Components
 //[RequireComponent(typeof(Rigidbody2D))] //(AK 8)
@@ -30,6 +33,9 @@ public class BasePlayerBehaviour : MonoBehaviour
     private SpriteRenderer sR; //(AK 12)
     private Animator anim; //(AK 13)
     private DistanceJoint2D joint; //(AK 37)
+    private BoxCollider2D humanCollider;
+    private CircleCollider2D pizzaCollider;
+    private LineRenderer lineRenderer;
 
     // Object References
     [Header("Sprites")]
@@ -65,6 +71,24 @@ public class BasePlayerBehaviour : MonoBehaviour
         FormSwitch();
         PlayerMovement();
         GrapplingHook();
+
+        if (Input.GetKeyDown("1"))
+        {
+            SceneManager.LoadScene("WorldGenTest");
+        }
+
+        if (joint.enabled == true)
+        {
+            lineRenderer.enabled = true;
+            
+            var points = new Vector3[] {joint.connectedAnchor, gameObject.transform.position};
+            lineRenderer.positionCount = 2;
+            lineRenderer.SetPositions(points);
+        }
+        else if (joint.enabled == false)
+        {
+            lineRenderer.enabled = false;
+        }
     }
 
     /// <summary>
@@ -77,6 +101,9 @@ public class BasePlayerBehaviour : MonoBehaviour
         sR = GetComponent<SpriteRenderer>(); //(AK 15)
         anim = GetComponent<Animator>(); //(AK 16)
         joint = GetComponent<DistanceJoint2D>(); //(AK 40)
+        humanCollider = GetComponent<BoxCollider2D>();
+        pizzaCollider = GetComponent<CircleCollider2D>();
+        lineRenderer = GetComponent<LineRenderer>();
     }
 
    
@@ -93,10 +120,29 @@ public class BasePlayerBehaviour : MonoBehaviour
                 joint.enabled = false;
                 sR.sprite = humanDefaultSprite; //(AK 17)
                 rb2d.velocity = Vector2.zero;
+                
+                // Sets the appropriate hitbox to be active
+                humanCollider.enabled = true;
+                pizzaCollider.enabled = false;
+                
+                gameObject.transform.localScale = new Vector3(3, 3);
+                
+                gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                rb2d.freezeRotation = true;
             }
             else //(AK 7)
             {
                 sR.sprite = pizzaDefaultSprite; //(AK 18)
+                
+                gameObject.transform.localScale = new Vector3(2, 2);
+
+                rb2d.freezeRotation = false;
+                
+                InvokeRepeating("SpawnGrease", 0f, 0.1f);
+                
+                // Sets the appropriate hitbox to be active
+                humanCollider.enabled = false;
+                pizzaCollider.enabled = true;
             }
         }
     }
@@ -132,8 +178,6 @@ public class BasePlayerBehaviour : MonoBehaviour
             moveForce.y = Mathf.Clamp(moveForce.y, -velocityCap, velocityCap); //(AK 35)
         
             rb2d.AddForce(moveForce); //(AK 36)
-            
-            //Debug.Log(moveForce); 
         }
         /*
         if(Input.GetButton("Horizontal")||Input.GetButton(("Vertical")))
@@ -162,6 +206,8 @@ public class BasePlayerBehaviour : MonoBehaviour
         }
         */
     }
+    
+    
     /// <summary>
     /// Controls the behaviour and functionality of the pizza's grappling hook
     /// ability
@@ -179,12 +225,24 @@ public class BasePlayerBehaviour : MonoBehaviour
             joint.connectedAnchor = targetPos;
             //joint.distance = Vector3.Distance(targetPos, transform.position);
             joint.enabled = true;
-            // On Mouse Up, clears existing values and when it goes down it resests them
         }
+        // On Mouse Up, clears existing values and when it goes down it resests them
         else if (Input.GetButtonUp("Fire1") && playerHuman == false)
         {
             joint.enabled = false;
         }
     }
-    
+
+    private void SpawnGrease()
+    {
+        Instantiate(greaseTrail, transform.position, Quaternion.identity);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Grease")
+        {
+            rb2d.velocity *= new Vector2(0.5f, 0.5f);
+        }
+    }
 }

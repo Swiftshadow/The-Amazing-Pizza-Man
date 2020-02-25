@@ -8,6 +8,7 @@ TagManager:
   - RoomSpawnpoint
   - Wall
   - Startpoint
+  - Grease
   layers:
   - Default
   - TransparentFX
