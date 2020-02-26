@@ -36,7 +36,7 @@ public class RoomBehaviour : MonoBehaviour
         if (other.CompareTag("Startpoint"))
         {
             Debug.Log("Destroying " + gameObject.name + " for contacting startpoint");
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
         
     }
