@@ -89,6 +89,7 @@ public class BasePlayerBehaviour : MonoBehaviour
         {
             lineRenderer.enabled = false;
         }
+
     }
 
     /// <summary>
@@ -126,7 +127,9 @@ public class BasePlayerBehaviour : MonoBehaviour
                 pizzaCollider.enabled = false;
                 
                 gameObject.transform.localScale = new Vector3(3, 3);
-                
+
+                CancelInvoke();
+
                 gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                 rb2d.freezeRotation = true;
             }
