@@ -6,6 +6,7 @@
 // Brief Description : ADD BRIEF DESCRIPTION OF THE FILE HERE
 *****************************************************************************/
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameControllerBehaviour : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class GameControllerBehaviour : MonoBehaviour
     /// </summary>
     void Start()
     {
-        
+        DontDestroyOnLoad(gameObject);
     }
 
     /// <summary>
@@ -22,6 +23,21 @@ public class GameControllerBehaviour : MonoBehaviour
     /// </summary>
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SwitchScene("WorldGenTest");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SwitchScene("PlayerTestingForGrappling");
+        }
         
+    }
+
+    private void SwitchScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }
