@@ -71,6 +71,7 @@ public class BasePlayerBehaviour : MonoBehaviour
         FormSwitch();
         PlayerMovement();
         GrapplingHook();
+        GrappleLength();
 
         if (Input.GetKeyDown("1"))
         {
@@ -228,6 +229,8 @@ public class BasePlayerBehaviour : MonoBehaviour
             joint.connectedAnchor = targetPos;
             //joint.distance = Vector3.Distance(targetPos, transform.position);
             joint.enabled = true;
+
+            
         }
         // On Mouse Up, clears existing values and when it goes down it resests them
         else if (Input.GetButtonUp("Fire1") && playerHuman == false)
@@ -235,6 +238,18 @@ public class BasePlayerBehaviour : MonoBehaviour
             joint.enabled = false;
         }
     }
+
+    private void GrappleLength()
+    {
+        if (joint.enabled == true)
+        {
+            joint.distance = Vector2.Distance(transform.position, joint.connectedAnchor);
+
+            // Move Towards
+        }
+    }
+    
+    
 
     private void SpawnGrease()
     {
