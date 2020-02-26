@@ -33,6 +33,11 @@ public class GameControllerBehaviour : MonoBehaviour
         {
             SwitchScene("PlayerTestingForGrappling");
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         
     }
 
