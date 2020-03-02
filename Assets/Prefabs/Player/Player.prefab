@@ -125,7 +125,7 @@ MonoBehaviour:
   pizzaMultiplier: 100
   humanDefaultSprite: {fileID: 21300000, guid: 636593ae6badf4a269563adaa5d5de67, type: 3}
   pizzaDefaultSprite: {fileID: 21300000, guid: b241ae42a911e4f6888c2047adc954da, type: 3}
-  greaseTrail: {fileID: 2639493250636727243, guid: 87abfe80a271b1c47a697eddf09554cb,
+  greaseTrail: {fileID: 2639493250636727243, guid: 444edf471b5fe48438e1883c10fc3729,
     type: 3}
   playerHuman: 0
 --- !u!58 &511652985

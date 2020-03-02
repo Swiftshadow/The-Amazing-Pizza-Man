@@ -10,11 +10,13 @@ using System;
 
 public class EnumList
 {
+    [Flags]
     public enum RoomDifficulty
     {
-        DIFFICULTY_EASY,
-        DIFFICULTY_NORMAL,
-        DIFFICULTY_HARD
+        DIFFICULTY_NONE = 0,
+        DIFFICULTY_EASY = 1,
+        DIFFICULTY_NORMAL = 2,
+        DIFFICULTY_HARD = 4
     }
 
     [Flags]

@@ -14,6 +14,9 @@ public class RoomBehaviour : MonoBehaviour
 
     private RoomGenerator generator;
 
+    [Tooltip("The difficulty level of this room")]
+    public EnumList.RoomDifficulty difficulty;
+    
     private void Awake()
     {
         generator = GameObject.FindWithTag("Generator").GetComponent<RoomGenerator>();
@@ -23,19 +26,19 @@ public class RoomBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("RoomSpawnpoint"))
+        if (other.CompareTag("RoomSpawnpoint") || other.CompareTag("WallSpawnpoint"))
         {
             Debug.Log("Destorying " + other.name + " of " + other.transform.parent.name + " in " + gameObject.name);
             Destroy(other.gameObject);
         }
+        
         if (gameObject.CompareTag("Wall") && (other.CompareTag("Room") || other.CompareTag("Startpoint")))
         {
             Debug.Log("Destorying wall " + gameObject.name + " in room " + other.transform.name);
             Destroy(gameObject);
         }
 
-        
-        if (other.CompareTag("Startpoint") && generator.spawnDone)
+        if (gameObject.CompareTag("Startpoint") && other.CompareTag("Room") && generator.spawnDone)
         {
             Debug.Log("Destroying " + gameObject.name + " for contacting startpoint");
             Destroy(gameObject);

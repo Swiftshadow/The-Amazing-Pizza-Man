@@ -9,6 +9,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -23,6 +24,9 @@ public class RoomGenerator : MonoBehaviour
     /// </summary>
     private RoomHolder rooms;
 
+    [Tooltip("The player prefab that will be spawned")]
+    public GameObject player;
+    
     [Header("Room Spawn Settings")]
     [Tooltip("How many times to run the room spawning loop")]
     public int spawnRuns = 3;
@@ -52,6 +56,7 @@ public class RoomGenerator : MonoBehaviour
     {
         // Spawns the starting room
         Instantiate(rooms.startRoom);
+        Instantiate(player);
         spawnDone = false;
         StartCoroutine("SpawnRooms");
     }
@@ -96,11 +101,25 @@ public class RoomGenerator : MonoBehaviour
                 break;
         }
 
-        // Gets a random room from the correct list
-        int roomIndex = Random.Range(0, toSpawnFrom.Length);
+        // Hold the values used in the below loop
+        GameObject toSpawn;
+        RoomBehaviour toSpawnRB;
+        // Makes sure only rooms of the correct difficulty spawn
+        do
+        {
+            // Gets a random room from the correct list
+            int roomIndex = Random.Range(0, toSpawnFrom.Length);
 
+            // Gets the component needed to check the difficulty
+            toSpawnRB =
+                toSpawnFrom[roomIndex].GetComponent<RoomBehaviour>();
+
+        } while ((toSpawnRB.difficulty | difficulty) != difficulty);
+
+        toSpawn = toSpawnRB.gameObject;
+        
         // Spawns the room at the position of the spawnpoint
-        GameObject room = Instantiate(toSpawnFrom[roomIndex], location, Quaternion.identity);
+        GameObject room = Instantiate(toSpawn, location, Quaternion.identity);
     }
 
     /// <summary>
@@ -111,9 +130,13 @@ public class RoomGenerator : MonoBehaviour
         spawnDone = false;
         // Get all room objects
         GameObject[] allRooms = GameObject.FindGameObjectsWithTag("Room");
-        GameObject[] allSpawnpoints = GameObject.FindGameObjectsWithTag("RoomSpawnpoint");
+        List<GameObject> allSpawnpoints = GetAllSpawnpoints();
         GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
         GameObject startpoint = GameObject.FindWithTag("Startpoint");
+        GameObject player = GameObject.FindWithTag("Player");
+        
+        // Remove the player
+        Destroy(player);
         
         // Remove the startpoint
         Destroy(startpoint);
@@ -121,13 +144,13 @@ public class RoomGenerator : MonoBehaviour
         // Remove all rooms
         foreach (var room in allRooms)
         {
-            DestroyImmediate(room);
+            Destroy(room);
         }
 
         // Remove any extra spawnpoints
         foreach (var spawnpoint in allSpawnpoints)
         {
-            DestroyImmediate(spawnpoint);
+            Destroy(spawnpoint);
         }
 
         // Remove all walls
@@ -137,6 +160,14 @@ public class RoomGenerator : MonoBehaviour
         }
     }
 
+    private List<GameObject> GetAllSpawnpoints()
+    {
+        List<GameObject> spawnpoints =
+            GameObject.FindGameObjectsWithTag("RoomSpawnpoint").ToList();
+        spawnpoints.AddRange(GameObject.FindGameObjectsWithTag("WallSpawnpoint"));
+        return spawnpoints;
+    }
+    
     /// <summary>
     /// Spawns the walls around the outside of the map
     /// </summary>
@@ -145,8 +176,7 @@ public class RoomGenerator : MonoBehaviour
         // Forces the function to be called after the triggers
         yield return 0;
         // Fills the extra spawnpoints in with solid walls so they are not leading to the void
-        GameObject[] roomSpawns =
-            GameObject.FindGameObjectsWithTag("RoomSpawnpoint");
+        List<GameObject> roomSpawns = GetAllSpawnpoints();
         foreach (var spawnpoint in roomSpawns)
         {
             Vector3 spawnLocation = spawnpoint.transform.position;

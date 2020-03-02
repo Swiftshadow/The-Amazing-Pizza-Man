@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d01779e4c70da64badb2ce38603a6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 0
   doorAttachSide: 8
 --- !u!58 &6870051518671004583
 CircleCollider2D:
@@ -106,7 +105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d01779e4c70da64badb2ce38603a6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 0
   doorAttachSide: 1
 --- !u!58 &2570984597841516057
 CircleCollider2D:
@@ -270,6 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 162373153480bee4587852bb59fec646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  difficulty: 1
 --- !u!1 &5870705412467499464
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +313,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d01779e4c70da64badb2ce38603a6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 0
   doorAttachSide: 2
 --- !u!58 &5144428060037510460
 CircleCollider2D:
@@ -376,7 +374,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d01779e4c70da64badb2ce38603a6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 0
   doorAttachSide: 8
 --- !u!58 &2210332000198611808
 CircleCollider2D:

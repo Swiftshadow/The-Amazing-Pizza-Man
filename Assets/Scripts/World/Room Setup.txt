@@ -1,0 +1,17 @@
+Steps to set up a room
+
+1) Create room prefab
+	1a) Room prefabs must all have the same outer dimensions
+	1b) Add objects 1/2 the length of your room outside any doors
+	1c) Add "RoomSpawnSettings" script to these objects
+	1d) Set "Door Attach Side" to the opposite side the spawnpoint is on (I.E. If spawnpoint is on the right, set this to DOOR_LEFT)
+	1e) Tag these objects "RoomSpawnpoint"
+	1f) Repeat steps 1b and 1c, but on sides without a door, and tagging "WallSpawnpoint"
+	1g) Add trigger circle collider to center of parent room
+	1h) Add "RoomBehaviour" script to parent room
+	1i) Add a RigidBody2D set to Kinematic to the parent room
+	1j) Tag the parent room "Room"
+	1k) Set Room Difficulty property on parent room
+2) Add roomm prefab to Room Holder
+	2a) Add room prefabs to appropriate lists. Rooms can be in multiple lists at once
+3) Profit

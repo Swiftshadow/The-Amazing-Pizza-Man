@@ -11,11 +11,9 @@ using UnityEngine;
 /// <summary>
 /// Lives on spawnpoint objects childed to the main room
 /// </summary>
+[RequireComponent(typeof(CircleCollider2D))]
 public class RoomSpawnSettings : MonoBehaviour
 {
-    
-    [Tooltip("Difficulty of the room to spawn")]
-    public EnumList.RoomDifficulty difficulty;
 
     [Tooltip("The side of the room to spawn that must be open")]
     public EnumList.RoomDoors doorAttachSide;
