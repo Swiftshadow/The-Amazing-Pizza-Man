@@ -3,7 +3,7 @@
 // Author :            Doug Guzman
 // Creation Date :     February 19, 2020
 //
-// Brief Description : ADD BRIEF DESCRIPTION OF THE FILE HERE
+// Brief Description : Handles room collisions and spawnpoint deletion
 *****************************************************************************/
 
 using System;
@@ -11,13 +11,6 @@ using UnityEngine;
 
 public class RoomBehaviour : MonoBehaviour
 {
-    
-    private void Awake()
-    {
-        gameObject.name = "Room " + RoomGenerator.roomSpawnCount;
-    }
-    
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("RoomSpawnpoint"))
@@ -26,7 +19,7 @@ public class RoomBehaviour : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        if (gameObject.CompareTag("Wall") && other.CompareTag("Room"))
+        if (gameObject.CompareTag("Wall") && (other.CompareTag("Room") || other.CompareTag("Startpoint")))
         {
             Debug.Log("Destorying wall " + gameObject.name + " in room " + other.transform.name);
             Destroy(gameObject);
