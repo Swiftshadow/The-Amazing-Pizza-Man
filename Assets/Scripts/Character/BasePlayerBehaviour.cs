@@ -16,19 +16,18 @@ public class BasePlayerBehaviour : MonoBehaviour
     public int health;
     public int lives;
 
+    private bool playerInvulnerable;
+
     public float speed;
     public float pizzaSpeedMultiplier;
 
     public float pizzaDamageReduction;
-    
-    // Lives
-    // Speed
 
     // Component References
-    private Rigidbody2D rb2d; //(AK 11)
-    private SpriteRenderer sR; //(AK 12)
-    private Animator anim; //(AK 13)
-    private DistanceJoint2D joint; //(AK 37)
+    private Rigidbody2D rb2d; // AK
+    private SpriteRenderer sR; // AK
+    private Animator anim; // AK
+    private DistanceJoint2D joint; // AK
     private BoxCollider2D humanCollider;
     private CircleCollider2D pizzaCollider;
     private LineRenderer lineRenderer;
@@ -45,7 +44,7 @@ public class BasePlayerBehaviour : MonoBehaviour
     public GameObject greaseTrail;
 
 
-    public bool playerHuman; //(AK 1)
+    public bool playerHuman; // AK 
     
     /// <summary>
     /// Start is called before the first frame update
@@ -53,6 +52,7 @@ public class BasePlayerBehaviour : MonoBehaviour
     void Start()
     {
         GetComponents();
+        SetValues();
         
         playerHuman = true; 
     }
@@ -101,6 +101,15 @@ public class BasePlayerBehaviour : MonoBehaviour
         humanCollider = GetComponent<BoxCollider2D>();
         pizzaCollider = GetComponent<CircleCollider2D>();
         lineRenderer = GetComponent<LineRenderer>();
+    }
+
+    private void SetValues()
+    {
+        health = 100;
+        lives = 3;
+
+        playerInvulnerable = false;
+
     }
 
    
@@ -230,6 +239,17 @@ public class BasePlayerBehaviour : MonoBehaviour
         if (other.tag == "Grease")
         {
             rb2d.velocity *= new Vector2(0.5f, 0.5f);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision other)
+    {
+        if (other.gameObject. tag == "Enemy")
+        {
+            if (playerInvulnerable == false)
+            {
+                //health =- other.gameObject.damageValue;
+            }
         }
     }
 }

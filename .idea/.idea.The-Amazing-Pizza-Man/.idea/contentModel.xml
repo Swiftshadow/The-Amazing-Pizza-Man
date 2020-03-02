@@ -17,6 +17,9 @@
             <e p="PizzaGreaseTrailBehaviour.cs" t="Include" />
             <e p="PizzaPlayerBehaviour.cs" t="Include" />
           </e>
+          <e p="Enemy" t="Include">
+            <e p="BroccoliMonster.cs" t="Include" />
+          </e>
           <e p="EnumList.cs" t="Include" />
           <e p="GameControllerBehaviour.cs" t="Include" />
           <e p="World" t="Include">

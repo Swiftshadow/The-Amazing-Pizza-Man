@@ -32,7 +32,7 @@ public class GameControllerBehaviour : MonoBehaviour
     /// </summary>
     void Start()
     {
-        
+        GetComponents();
         DontDestroyOnLoad(gameObject);
     }
 
@@ -57,6 +57,8 @@ public class GameControllerBehaviour : MonoBehaviour
             Application.Quit();
         }
         
+        UpdateUI();
+        
     }
 
     private void SwitchScene(string sceneName)
@@ -66,13 +68,13 @@ public class GameControllerBehaviour : MonoBehaviour
 
     private void GetComponents() // AK
     {
-        
+        player = GameObject.Find("Player");
     }
     private void UpdateUI() // AK
     {
         health = player.GetComponent<BasePlayerBehaviour>().health; // AK
-        healthText.text = "Health Remaining: " + health; // Ak
-        
+        healthText.text = "Health Remaining: " + health + "%"; // AK
+
         lives = player.GetComponent<BasePlayerBehaviour>().lives; // AK
         livesText.text = "Lives Remaining: " + lives; // AK
     }
