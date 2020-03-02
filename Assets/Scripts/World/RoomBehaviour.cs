@@ -11,12 +11,15 @@ using UnityEngine;
 
 public class RoomBehaviour : MonoBehaviour
 {
-    
+
+    private RoomGenerator generator;
+
     private void Awake()
     {
-        gameObject.name = "Room " + RoomGenerator.roomSpawnCount;
+        generator = GameObject.FindWithTag("Generator").GetComponent<RoomGenerator>();
+        generator.spawnDone = false;
     }
-    
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -25,18 +28,18 @@ public class RoomBehaviour : MonoBehaviour
             Debug.Log("Destorying " + other.name + " of " + other.transform.parent.name + " in " + gameObject.name);
             Destroy(other.gameObject);
         }
-
-        if (gameObject.CompareTag("Wall") && other.CompareTag("Room"))
+        
+        if (gameObject.CompareTag("Wall") && (other.CompareTag("Room") || other.CompareTag("Startpoint")))
         {
             Debug.Log("Destorying wall " + gameObject.name + " in room " + other.transform.name);
             Destroy(gameObject);
         }
 
         
-        if (other.CompareTag("Startpoint"))
+        if (other.CompareTag("Startpoint") && generator.spawnDone)
         {
             Debug.Log("Destroying " + gameObject.name + " for contacting startpoint");
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
         
     }

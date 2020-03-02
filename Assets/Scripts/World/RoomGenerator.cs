@@ -32,7 +32,7 @@ public class RoomGenerator : MonoBehaviour
     [Tooltip("The lowest number generated that will spawn a room")]
     public float spawnThreshold = 5;
 
-    public static int roomSpawnCount = 0;
+    public bool spawnDone = false;
     
     /// <summary>
     /// Generates a room array and places the tiles for said room
@@ -51,7 +51,7 @@ public class RoomGenerator : MonoBehaviour
     {
         // Spawns the starting room
         Instantiate(rooms.startRoom);
-
+        spawnDone = false;
         StartCoroutine("SpawnRooms");
     }
 
@@ -73,7 +73,6 @@ public class RoomGenerator : MonoBehaviour
     /// <param name="location">Where on the map to spawn the room</param>
     private void SpawnRoom(EnumList.RoomDoors attachSide, Vector3 location)
     {
-        ++roomSpawnCount;
         // Stores the array to spawn rooms from
         GameObject[] toSpawnFrom;
         // Checks what side needs to be open
@@ -108,6 +107,7 @@ public class RoomGenerator : MonoBehaviour
     /// </summary>
     void RemoveRooms()
     {
+        spawnDone = false;
         GameObject[] allRooms = GameObject.FindGameObjectsWithTag("Room");
         GameObject[] allSpawnpoints = GameObject.FindGameObjectsWithTag("RoomSpawnpoint");
         GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
@@ -146,13 +146,16 @@ public class RoomGenerator : MonoBehaviour
             SpawnRoom(EnumList.RoomDoors.DOOR_NONE, spawnLocation);
         }
         
+        Debug.Log("Spawning Done!");
+        spawnDone = true;
     }
     
     /// <summary>
     /// Runs the loop that spawns all the walls.
     /// </summary>
     /// <returns>Waits a frame between spawning</returns>
-    private IEnumerator SpawnRooms() {
+    private IEnumerator SpawnRooms()
+    {
         for (int i = 0; i < spawnRuns; ++i)
         {
             yield return 0;
@@ -167,9 +170,7 @@ public class RoomGenerator : MonoBehaviour
                     spawnpoint.GetComponent<RoomSpawnSettings>();
                 
                 Vector3 spawnLocation = spawnpoint.transform.position;
-                
-                //DestroyImmediate(spawnpoint.gameObject);
-                
+
                 if (Random.Range(0,spawnThresholdMax) < spawnThreshold)
                 {
                     continue;
@@ -208,6 +209,7 @@ public class RoomGenerator : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
+            spawnDone = false;
             RemoveRooms();
             SpawnMap();
         }

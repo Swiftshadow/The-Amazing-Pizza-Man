@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 3469965057948758304}
   - component: {fileID: 3524830734752521371}
   - component: {fileID: 8668681423953101331}
-  m_Layer: 2
+  m_Layer: 10
   m_Name: StartRoom
   m_TagString: Startpoint
   m_Icon: {fileID: 0}

@@ -15,6 +15,7 @@
           <e p="Character" t="Include">
             <e p="BasePlayerBehaviour.cs" t="Include" />
             <e p="HumanPlayerBehaviour.cs" t="Include" />
+            <e p="PizzaGreaseTrailBehaviour.cs" t="Include" />
             <e p="PizzaPlayerBehaviour.cs" t="Include" />
           </e>
           <e p="EnumList.cs" t="Include" />
