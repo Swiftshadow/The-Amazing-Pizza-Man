@@ -23,19 +23,20 @@ public class RoomGenerator : MonoBehaviour
     /// </summary>
     private RoomHolder rooms;
 
+    [Header("Room Spawn Settings")]
     [Tooltip("How many times to run the room spawning loop")]
     public int spawnRuns = 3;
-
+    
     [Tooltip("The maximum number that can be generated when checking to spawn a room")]
     public float spawnThresholdMax = 10;
 
-    [Tooltip("The lowest number generated that will spawn a room")]
+    [Tooltip("The minimum number generated that will spawn a room")]
     public float spawnThreshold = 5;
 
     public bool spawnDone = false;
     
     /// <summary>
-    /// Generates a room array and places the tiles for said room
+    /// Spawns the rooms on the map
     /// <\summary>
     void Awake()
     {
@@ -108,22 +109,28 @@ public class RoomGenerator : MonoBehaviour
     void RemoveRooms()
     {
         spawnDone = false;
+        // Get all room objects
         GameObject[] allRooms = GameObject.FindGameObjectsWithTag("Room");
         GameObject[] allSpawnpoints = GameObject.FindGameObjectsWithTag("RoomSpawnpoint");
         GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
         GameObject startpoint = GameObject.FindWithTag("Startpoint");
         
+        // Remove the startpoint
         Destroy(startpoint);
+        
+        // Remove all rooms
         foreach (var room in allRooms)
         {
             DestroyImmediate(room);
         }
 
+        // Remove any extra spawnpoints
         foreach (var spawnpoint in allSpawnpoints)
         {
             DestroyImmediate(spawnpoint);
         }
 
+        // Remove all walls
         foreach (var wall in walls)
         {
             Destroy(wall);
@@ -156,14 +163,18 @@ public class RoomGenerator : MonoBehaviour
     /// <returns>Waits a frame between spawning</returns>
     private IEnumerator SpawnRooms()
     {
+        // Controls how many spawn runs there are
         for (int i = 0; i < spawnRuns; ++i)
         {
+            // Forces the function to wait a frame between each spawn run
             yield return 0;
+            
+            // Find all spawnpoings
             GameObject[] roomSpawnpoints =
                 GameObject.FindGameObjectsWithTag("RoomSpawnpoint");
             Debug.Log("Iteration " + i + ", " + (roomSpawnpoints.Length) + " spawnpoints");
             
-            
+            // Check if a room should be spawned on each spawnpoint
             foreach (var spawnpoint in roomSpawnpoints)
             {
                 RoomSpawnSettings spawnSettings =
@@ -171,11 +182,16 @@ public class RoomGenerator : MonoBehaviour
                 
                 Vector3 spawnLocation = spawnpoint.transform.position;
 
+                
+                //DestroyImmediate(spawnpoint.gameObject);
+                
+                // If the PRNG is not correct, do not spawn on this spawnpoint
                 if (Random.Range(0,spawnThresholdMax) < spawnThreshold)
                 {
                     continue;
                 }
 
+                // Check which door the room needs and spawn it
                 if (CheckDoorAttachSide(spawnSettings, EnumList.RoomDoors.DOOR_RIGHT))
                 {
                     SpawnRoom(EnumList.RoomDoors.DOOR_RIGHT, spawnLocation);
@@ -195,10 +211,12 @@ public class RoomGenerator : MonoBehaviour
 
             }
 
+            // Clear the array for next iteration
             Array.Clear(roomSpawnpoints, 0, roomSpawnpoints.Length);
             Debug.Log("End of iteration, " + roomSpawnpoints.Length + " spawnpoints remain");
         }
         
+        // Spawn walls once all the rooms have been spawned
         StartCoroutine("SpawnWalls");
     }
 

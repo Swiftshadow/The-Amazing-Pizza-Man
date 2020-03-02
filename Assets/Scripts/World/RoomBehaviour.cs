@@ -3,7 +3,7 @@
 // Author :            Doug Guzman
 // Creation Date :     February 19, 2020
 //
-// Brief Description : ADD BRIEF DESCRIPTION OF THE FILE HERE
+// Brief Description : Handles room collisions and spawnpoint deletion
 *****************************************************************************/
 
 using System;
@@ -28,7 +28,6 @@ public class RoomBehaviour : MonoBehaviour
             Debug.Log("Destorying " + other.name + " of " + other.transform.parent.name + " in " + gameObject.name);
             Destroy(other.gameObject);
         }
-        
         if (gameObject.CompareTag("Wall") && (other.CompareTag("Room") || other.CompareTag("Startpoint")))
         {
             Debug.Log("Destorying wall " + gameObject.name + " in room " + other.transform.name);
