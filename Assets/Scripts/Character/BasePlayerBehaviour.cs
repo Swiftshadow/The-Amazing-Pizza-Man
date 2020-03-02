@@ -10,29 +10,24 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-// Required Components
-//[RequireComponent(typeof(Rigidbody2D))] //(AK 8)
-//[RequireComponent(typeof(SpriteRenderer))] //(AK 9)
-//[RequireComponent(typeof(Animator))] //(AK 10)
-
 public class BasePlayerBehaviour : MonoBehaviour
 {
     // Player Stats
-    public int health; //(AK 21)
-    public int lives; //(AK 22)
+    public int health;
+    public int lives;
+
+    private bool playerInvulnerable;
 
     public float speed;
-    public float pizzaMultiplier;
-    
-    // Lives
-    // Speed
+    public float pizzaSpeedMultiplier;
+
+    public float pizzaDamageReduction;
 
     // Component References
-    private Rigidbody2D rb2d; //(AK 11)
-    private SpriteRenderer sR; //(AK 12)
-    private Animator anim; //(AK 13)
-    private DistanceJoint2D joint; //(AK 37)
+    private Rigidbody2D rb2d; // AK
+    private SpriteRenderer sR; // AK
+    private Animator anim; // AK
+    private DistanceJoint2D joint; // AK
     private BoxCollider2D humanCollider;
     private CircleCollider2D pizzaCollider;
     private LineRenderer lineRenderer;
@@ -49,17 +44,17 @@ public class BasePlayerBehaviour : MonoBehaviour
     public GameObject greaseTrail;
 
 
-    public bool playerHuman; //(AK 1)
+    public bool playerHuman; // AK 
     
     /// <summary>
     /// Start is called before the first frame update
     /// </summary>
     void Start()
     {
+        GetComponents();
+        SetValues();
         
-        
-        playerHuman = true; //(AK 2)
-        
+        playerHuman = true; 
     }
 
     /// <summary>
@@ -67,7 +62,6 @@ public class BasePlayerBehaviour : MonoBehaviour
     /// </summary>
     void Update()
     {
-        GetComponents();
         FormSwitch();
         PlayerMovement();
         GrapplingHook();
@@ -82,7 +76,8 @@ public class BasePlayerBehaviour : MonoBehaviour
         {
             lineRenderer.enabled = true;
             
-            var points = new Vector3[] {joint.connectedAnchor, gameObject.transform.position};
+            var points = new Vector3[] {joint.connectedAnchor, 
+                                        gameObject.transform.position};
             lineRenderer.positionCount = 2;
             lineRenderer.SetPositions(points);
         }
@@ -97,15 +92,24 @@ public class BasePlayerBehaviour : MonoBehaviour
     /// Gets all of the components that are called in the code in a condensed
     /// function.
     /// </summary>
-    private void GetComponents() //(AK 38)
+    private void GetComponents() 
     {
-        rb2d = GetComponent<Rigidbody2D>(); //(AK 14)
-        sR = GetComponent<SpriteRenderer>(); //(AK 15)
-        anim = GetComponent<Animator>(); //(AK 16)
-        joint = GetComponent<DistanceJoint2D>(); //(AK 40)
+        rb2d = GetComponent<Rigidbody2D>(); 
+        sR = GetComponent<SpriteRenderer>(); 
+        anim = GetComponent<Animator>(); 
+        joint = GetComponent<DistanceJoint2D>(); 
         humanCollider = GetComponent<BoxCollider2D>();
         pizzaCollider = GetComponent<CircleCollider2D>();
         lineRenderer = GetComponent<LineRenderer>();
+    }
+
+    private void SetValues()
+    {
+        health = 100;
+        lives = 3;
+
+        playerInvulnerable = false;
+
     }
 
    
@@ -153,62 +157,36 @@ public class BasePlayerBehaviour : MonoBehaviour
     
     private void PlayerMovement()
     {
-        if (playerHuman == true) //(AK 23)
+        if (playerHuman == true) 
         {
-            float xMove = Input.GetAxis("Horizontal"); //(AK 24)
-            float yMove = Input.GetAxis("Vertical"); //(AK 25)
+            float xMove = Input.GetAxis("Horizontal"); 
+            float yMove = Input.GetAxis("Vertical"); 
             
-            Vector3 newPos = transform.position;//(AK 26)
+            Vector3 newPos = transform.position;
 
-            newPos.x += xMove * Time.deltaTime * speed; //(AK 27)
-            newPos.y += yMove * Time.deltaTime * speed; //(AK 28)
+            newPos.x += xMove * Time.deltaTime * speed; 
+            newPos.y += yMove * Time.deltaTime * speed; 
 
-            transform.position = newPos; //(AK 29)
+            transform.position = newPos; 
         }
-        else if (playerHuman == false) //(AK 30)
+        else if (playerHuman == false) 
         {
             // Gets the player inputs 
-            float xMove = Input.GetAxis("Horizontal"); //(AK 19)
-            float yMove = Input.GetAxis("Vertical"); //(AK 20)
+            float xMove = Input.GetAxis("Horizontal"); 
+            float yMove = Input.GetAxis("Vertical"); 
 
         
-            xMove = xMove * speed * Time.deltaTime * pizzaMultiplier; //(AK 31)
+            xMove = xMove * speed * Time.deltaTime * pizzaSpeedMultiplier; 
         
-            Vector2 moveForce = new Vector2(xMove, yMove); //(AK 32)
-        
-            float velocityCap = 10f; //(AK 33)
-
-            moveForce.x = Mathf.Clamp(moveForce.x, -velocityCap, velocityCap); //(AK 34)
-            moveForce.y = Mathf.Clamp(moveForce.y, -velocityCap, velocityCap); //(AK 35)
-        
-            rb2d.AddForce(moveForce); //(AK 36)
-        }
-        /*
-        if(Input.GetButton("Horizontal")||Input.GetButton(("Vertical")))
-        {
-            // Gets the player inputs 
-            float xMove = Input.GetAxis("Horizontal"); //(AK 19)
-            float yMove = Input.GetAxis("Vertical"); //(AK 20)
-
-        
-            xMove = xMove * speed * Time.deltaTime;
-        
-            Vector2 moveForce = new Vector2(xMove, yMove);
+            Vector2 moveForce = new Vector2(xMove, yMove); 
         
             float velocityCap = 10f;
 
-            moveForce.x = Mathf.Clamp(moveForce.x, -velocityCap, velocityCap);
-            moveForce.y = Mathf.Clamp(moveForce.y, -velocityCap, velocityCap);
+            moveForce.x = Mathf.Clamp(moveForce.x, -velocityCap, velocityCap); 
+            moveForce.y = Mathf.Clamp(moveForce.y, -velocityCap, velocityCap); 
         
-            rb2d.AddForce(moveForce);
-            
-            Debug.Log(moveForce);
+            rb2d.AddForce(moveForce); 
         }
-        else
-        {
-            rb2d.velocity = Vector2.zero;
-        }
-        */
     }
     
     
@@ -261,6 +239,17 @@ public class BasePlayerBehaviour : MonoBehaviour
         if (other.tag == "Grease")
         {
             rb2d.velocity *= new Vector2(0.5f, 0.5f);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision other)
+    {
+        if (other.gameObject. tag == "Enemy")
+        {
+            if (playerInvulnerable == false)
+            {
+                //health =- other.gameObject.damageValue;
+            }
         }
     }
 }

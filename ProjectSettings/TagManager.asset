@@ -11,6 +11,7 @@ TagManager:
   - Grease
   - Generator
   - WallSpawnpoint
+  - Enemy
   layers:
   - Default
   - TransparentFX
