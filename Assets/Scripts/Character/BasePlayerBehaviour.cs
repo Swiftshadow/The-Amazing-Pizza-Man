@@ -8,6 +8,7 @@
 *****************************************************************************/
 
 using System;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class BasePlayerBehaviour : MonoBehaviour
@@ -16,9 +17,10 @@ public class BasePlayerBehaviour : MonoBehaviour
     public int health;
     public int lives;
 
-    //private bool playerInvulnerable;
+    private bool playerInvulnerable;
 
     public float speed;
+    public float humanSpeedMultiplier;
     public float pizzaSpeedMultiplier;
 
     public float pizzaDamageReduction;
@@ -31,6 +33,7 @@ public class BasePlayerBehaviour : MonoBehaviour
     private BoxCollider2D humanCollider;
     private CircleCollider2D pizzaCollider;
     private LineRenderer lineRenderer;
+    private TrailRenderer trailRenderer;
 
     // Object References
     [Header("Sprites")]
@@ -43,6 +46,9 @@ public class BasePlayerBehaviour : MonoBehaviour
     [Tooltip("The prefab for the pizza's grease trail")]
     public GameObject greaseTrail;
 
+    // GameObject Properties
+    private Vector3 humanScale = new Vector3(1,1);
+    private Vector3 pizzaScale = new Vector3(1,1);
 
     public bool playerHuman; // AK 
     
@@ -101,6 +107,7 @@ public class BasePlayerBehaviour : MonoBehaviour
         humanCollider = GetComponent<BoxCollider2D>();
         pizzaCollider = GetComponent<CircleCollider2D>();
         lineRenderer = GetComponent<LineRenderer>();
+        trailRenderer = GetComponent<TrailRenderer>();
     }
 
     private void SetValues()
@@ -108,30 +115,31 @@ public class BasePlayerBehaviour : MonoBehaviour
         health = 100;
         lives = 3;
 
-        //playerInvulnerable = false;
-
+        playerInvulnerable = false;
     }
 
-   
+    // General Functionalities
+    
     private void FormSwitch()
     {
-        if(Input.GetButtonDown("FormSwitch")) //(AK 4)
+        if(Input.GetButtonDown("FormSwitch")) // AK 
         {
-            playerHuman = !playerHuman; //(AK 5)
+            playerHuman = !playerHuman; // AK 
 
-            if(playerHuman == true) //(AK 6)
+            if(playerHuman == true) // AK 6
             {
                 // Sets the joint to false when the player transform from pizza
                 // to human 
                 joint.enabled = false;
-                sR.sprite = humanDefaultSprite; //(AK 17)
+                sR.sprite = humanDefaultSprite; // AK 
                 rb2d.velocity = Vector2.zero;
-                
+
                 // Sets the appropriate hitbox to be active
                 humanCollider.enabled = true;
                 pizzaCollider.enabled = false;
+                trailRenderer.emitting = false;
                 
-                gameObject.transform.localScale = new Vector3(3, 3);
+                gameObject.transform.localScale = humanScale;
 
                 CancelInvoke();
 
@@ -142,9 +150,11 @@ public class BasePlayerBehaviour : MonoBehaviour
             {
                 sR.sprite = pizzaDefaultSprite; //(AK 18)
                 
-                gameObject.transform.localScale = new Vector3(2, 2);
+                gameObject.transform.localScale = pizzaScale;
 
                 rb2d.freezeRotation = false;
+
+                trailRenderer.emitting = true;
                 
                 InvokeRepeating("SpawnGrease", 0f, 0.1f);
                 
@@ -157,17 +167,33 @@ public class BasePlayerBehaviour : MonoBehaviour
     
     private void PlayerMovement()
     {
+        // Human movement needs to be 
         if (playerHuman == true) 
         {
+            // Gets the player inputs 
             float xMove = Input.GetAxis("Horizontal"); 
             float yMove = Input.GetAxis("Vertical"); 
             
-            Vector3 newPos = transform.position;
+            xMove += xMove * speed *  humanSpeedMultiplier; 
+            yMove += yMove * speed *  humanSpeedMultiplier;
 
-            newPos.x += xMove * Time.deltaTime * speed; 
-            newPos.y += yMove * Time.deltaTime * speed; 
+            Vector2 moveForce = new Vector2(xMove, yMove); 
+        
+            float velocityCap = 5f;
 
-            transform.position = newPos; 
+            moveForce.x = Mathf.Clamp(moveForce.x, -velocityCap, velocityCap); 
+            moveForce.y = Mathf.Clamp(moveForce.y, -velocityCap, velocityCap); 
+        
+            rb2d.AddForce(moveForce);
+            Debug.Log(moveForce);
+
+            if (Input.GetAxis("Horizontal") < 1 && Input.GetAxis("Vertical") < 1)
+            {
+                moveForce.x *= 0f;
+                moveForce.y *= 0f;
+            }
+            
+            
         }
         else if (playerHuman == false) 
         {
@@ -192,70 +218,73 @@ public class BasePlayerBehaviour : MonoBehaviour
     }
     
     
-    /// <summary>
-    /// Controls the behaviour and functionality of the pizza's grappling hook
-    /// ability
-    /// Written by Andrew Krenzel
-    /// Adapted from Wabble - Unity Tutorials Grappling Hook Tutorial Series
-    /// </summary>
-    private void GrapplingHook()
-    {
-        if (Input.GetButtonDown("Fire1") && playerHuman == false)
-        {
-            Vector3 screenPos = Input.mousePosition;
-            Vector3 targetPos = Camera.main.ScreenToWorldPoint(screenPos);
-            Debug.Log("ScreenPos = " + screenPos + " WorldPos = " + targetPos);
-
-            joint.connectedAnchor = targetPos;
-            //joint.distance = Vector3.Distance(targetPos, transform.position);
-            joint.enabled = true;
-
-            rb2d.drag = 0.0f;
-
-
-        }
-        // On Mouse Up, clears existing values and when it goes down it resests them
-        else if (Input.GetButtonUp("Fire1") && playerHuman == false)
-        {
-            joint.enabled = false;
-            rb2d.drag = 5;
-        }
-    }
-
-    private void GrappleLength()
-    {
-        if (joint.enabled == true)
-        {
-            joint.distance = Vector2.Distance(transform.position, joint.connectedAnchor);
-
-            // Move Towards
-        }
-    }
+   private void OnCollisionEnter2D(Collision other)
+   {
+       if (other.gameObject. tag == "Enemy")
+       {
+           if (playerInvulnerable == false)
+           {
+               //health =- other.gameObject.damageValue;
+           }
+       }
+   } 
     
+    // Human Functionalities
     
+   // Pizza Functionalities
+   
+   /// <summary>
+   /// Controls the behaviour and functionality of the pizza's grappling hook
+   /// ability
+   /// Written by Andrew Krenzel
+   /// Adapted from Wabble - Unity Tutorials Grappling Hook Tutorial Series
+   /// </summary>
+   private void GrapplingHook()
+   {
+       if (Input.GetButtonDown("Fire1") && playerHuman == false)
+       {
+           Vector3 screenPos = Input.mousePosition;
+           Vector3 targetPos = Camera.main.ScreenToWorldPoint(screenPos);
+           Debug.Log("ScreenPos = " + screenPos + " WorldPos = " + targetPos);
 
-    private void SpawnGrease()
-    {
-       // Instantiate(greaseTrail, transform.position, Quaternion.identity);
-    }
+           joint.connectedAnchor = targetPos;
+           //joint.distance = Vector3.Distance(targetPos, transform.position);
+           joint.enabled = true;
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "Grease")
-        {
-           // rb2d.velocity *= new Vector2(0.5f, 0.5f);
-        }
-    }
+           rb2d.drag = 0.0f;
 
-    /*
-    private void OnCollisionEnter2D(Collision other)
-    {
-        if (other.gameObject. tag == "Enemy")
-        {
-            if (playerInvulnerable == false)
-            {
-                //health =- other.gameObject.damageValue;
-            }
-        }
-    } */
+
+       }
+       // On Mouse Up, clears existing values and when it goes down it resests them
+       else if (Input.GetButtonUp("Fire1") && playerHuman == false)
+       {
+           joint.enabled = false;
+           rb2d.drag = 5;
+       }
+   }
+
+   private void GrappleLength()
+   {
+       if (joint.enabled == true)
+       {
+           joint.distance = Vector2.Distance(transform.position, joint.connectedAnchor);
+
+           // Move Towards
+       }
+   }
+
+   private void SpawnGrease()
+   {
+       Instantiate(greaseTrail, transform.position, Quaternion.identity);
+   }
+    
+   // Pizza Grease Trail Sliding
+   private void OnTriggerStay(Collider other)
+   {
+       if (other.tag == "Grease")
+       {
+           rb2d.velocity *= new Vector2(0.5f, 0.5f);
+       }
+   }
+   
 }
