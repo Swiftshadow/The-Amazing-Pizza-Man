@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 1297935308794430628, guid: d80f4fb5b176bf745a354b89446b56bd,
         type: 3}
       propertyPath: m_TagString
-      value: WallSpawnpoint
+      value: RoomSpawnpoint
       objectReference: {fileID: 0}
     - target: {fileID: 4037526749229858351, guid: d80f4fb5b176bf745a354b89446b56bd,
         type: 3}
@@ -95,12 +95,12 @@ PrefabInstance:
     - target: {fileID: 7318406956213299744, guid: d80f4fb5b176bf745a354b89446b56bd,
         type: 3}
       propertyPath: m_TagString
-      value: WallSpawnpoint
+      value: RoomSpawnpoint
       objectReference: {fileID: 0}
     - target: {fileID: 7983936256616686657, guid: d80f4fb5b176bf745a354b89446b56bd,
         type: 3}
       propertyPath: m_TagString
-      value: WallSpawnpoint
+      value: RoomSpawnpoint
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d80f4fb5b176bf745a354b89446b56bd, type: 3}
