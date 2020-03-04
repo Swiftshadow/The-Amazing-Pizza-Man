@@ -49,11 +49,11 @@ TagManager:
   - name: Background
     uniqueID: 1506367519
     locked: 0
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Midground
     uniqueID: 3658816417
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: Foreground
     uniqueID: 765428761
