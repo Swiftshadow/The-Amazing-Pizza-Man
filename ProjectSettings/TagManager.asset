@@ -12,6 +12,7 @@ TagManager:
   - Generator
   - WallSpawnpoint
   - Enemy
+  - PlayerAttack
   layers:
   - Default
   - TransparentFX

@@ -45,6 +45,8 @@ public class BasePlayerBehaviour : MonoBehaviour
     [Header("GameObjects")]
     [Tooltip("The prefab for the pizza's grease trail")]
     public GameObject greaseTrail;
+    [Tooltip("The prefab for the pizza's grease trail")]
+    public GameObject meleeHitbox1;
 
     // GameObject Properties
     private Vector3 humanScale = new Vector3(1,1);
@@ -218,9 +220,9 @@ public class BasePlayerBehaviour : MonoBehaviour
     }
     
     
-   private void OnCollisionEnter2D(Collision other)
+   private void OnCollisionEnter2D(Collision2D other)
    {
-       if (other.gameObject. tag == "Enemy")
+       if(other.gameObject. tag == "Enemy")
        {
            if (playerInvulnerable == false)
            {
@@ -230,6 +232,8 @@ public class BasePlayerBehaviour : MonoBehaviour
    } 
     
     // Human Functionalities
+    
+    
     
    // Pizza Functionalities
    
