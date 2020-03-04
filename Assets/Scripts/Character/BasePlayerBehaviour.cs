@@ -16,7 +16,7 @@ public class BasePlayerBehaviour : MonoBehaviour
     public int health;
     public int lives;
 
-    private bool playerInvulnerable;
+    //private bool playerInvulnerable;
 
     public float speed;
     public float pizzaSpeedMultiplier;
@@ -66,7 +66,7 @@ public class BasePlayerBehaviour : MonoBehaviour
         PlayerMovement();
         GrapplingHook();
         GrappleLength();
-
+        
         if (Input.GetKeyDown("1"))
         {
             SceneManager.LoadScene("WorldGenTest");
@@ -108,7 +108,7 @@ public class BasePlayerBehaviour : MonoBehaviour
         health = 100;
         lives = 3;
 
-        playerInvulnerable = false;
+        //playerInvulnerable = false;
 
     }
 
@@ -176,7 +176,8 @@ public class BasePlayerBehaviour : MonoBehaviour
             float yMove = Input.GetAxis("Vertical"); 
 
         
-            xMove = xMove * speed * Time.deltaTime * pizzaSpeedMultiplier; 
+            xMove += xMove * speed *  pizzaSpeedMultiplier; 
+            yMove += yMove * speed *  pizzaSpeedMultiplier; 
         
             Vector2 moveForce = new Vector2(xMove, yMove); 
         
@@ -185,7 +186,8 @@ public class BasePlayerBehaviour : MonoBehaviour
             moveForce.x = Mathf.Clamp(moveForce.x, -velocityCap, velocityCap); 
             moveForce.y = Mathf.Clamp(moveForce.y, -velocityCap, velocityCap); 
         
-            rb2d.AddForce(moveForce); 
+            rb2d.AddForce(moveForce);
+            Debug.Log(moveForce);
         }
     }
     
@@ -208,12 +210,15 @@ public class BasePlayerBehaviour : MonoBehaviour
             //joint.distance = Vector3.Distance(targetPos, transform.position);
             joint.enabled = true;
 
-            
+            rb2d.drag = 0.0f;
+
+
         }
         // On Mouse Up, clears existing values and when it goes down it resests them
         else if (Input.GetButtonUp("Fire1") && playerHuman == false)
         {
             joint.enabled = false;
+            rb2d.drag = 5;
         }
     }
 
@@ -231,17 +236,18 @@ public class BasePlayerBehaviour : MonoBehaviour
 
     private void SpawnGrease()
     {
-        Instantiate(greaseTrail, transform.position, Quaternion.identity);
+       // Instantiate(greaseTrail, transform.position, Quaternion.identity);
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Grease")
         {
-            rb2d.velocity *= new Vector2(0.5f, 0.5f);
+           // rb2d.velocity *= new Vector2(0.5f, 0.5f);
         }
     }
 
+    /*
     private void OnCollisionEnter2D(Collision other)
     {
         if (other.gameObject. tag == "Enemy")
@@ -251,5 +257,5 @@ public class BasePlayerBehaviour : MonoBehaviour
                 //health =- other.gameObject.damageValue;
             }
         }
-    }
+    } */
 }
