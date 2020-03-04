@@ -18,6 +18,7 @@ public class BroccoliMonster : MonoBehaviour
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
+        player = GameObject.FindWithTag("Player").transform; // AK
     }
 
     // find position
