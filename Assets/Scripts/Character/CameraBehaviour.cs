@@ -31,10 +31,18 @@ public class CameraBehaviour : MonoBehaviour
     /// <\summary>
     void Update()
     {
-        Vector3 targetPos = player.transform.position;
+        try
+        {
+            Vector3 targetPos = player.transform.position;
 
-        targetPos.z = hoverDistance;
+            targetPos.z = hoverDistance;
 
-        transform.position = targetPos;
+            transform.position = targetPos;
+        }
+        catch (MissingReferenceException e)
+        {
+            Debug.Log("Player missing, trying to refind");
+            player = GameObject.FindWithTag("Player");
+        }
     }
 }
