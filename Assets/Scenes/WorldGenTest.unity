@@ -280,14 +280,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topRooms:
-  - {fileID: 6527180149705224146, guid: af3fd1b8278ddf6419833f4ed4ba4d04, type: 3}
+  - {fileID: 2643572773982041398, guid: 1b6ebb5c9e67bf54c9122b8bb1f60cb8, type: 3}
   bottomRooms:
-  - {fileID: 3684124257132071026, guid: ffa0f0432ed53c64fafec4bf096506b4, type: 3}
+  - {fileID: 3821583355492250461, guid: 538fa7be34f69b246902481eda065a91, type: 3}
   leftRooms:
-  - {fileID: 7313356169972243184, guid: bc7b3f5324b38f44ba46aea8f1dcec62, type: 3}
+  - {fileID: 7933779611424401497, guid: b4a9e010575d5c24fbca08fb35e56442, type: 3}
   rightRooms:
-  - {fileID: 4965446298801525764, guid: 29d3d17cce90c8f44aee7073776a2c69, type: 3}
-  startRoom: {fileID: 6624143559906030835, guid: d80f4fb5b176bf745a354b89446b56bd,
+  - {fileID: 3389792347561933796, guid: b1b19a7fb298ef1419a58db91ea63d65, type: 3}
+  startRoom: {fileID: 5586290786118583332, guid: 417bce7156ed37349bb9fe1d01ce77af,
     type: 3}
   walls:
-  - {fileID: 6624143559906030835, guid: d80f4fb5b176bf745a354b89446b56bd, type: 3}
+  - {fileID: 4561669525839055504, guid: 208ad80fdcf983f49aeea6ad89552fea, type: 3}

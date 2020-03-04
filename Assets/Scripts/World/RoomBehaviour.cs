@@ -40,7 +40,7 @@ public class RoomBehaviour : MonoBehaviour
 
         if (gameObject.CompareTag("Startpoint") && other.CompareTag("Room") && generator.spawnDone)
         {
-            Debug.Log("Destroying " + gameObject.name + " for contacting startpoint");
+            Debug.Log("Destroying startpoint for being in another room");
             Destroy(gameObject);
         }
         
