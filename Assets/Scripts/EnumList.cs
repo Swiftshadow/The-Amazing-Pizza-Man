@@ -18,8 +18,7 @@ public class EnumList
         DIFFICULTY_NORMAL = 2,
         DIFFICULTY_HARD = 4
     }
-
-    [Flags]
+    
     public enum RoomDoors
     {
         DOOR_NONE = 0,
