@@ -120,8 +120,16 @@ public class BasePlayerBehaviour : MonoBehaviour
         playerInvulnerable = false;
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "slime")
+        {
+            health -= 10;
+        }
+    }
+
     // General Functionalities
-    
+
     private void FormSwitch()
     {
         if(Input.GetButtonDown("FormSwitch")) // AK 
