@@ -120,7 +120,7 @@ public class BasePlayerBehaviour : MonoBehaviour
         playerInvulnerable = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other) //SJ
     {
         if (other.gameObject.tag == "slime")
         {
