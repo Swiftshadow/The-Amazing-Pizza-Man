@@ -28,4 +28,7 @@ public class RoomHolder : MonoBehaviour
     [Tooltip("A room with no doors. Used to block extra exits")]
     public GameObject[] walls;
 
+    [Tooltip("Room that will win the current level")]
+    public GameObject[] winRoom;
+
 }
