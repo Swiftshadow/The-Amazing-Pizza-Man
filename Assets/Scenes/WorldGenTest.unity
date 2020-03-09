@@ -283,11 +283,14 @@ MonoBehaviour:
   - {fileID: 1550425477037291105, guid: 76c853155e3a76649bed1c61dd6b3985, type: 3}
   bottomRooms:
   - {fileID: 1550425477037291105, guid: 76c853155e3a76649bed1c61dd6b3985, type: 3}
+  - {fileID: 2919999690223188006, guid: c0278cd2a9b24ae4b8a0b4bbf1cdd871, type: 3}
   leftRooms:
   - {fileID: 6624143559906030835, guid: d80f4fb5b176bf745a354b89446b56bd, type: 3}
+  - {fileID: 2919999690223188006, guid: c0278cd2a9b24ae4b8a0b4bbf1cdd871, type: 3}
   rightRooms:
   - {fileID: 6624143559906030835, guid: d80f4fb5b176bf745a354b89446b56bd, type: 3}
-  startRoom: {fileID: 6624143559906030835, guid: d80f4fb5b176bf745a354b89446b56bd,
+  - {fileID: 2919999690223188006, guid: c0278cd2a9b24ae4b8a0b4bbf1cdd871, type: 3}
+  startRoom: {fileID: 1550425477037291105, guid: 76c853155e3a76649bed1c61dd6b3985,
     type: 3}
   walls:
   - {fileID: 6624143559906030835, guid: d80f4fb5b176bf745a354b89446b56bd, type: 3}
