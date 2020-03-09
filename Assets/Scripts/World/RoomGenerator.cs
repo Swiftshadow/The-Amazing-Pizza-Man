@@ -195,20 +195,28 @@ public class RoomGenerator : MonoBehaviour
         {
             Vector3 spawnLocation = spawnpoint.transform.position;
             EnumList.RoomDoors typeToSpawn = EnumList.RoomDoors.DOOR_NONE;
+            // Make sure the win room will be connected by a room
             if (spawnpoint.CompareTag("RoomSpawnpoint") && !hasSpawnedWin)
             {
+                // The longer it has gone without spawning the room, the higher the chance
                 float spawnChance = Random.Range(winSpawnChance, wallsToSpawn);
-                if (spawnChance >= wallsToSpawn)
+                if (spawnChance >= wallsToSpawn - 1)
                 {
                     typeToSpawn = EnumList.RoomDoors.DOOR_WIN;
                     hasSpawnedWin = true;
                 }
             }
 
+            // Increase the chance of spawning the win room next loop
             ++winSpawnChance;
             SpawnRoom(typeToSpawn, spawnLocation);
         }
-        
+
+        // If the win room did not spawn, force spawn it
+        if (!hasSpawnedWin)
+        {
+            SpawnRoom(EnumList.RoomDoors.DOOR_WIN, roomSpawns[0].transform.position);
+        }
         Debug.Log("Spawning Done!");
         spawnDone = true;
     }
