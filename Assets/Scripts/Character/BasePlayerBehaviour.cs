@@ -53,7 +53,13 @@ public class BasePlayerBehaviour : MonoBehaviour
     private Vector3 pizzaScale = new Vector3(1,1);
 
     public bool playerHuman; // AK 
-    
+
+
+    //Human behaviour
+    public bool attack;
+
+
+
     /// <summary>
     /// Start is called before the first frame update
     /// </summary>
@@ -74,7 +80,7 @@ public class BasePlayerBehaviour : MonoBehaviour
         PlayerMovement();
         GrapplingHook();
         GrappleLength();
-        
+
         if (Input.GetKeyDown("1"))
         {
             SceneManager.LoadScene("WorldGenTest");
@@ -83,8 +89,8 @@ public class BasePlayerBehaviour : MonoBehaviour
         if (joint.enabled == true)
         {
             lineRenderer.enabled = true;
-            
-            var points = new Vector3[] {joint.connectedAnchor, 
+
+            var points = new Vector3[] {joint.connectedAnchor,
                                         gameObject.transform.position};
             lineRenderer.positionCount = 2;
             lineRenderer.SetPositions(points);
@@ -94,6 +100,20 @@ public class BasePlayerBehaviour : MonoBehaviour
             lineRenderer.enabled = false;
         }
 
+
+
+        //attack
+
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (anim)
+            {
+                
+                anim.Play("punch");
+            }
+
+        }
     }
 
     /// <summary>
@@ -240,6 +260,8 @@ public class BasePlayerBehaviour : MonoBehaviour
    } 
     
     // Human Functionalities
+    //Taylor
+
     
     
     

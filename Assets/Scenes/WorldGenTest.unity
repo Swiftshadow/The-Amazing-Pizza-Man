@@ -252,7 +252,7 @@ MonoBehaviour:
   spawnRuns: 5
   spawnThresholdMax: 10
   spawnThreshold: 5
-  playerSpawnpoint: {x: 2, y: 2, z: 0}
+  playerSpawnpoint: {x: 0.2, y: 0.2, z: 0}
   spawnDone: 0
 --- !u!4 &1652066472
 Transform:
