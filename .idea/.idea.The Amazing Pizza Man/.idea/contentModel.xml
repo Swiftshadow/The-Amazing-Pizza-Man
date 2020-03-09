@@ -18,6 +18,7 @@
             <e p="HumanPlayerBehaviour.cs" t="Include" />
             <e p="PizzaGreaseTrailBehaviour.cs" t="Include" />
             <e p="PizzaPlayerBehaviour.cs" t="Include" />
+            <e p="WhipAttackBehaviour.cs" t="Include" />
           </e>
           <e p="Enemy" t="Include">
             <e p="BroccoliMonster.cs" t="Include" />
@@ -25,6 +26,7 @@
           <e p="EnumList.cs" t="Include" />
           <e p="GameControllerBehaviour.cs" t="Include" />
           <e p="World" t="Include">
+            <e p="EnemyBehavoiur.cs" t="Include" />
             <e p="Room Setup.txt" t="Include" />
             <e p="RoomBehaviour.cs" t="Include" />
             <e p="RoomGenerator.cs" t="Include" />
