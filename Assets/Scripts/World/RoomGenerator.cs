@@ -37,6 +37,9 @@ public class RoomGenerator : MonoBehaviour
     [Tooltip("The minimum number generated that will spawn a room")]
     public float spawnThreshold = 5;
 
+    [Tooltip("Where the player spawns from")]
+    public Vector3 playerSpawnpoint;
+    
     public bool spawnDone = false;
     
     /// <summary>
@@ -56,7 +59,7 @@ public class RoomGenerator : MonoBehaviour
     {
         // Spawns the starting room
         Instantiate(rooms.startRoom);
-        Instantiate(player);
+        Instantiate(player, playerSpawnpoint, Quaternion.identity);
         spawnDone = false;
         StartCoroutine("SpawnRooms");
     }
@@ -95,6 +98,9 @@ public class RoomGenerator : MonoBehaviour
                 break;
             case EnumList.RoomDoors.DOOR_RIGHT:
                 toSpawnFrom = rooms.rightRooms;
+                break;
+            case EnumList.RoomDoors.DOOR_WIN:
+                toSpawnFrom = rooms.winRoom;
                 break;
             default:
                 toSpawnFrom = rooms.walls;
@@ -160,6 +166,10 @@ public class RoomGenerator : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Finds all the spawnpoints in the scene, both room and wall
+    /// </summary>
+    /// <returns>A list of all spawnpoints</returns>
     private List<GameObject> GetAllSpawnpoints()
     {
         List<GameObject> spawnpoints =
@@ -175,12 +185,28 @@ public class RoomGenerator : MonoBehaviour
     {
         // Forces the function to be called after the triggers
         yield return 0;
+        bool hasSpawnedWin = false;
         // Fills the extra spawnpoints in with solid walls so they are not leading to the void
         List<GameObject> roomSpawns = GetAllSpawnpoints();
+        // Keep track of how many walls are going to be spawned
+        int wallsToSpawn = roomSpawns.Count;
+        float winSpawnChance = wallsToSpawn / 2;
         foreach (var spawnpoint in roomSpawns)
         {
             Vector3 spawnLocation = spawnpoint.transform.position;
-            SpawnRoom(EnumList.RoomDoors.DOOR_NONE, spawnLocation);
+            EnumList.RoomDoors typeToSpawn = EnumList.RoomDoors.DOOR_NONE;
+            if (spawnpoint.CompareTag("RoomSpawnpoint") && !hasSpawnedWin)
+            {
+                float spawnChance = Random.Range(winSpawnChance, wallsToSpawn);
+                if (spawnChance >= wallsToSpawn)
+                {
+                    typeToSpawn = EnumList.RoomDoors.DOOR_WIN;
+                    hasSpawnedWin = true;
+                }
+            }
+
+            ++winSpawnChance;
+            SpawnRoom(typeToSpawn, spawnLocation);
         }
         
         Debug.Log("Spawning Done!");
@@ -250,6 +276,7 @@ public class RoomGenerator : MonoBehaviour
         StartCoroutine("SpawnWalls");
     }
 
+    
     /// <summary>
     /// Can regenerate the map with the R key
     /// </summary>
