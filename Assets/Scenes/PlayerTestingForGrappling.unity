@@ -186,6 +186,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &200213700 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2340148886893769233, guid: 8e6b43eac760d8b4ab996ae06f7b124b,
+    type: 3}
+  m_PrefabInstance: {fileID: 727727448}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &286347691
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,6 +239,12 @@ Transform:
   m_Father: {fileID: 386205104}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &365111725 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6226243677056403879, guid: 8e6b43eac760d8b4ab996ae06f7b124b,
+    type: 3}
+  m_PrefabInstance: {fileID: 727727448}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &386205100
 GameObject:
   m_ObjectHideFlags: 0
@@ -549,6 +561,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &536925728 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5584673365356682816, guid: 8e6b43eac760d8b4ab996ae06f7b124b,
+    type: 3}
+  m_PrefabInstance: {fileID: 727727448}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &594784055 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1379432100978921, guid: 8e6b43eac760d8b4ab996ae06f7b124b,
+    type: 3}
+  m_PrefabInstance: {fileID: 727727448}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &727727448
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -560,6 +584,46 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 852684344, guid: 8e6b43eac760d8b4ab996ae06f7b124b, type: 3}
+      propertyPath: limbObjects.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 852684344, guid: 8e6b43eac760d8b4ab996ae06f7b124b, type: 3}
+      propertyPath: limbObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 1770263951}
+    - target: {fileID: 852684344, guid: 8e6b43eac760d8b4ab996ae06f7b124b, type: 3}
+      propertyPath: limbObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 536925728}
+    - target: {fileID: 852684344, guid: 8e6b43eac760d8b4ab996ae06f7b124b, type: 3}
+      propertyPath: limbObjects.Array.data[2]
+      value: 
+      objectReference: {fileID: 365111725}
+    - target: {fileID: 852684344, guid: 8e6b43eac760d8b4ab996ae06f7b124b, type: 3}
+      propertyPath: limbObjects.Array.data[3]
+      value: 
+      objectReference: {fileID: 200213700}
+    - target: {fileID: 852684344, guid: 8e6b43eac760d8b4ab996ae06f7b124b, type: 3}
+      propertyPath: limbObjects.Array.data[4]
+      value: 
+      objectReference: {fileID: 1370375696}
+    - target: {fileID: 852684344, guid: 8e6b43eac760d8b4ab996ae06f7b124b, type: 3}
+      propertyPath: limbObjects.Array.data[5]
+      value: 
+      objectReference: {fileID: 1863539666}
+    - target: {fileID: 852684344, guid: 8e6b43eac760d8b4ab996ae06f7b124b, type: 3}
+      propertyPath: limbObjects.Array.data[6]
+      value: 
+      objectReference: {fileID: 594784055}
+    - target: {fileID: 852684344, guid: 8e6b43eac760d8b4ab996ae06f7b124b, type: 3}
+      propertyPath: limbObjects.Array.data[7]
+      value: 
+      objectReference: {fileID: 1755228029}
+    - target: {fileID: 852684344, guid: 8e6b43eac760d8b4ab996ae06f7b124b, type: 3}
+      propertyPath: limbObjects.Array.data[8]
+      value: 
+      objectReference: {fileID: 2080495703}
     - target: {fileID: 761855080473103735, guid: 8e6b43eac760d8b4ab996ae06f7b124b,
         type: 3}
       propertyPath: m_Name
@@ -1405,6 +1469,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1370375696 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2226834829817592180, guid: 8e6b43eac760d8b4ab996ae06f7b124b,
+    type: 3}
+  m_PrefabInstance: {fileID: 727727448}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1478891822
 GameObject:
   m_ObjectHideFlags: 0
@@ -1891,6 +1961,30 @@ DistanceJoint2D:
   m_AutoConfigureDistance: 1
   m_Distance: 3.837512
   m_MaxDistanceOnly: 0
+--- !u!1 &1755228029 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8078326459742990870, guid: 8e6b43eac760d8b4ab996ae06f7b124b,
+    type: 3}
+  m_PrefabInstance: {fileID: 727727448}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1770263951 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7194212591331792747, guid: 8e6b43eac760d8b4ab996ae06f7b124b,
+    type: 3}
+  m_PrefabInstance: {fileID: 727727448}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1863539666 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 705592976164684982, guid: 8e6b43eac760d8b4ab996ae06f7b124b,
+    type: 3}
+  m_PrefabInstance: {fileID: 727727448}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2080495703 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2917802590681191084, guid: 8e6b43eac760d8b4ab996ae06f7b124b,
+    type: 3}
+  m_PrefabInstance: {fileID: 727727448}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2112682754
 GameObject:
   m_ObjectHideFlags: 0

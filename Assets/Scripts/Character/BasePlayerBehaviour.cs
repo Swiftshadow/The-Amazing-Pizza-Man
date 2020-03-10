@@ -1,6 +1,6 @@
 /*****************************************************************************
 // File Name :         BasePlayerBehaviour.cs
-// Author :            Andrew Krenzel (100%)
+// Author :            Andrew Krenzel (95%)
 // Creation Date :     2/13/2020
 //
 // Brief Description : Controls the overall behaviors of the players that 
@@ -8,6 +8,7 @@
 *****************************************************************************/
 
 using System;
+using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -47,6 +48,8 @@ public class BasePlayerBehaviour : MonoBehaviour
     public GameObject greaseTrail;
     [Tooltip("The prefab for the pizza's grease trail")]
     public GameObject meleeHitbox1;
+    [Tooltip("The Body Parts for the Human Form")]
+    public List<GameObject> limbObjects;
 
     // GameObject Properties
     private Vector3 humanScale = new Vector3(1,1);
@@ -177,6 +180,12 @@ public class BasePlayerBehaviour : MonoBehaviour
                 humanCollider.enabled = true;
                 pizzaCollider.enabled = false;
                 trailRenderer.emitting = false;
+
+                foreach (GameObject limbs in limbObjects)
+                {
+                    enabled = true;
+                }
+                //limbs.
                 
                 gameObject.transform.localScale = humanScale;
 
@@ -192,6 +201,12 @@ public class BasePlayerBehaviour : MonoBehaviour
                 gameObject.transform.localScale = pizzaScale;
 
                 rb2d.freezeRotation = false;
+                
+                foreach (GameObject limbs in limbObjects)
+                {
+                    print(limbs.gameObject.name);
+                    //limbs.gameObject.SetActive(true);
+                }
 
                 trailRenderer.emitting = true;
                 
