@@ -108,7 +108,7 @@ public class BasePlayerBehaviour : MonoBehaviour
 
 
         //Taylor... attack animation
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && playerHuman == true)
         {
             if (anim)
             {
@@ -170,7 +170,7 @@ public class BasePlayerBehaviour : MonoBehaviour
                 // Sets the joint to false when the player transform from pizza
                 // to human 
                 joint.enabled = false;
-                sR.sprite = humanDefaultSprite; // AK 
+                anim.SetBool("playerHuman", true); //(AK 18)
                 rb2d.velocity = Vector2.zero;
 
                 // Sets the appropriate hitbox to be active
@@ -187,7 +187,7 @@ public class BasePlayerBehaviour : MonoBehaviour
             }
             else //(AK 7)
             {
-                sR.sprite = pizzaDefaultSprite; //(AK 18)
+                anim.SetBool("playerHuman", false); //(AK 18)
                 
                 gameObject.transform.localScale = pizzaScale;
 
@@ -225,6 +225,12 @@ public class BasePlayerBehaviour : MonoBehaviour
         
             rb2d.AddForce(moveForce);
             Debug.Log(moveForce);
+
+            /*
+            if (moveForce.x < 0.0f)
+            {
+                sR.flipX = true;
+            } */
 
             //animation
           

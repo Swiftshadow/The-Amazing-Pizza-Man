@@ -95,7 +95,7 @@ public class GameControllerBehaviour : MonoBehaviour
         if (playerAlive == false)
         {
             respawnText.enabled = true;
-            if (Input.GetKeyDown("Space"))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 // Instantiate(player, )
             }
@@ -108,7 +108,7 @@ public class GameControllerBehaviour : MonoBehaviour
         {
             gameOverText.enabled = true;
             
-            if (Input.GetKeyDown("Enter"))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 lives = 3;
                 //Instantiate(player, )
