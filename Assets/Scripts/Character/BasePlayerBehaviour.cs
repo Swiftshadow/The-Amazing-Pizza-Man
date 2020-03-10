@@ -55,8 +55,11 @@ public class BasePlayerBehaviour : MonoBehaviour
     public bool playerHuman; // AK 
 
 
-    //Human behaviour
+    //Taylor....Human behaviour
     public bool attack;
+    public AudioClip punchClip;
+   
+
 
 
 
@@ -68,7 +71,9 @@ public class BasePlayerBehaviour : MonoBehaviour
         GetComponents();
         SetValues();
         
-        playerHuman = true; 
+        playerHuman = true;
+
+       
     }
 
     /// <summary>
@@ -102,15 +107,19 @@ public class BasePlayerBehaviour : MonoBehaviour
 
 
 
-        //attack
-
-
+        //Taylor... attack animation
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (anim)
             {
                 
                 anim.Play("punch");
+
+                AudioSource audio = GetComponent<AudioSource>();
+                audio.clip = punchClip;
+                audio.Play();
+
+
             }
 
         }
@@ -216,6 +225,9 @@ public class BasePlayerBehaviour : MonoBehaviour
         
             rb2d.AddForce(moveForce);
             Debug.Log(moveForce);
+
+            //animation
+          
 
             if (Input.GetAxis("Horizontal") < 1 && Input.GetAxis("Vertical") < 1)
             {
