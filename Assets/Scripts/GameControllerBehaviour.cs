@@ -79,7 +79,7 @@ public class GameControllerBehaviour : MonoBehaviour
 
     private void GetComponents() // AK
     {
-        player = GameObject.Find("Player");
+        player = GameObject.FindWithTag("Player");
     }
     private void UpdateUI() // AK
     {
