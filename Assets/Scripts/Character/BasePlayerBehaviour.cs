@@ -42,8 +42,10 @@ public class BasePlayerBehaviour : MonoBehaviour
     public Sprite humanDefaultSprite;
     [Tooltip("The default sprite for the pizza form")]
     public Sprite pizzaDefaultSprite;
-    
-    [Header("GameObjects")]
+
+    [Header("GameObjects")] 
+    public GameObject humanForm;
+    public GameObject pizzaForm;
     [Tooltip("The prefab for the pizza's grease trail")]
     public GameObject greaseTrail;
     [Tooltip("The prefab for the pizza's grease trail")]
@@ -136,12 +138,12 @@ public class BasePlayerBehaviour : MonoBehaviour
     {
         rb2d = GetComponent<Rigidbody2D>(); 
         sR = GetComponent<SpriteRenderer>(); 
-        anim = GetComponent<Animator>(); 
+        anim = GetComponentInChildren<Animator>(); 
         joint = GetComponent<DistanceJoint2D>(); 
-        humanCollider = GetComponent<BoxCollider2D>();
-        pizzaCollider = GetComponent<CircleCollider2D>();
+        humanCollider = GetComponentInChildren<BoxCollider2D>();
+        pizzaCollider = GetComponentInChildren<CircleCollider2D>();
         lineRenderer = GetComponent<LineRenderer>();
-        trailRenderer = GetComponent<TrailRenderer>();
+        trailRenderer = GetComponentInChildren<TrailRenderer>();
     }
 
     private void SetValues()
@@ -170,15 +172,15 @@ public class BasePlayerBehaviour : MonoBehaviour
 
             if(playerHuman == true) // AK 6
             {
+                humanForm.SetActive(true);
+                pizzaForm.SetActive(false);
+                
                 // Sets the joint to false when the player transform from pizza
                 // to human 
                 joint.enabled = false;
                 anim.SetBool("playerHuman", true); //(AK 18)
                 rb2d.velocity = Vector2.zero;
-
-                // Sets the appropriate hitbox to be active
-                humanCollider.enabled = true;
-                pizzaCollider.enabled = false;
+                
                 trailRenderer.emitting = false;
 
                 foreach (GameObject limbs in limbObjects)
@@ -196,6 +198,9 @@ public class BasePlayerBehaviour : MonoBehaviour
             }
             else //(AK 7)
             {
+                humanForm.SetActive(false);
+                pizzaForm.SetActive(true);
+                
                 anim.SetBool("playerHuman", false); //(AK 18)
                 
                 gameObject.transform.localScale = pizzaScale;
@@ -212,9 +217,6 @@ public class BasePlayerBehaviour : MonoBehaviour
                 
                 InvokeRepeating("SpawnGrease", 0f, 0.1f);
                 
-                // Sets the appropriate hitbox to be active
-                humanCollider.enabled = false;
-                pizzaCollider.enabled = true;
             }
         }
     }
@@ -239,7 +241,7 @@ public class BasePlayerBehaviour : MonoBehaviour
             moveForce.y = Mathf.Clamp(moveForce.y, -velocityCap, velocityCap); 
         
             rb2d.AddForce(moveForce);
-            Debug.Log(moveForce);
+            
 
             /*
             if (moveForce.x < 0.0f)
@@ -276,7 +278,7 @@ public class BasePlayerBehaviour : MonoBehaviour
             moveForce.y = Mathf.Clamp(moveForce.y, -velocityCap, velocityCap); 
         
             rb2d.AddForce(moveForce);
-            Debug.Log(moveForce);
+            
         }
     }
     
