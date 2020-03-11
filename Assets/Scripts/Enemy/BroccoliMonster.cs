@@ -24,6 +24,12 @@ public class BroccoliMonster : MonoBehaviour
     // find position
     void Update()
     {
+        if (player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+
+        }
+        
         Vector3 direction = player.position - transform.position;
 
         direction.Normalize();

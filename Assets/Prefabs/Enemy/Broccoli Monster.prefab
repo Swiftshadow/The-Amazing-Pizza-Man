@@ -12,9 +12,12 @@ GameObject:
   - component: {fileID: 7011049109114386854}
   - component: {fileID: 6629801319557070398}
   - component: {fileID: 1785787720836105207}
+  - component: {fileID: 6497289238379219134}
+  - component: {fileID: -4369380824617041359}
+  - component: {fileID: 701769195182966021}
   m_Layer: 0
   m_Name: Broccoli Monster
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  moveSpeed: 3
+  moveSpeed: 0.5
 --- !u!50 &1785787720836105207
 Rigidbody2D:
   serializedVersion: 4
@@ -116,4 +119,50 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!70 &6497289238379219134
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7011049109114386855}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.003363967, y: -0.011773825}
+  m_Size: {x: 0.31706166, y: 0.5289898}
+  m_Direction: 0
+--- !u!70 &-4369380824617041359
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7011049109114386855}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0043542385, y: -0.010437846}
+  m_Size: {x: 0.34337616, y: 0.5476949}
+  m_Direction: 0
+--- !u!114 &701769195182966021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7011049109114386855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cdeab2a49d51444992b635f3d0b7cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  damageValue: 1
