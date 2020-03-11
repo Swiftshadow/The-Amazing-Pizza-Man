@@ -160,6 +160,10 @@ public class BasePlayerBehaviour : MonoBehaviour
         {
             health -= 10;
         }
+        if (other.gameObject.tag == "enemy")
+            {
+                health -= 20;
+            }
     }
 
     // General Functionalities
