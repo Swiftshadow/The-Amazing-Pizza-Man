@@ -179,6 +179,10 @@ public class BasePlayerBehaviour : MonoBehaviour
                 health -= other.GetComponent<EnemyBehavoiur>().damageValue;
             }
         }
+        if (other.gameObject.tag == "enemy")
+            {
+                health -= 20;
+            }
     }
 
     // General Functionalities
