@@ -113,6 +113,13 @@ public class BasePlayerBehaviour : MonoBehaviour
 
         if (health <= 0)
         {
+            health = 100;
+            --lives;
+            transform.position = new Vector2(0, 0);
+        }
+
+        if (lives <= 0)
+        {
             SceneManager.LoadScene("Death");
         }
         
