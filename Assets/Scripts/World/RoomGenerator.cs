@@ -40,6 +40,12 @@ public class RoomGenerator : MonoBehaviour
     [Tooltip("Where the player spawns from")]
     public Vector3 playerSpawnpoint;
     
+    /// <summary>
+    /// Holds a list of all spawned rooms and walls
+    /// </summary>
+    private List<GameObject> spawnedRooms = new List<GameObject>();
+    
+    [Tooltip("Is the generator done spawning rooms")]
     public bool spawnDone = false;
     
     /// <summary>
@@ -58,7 +64,8 @@ public class RoomGenerator : MonoBehaviour
     private void SpawnMap()
     {
         // Spawns the starting room
-        Instantiate(rooms.startRoom);
+        GameObject startRoom = Instantiate(rooms.startRoom);
+        spawnedRooms.Add(startRoom);
         Instantiate(player, playerSpawnpoint, Quaternion.identity);
         spawnDone = false;
         StartCoroutine("SpawnRooms");
@@ -126,6 +133,7 @@ public class RoomGenerator : MonoBehaviour
         
         // Spawns the room at the position of the spawnpoint
         GameObject room = Instantiate(toSpawn, location, Quaternion.identity);
+        spawnedRooms.Add(room);
     }
 
     /// <summary>
@@ -135,20 +143,14 @@ public class RoomGenerator : MonoBehaviour
     {
         spawnDone = false;
         // Get all room objects
-        GameObject[] allRooms = GameObject.FindGameObjectsWithTag("Room");
         List<GameObject> allSpawnpoints = GetAllSpawnpoints();
-        GameObject[] walls = GameObject.FindGameObjectsWithTag("Wall");
-        GameObject startpoint = GameObject.FindWithTag("Startpoint");
         GameObject player = GameObject.FindWithTag("Player");
         
         // Remove the player
         Destroy(player);
-        
-        // Remove the startpoint
-        Destroy(startpoint);
-        
+
         // Remove all rooms
-        foreach (var room in allRooms)
+        foreach (var room in spawnedRooms)
         {
             Destroy(room);
         }
@@ -157,12 +159,6 @@ public class RoomGenerator : MonoBehaviour
         foreach (var spawnpoint in allSpawnpoints)
         {
             Destroy(spawnpoint);
-        }
-
-        // Remove all walls
-        foreach (var wall in walls)
-        {
-            Destroy(wall);
         }
     }
 
@@ -256,22 +252,15 @@ public class RoomGenerator : MonoBehaviour
                 }
 
                 // Check which door the room needs and spawn it
-                if (CheckDoorAttachSide(spawnSettings, EnumList.RoomDoors.DOOR_RIGHT))
+                foreach (EnumList.RoomDoors door in (EnumList.RoomDoors[]) Enum.GetValues(typeof(EnumList.RoomDoors)))
                 {
-                    SpawnRoom(EnumList.RoomDoors.DOOR_RIGHT, spawnLocation);
+                    if (CheckDoorAttachSide(spawnSettings, door))
+                    {
+                        SpawnRoom(door, spawnLocation);
+                        break;
+                    }
                 }
-                else if (CheckDoorAttachSide(spawnSettings, EnumList.RoomDoors.DOOR_LEFT))
-                {
-                    SpawnRoom(EnumList.RoomDoors.DOOR_LEFT, spawnLocation);
-                }
-                else if (CheckDoorAttachSide(spawnSettings, EnumList.RoomDoors.DOOR_UP))
-                {
-                    SpawnRoom(EnumList.RoomDoors.DOOR_UP, spawnLocation);
-                }
-                else if (CheckDoorAttachSide(spawnSettings, EnumList.RoomDoors.DOOR_DOWN))
-                {
-                    SpawnRoom(EnumList.RoomDoors.DOOR_DOWN, spawnLocation);
-                }
+                
 
             }
 
