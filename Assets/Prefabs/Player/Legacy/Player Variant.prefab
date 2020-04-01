@@ -460,7 +460,8 @@ MonoBehaviour:
   pizzaDefaultSprite: {fileID: 21300000, guid: b241ae42a911e4f6888c2047adc954da, type: 3}
   greaseTrail: {fileID: 2639493250636727243, guid: 444edf471b5fe48438e1883c10fc3729,
     type: 3}
-  meleeHitbox1: {fileID: 0}
+  meleeHitbox1: {fileID: 357458135576884947, guid: c10892960a2b8b64784e92b6a460253c,
+    type: 3}
   limbObjects:
   - {fileID: 7194212591331792747}
   - {fileID: 5584673365356682816}
@@ -474,6 +475,8 @@ MonoBehaviour:
   playerHuman: 0
   attack: 0
   punchClip: {fileID: 8300000, guid: ab486e6ae607643329ecfa3ca92fe0bb, type: 3}
+  attackHitbox: {fileID: 357458135576884947, guid: c10892960a2b8b64784e92b6a460253c,
+    type: 3}
 --- !u!61 &537936336
 BoxCollider2D:
   m_ObjectHideFlags: 0

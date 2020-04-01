@@ -14,6 +14,8 @@ public class RoomBehaviour : MonoBehaviour
 
     private RoomGenerator generator;
 
+    private Camera minimapCam;
+    
     [Tooltip("The difficulty level of this room")]
     public EnumList.RoomDifficulty difficulty;
     
@@ -21,6 +23,8 @@ public class RoomBehaviour : MonoBehaviour
     {
         generator = GameObject.FindWithTag("Generator").GetComponent<RoomGenerator>();
         generator.spawnDone = false;
+
+        minimapCam = GameObject.FindWithTag("MinimapCam").GetComponent<Camera>();
     }
 
 
@@ -43,6 +47,26 @@ public class RoomBehaviour : MonoBehaviour
             Debug.Log("Destroying startpoint for being in another room");
             Destroy(gameObject);
         }
-        
+
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Setting room" + gameObject.name + " visible to minimap");
+            ChangeLayer(gameObject.transform, "MinimapVisible");
+        }
+    }
+
+    // Taken from https://answers.unity.com/questions/168084/change-layer-of-child.html
+    /// <summary>
+    /// Changes the layer of an object and all its children
+    /// </summary>
+    /// <param name="toChange">The object to change the layer of</param>
+    /// <param name="layerToSet">The layer to set the objects to</param>
+    private void ChangeLayer(Transform toChange, string layerToSet)
+    {
+        foreach (Transform child in toChange)
+        {
+            child.gameObject.layer = LayerMask.NameToLayer("MinimapVisible");
+            ChangeLayer(child, layerToSet);
+        }
     }
 }
