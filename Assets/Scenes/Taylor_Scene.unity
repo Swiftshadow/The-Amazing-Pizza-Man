@@ -437,6 +437,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 701769195182966021, guid: fcef17b687ec14690bac04de7730c54b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6629801319557070398, guid: fcef17b687ec14690bac04de7730c54b,
         type: 3}
       propertyPath: player
@@ -446,6 +451,11 @@ PrefabInstance:
         type: 3}
       propertyPath: moveSpeed
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6629801319557070398, guid: fcef17b687ec14690bac04de7730c54b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7011049109114386853, guid: fcef17b687ec14690bac04de7730c54b,
         type: 3}
