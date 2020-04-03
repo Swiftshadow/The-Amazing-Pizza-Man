@@ -19,7 +19,7 @@ public class PatrolBehaviour : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        patrol = GameObject.FindGameObjectWithTag("Enemy").GetComponent<PatrolArea>();
+        patrol = GameObject.FindGameObjectWithTag("PatrolArea").GetComponent<PatrolArea>();
         randomArea = Random.Range(0, patrol.patrolMarkers.Length);
     }
 
@@ -54,5 +54,4 @@ public class PatrolBehaviour : StateMachineBehaviour
     //{
     //    // Implement code that sets up animation IK (inverse kinematics)
     //}
-}
-*/
+}*/
