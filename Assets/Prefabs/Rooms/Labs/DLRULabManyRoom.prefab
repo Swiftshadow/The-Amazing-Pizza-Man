@@ -181,6 +181,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6539712437842807645, guid: d80f4fb5b176bf745a354b89446b56bd,
+        type: 3}
+      propertyPath: difficulty
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6624143559906030797, guid: d80f4fb5b176bf745a354b89446b56bd,
         type: 3}
       propertyPath: m_LocalPosition.x

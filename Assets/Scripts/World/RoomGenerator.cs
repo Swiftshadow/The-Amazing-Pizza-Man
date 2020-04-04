@@ -61,8 +61,9 @@ public class RoomGenerator : MonoBehaviour
     /// <summary>
     /// Spawns all the rooms on a floor
     /// </summary>
-    private void SpawnMap()
+    public void SpawnMap()
     {
+        RemoveRooms();
         // Spawns the starting room
         GameObject startRoom = Instantiate(rooms.startRoom);
         spawnedRooms.Add(startRoom);
@@ -139,7 +140,7 @@ public class RoomGenerator : MonoBehaviour
     /// <summary>
     /// Removes the current map
     /// </summary>
-    void RemoveRooms()
+    private void RemoveRooms()
     {
         spawnDone = false;
         // Get all room objects
@@ -160,6 +161,8 @@ public class RoomGenerator : MonoBehaviour
         {
             Destroy(spawnpoint);
         }
+        
+        spawnedRooms.Clear();
     }
 
     /// <summary>
@@ -271,19 +274,5 @@ public class RoomGenerator : MonoBehaviour
         
         // Spawn walls once all the rooms have been spawned
         StartCoroutine("SpawnWalls");
-    }
-
-    
-    /// <summary>
-    /// Can regenerate the map with the R key
-    /// </summary>
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            spawnDone = false;
-            RemoveRooms();
-            SpawnMap();
-        }
     }
 }

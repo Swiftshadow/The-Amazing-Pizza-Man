@@ -2876,12 +2876,12 @@ TilemapRenderer:
   m_SortingLayer: -1
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0.735, z: 0}
+  m_ChunkCullingBounds: {x: 0.5, y: 0.5, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
   m_Mode: 0
-  m_DetectChunkCullingBounds: 0
+  m_DetectChunkCullingBounds: 1
   m_MaskInteraction: 0
 --- !u!19719996 &8565401076350066655
 TilemapCollider2D:
@@ -3007,12 +3007,12 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.5, y: 0.5, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
   m_Mode: 0
-  m_DetectChunkCullingBounds: 0
+  m_DetectChunkCullingBounds: 1
   m_MaskInteraction: 0
 --- !u!1 &8565401076676865696
 GameObject:
@@ -17908,12 +17908,12 @@ TilemapRenderer:
   m_SortingLayer: -2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.5, y: 0.5, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
   m_Mode: 0
-  m_DetectChunkCullingBounds: 0
+  m_DetectChunkCullingBounds: 1
   m_MaskInteraction: 0
 --- !u!1 &8565401077251480615
 GameObject:
@@ -18127,12 +18127,12 @@ TilemapRenderer:
   m_SortingLayer: -1
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.2578125, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.5, y: 0.5, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
   m_Mode: 0
-  m_DetectChunkCullingBounds: 0
+  m_DetectChunkCullingBounds: 1
   m_MaskInteraction: 0
 --- !u!1001 &1718361922706515972
 PrefabInstance:

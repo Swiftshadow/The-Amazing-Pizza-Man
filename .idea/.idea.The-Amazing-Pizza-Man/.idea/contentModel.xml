@@ -8,7 +8,6 @@
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="ChaseBehaviour.cs" t="Include" />
         <e p="Editor" t="Include">
           <e p="ScriptKeywordProcessor.cs" t="Include" />
         </e>
@@ -24,13 +23,20 @@
           </e>
           <e p="Enemy" t="Include">
             <e p="BroccoliMonster.cs" t="Include" />
+            <e p="ChaseBehaviour.cs" t="Include" />
             <e p="EnemyBehavoiur.cs" t="Include" />
+            <e p="IdleBehaviour.cs" t="Include" />
+            <e p="PatrolBehaviour.cs" t="Include" />
+            <e p="PatrolEnemy.cs" t="Include" />
+            <e p="PotatoBullet.cs" t="Include" />
+            <e p="PotatoGuardBehaviour.cs" t="Include" />
           </e>
           <e p="EnumList.cs" t="Include" />
           <e p="GameControllerBehaviour.cs" t="Include" />
           <e p="SceneLoader.cs" t="Include" />
           <e p="World" t="Include">
             <e p="MinimapBehaviour.cs" t="Include" />
+            <e p="NextLevel.cs" t="Include" />
             <e p="Room Setup.txt" t="Include" />
             <e p="RoomBehaviour.cs" t="Include" />
             <e p="RoomGenerator.cs" t="Include" />

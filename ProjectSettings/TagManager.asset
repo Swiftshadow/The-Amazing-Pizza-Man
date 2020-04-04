@@ -15,6 +15,7 @@ TagManager:
   - PlayerAttack
   - Slime
   - MinimapCam
+  - NextLevel
   layers:
   - Default
   - TransparentFX
