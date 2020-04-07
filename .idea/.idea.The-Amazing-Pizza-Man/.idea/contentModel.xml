@@ -35,6 +35,7 @@
           <e p="GameControllerBehaviour.cs" t="Include" />
           <e p="SceneLoader.cs" t="Include" />
           <e p="World" t="Include">
+            <e p="FullScreenMapBehaviour.cs" t="Include" />
             <e p="MinimapBehaviour.cs" t="Include" />
             <e p="NextLevel.cs" t="Include" />
             <e p="Room Setup.txt" t="Include" />
