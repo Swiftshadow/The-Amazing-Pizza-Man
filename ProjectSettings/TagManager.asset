@@ -16,6 +16,7 @@ TagManager:
   - Slime
   - MinimapCam
   - NextLevel
+  - ShowOnPause
   layers:
   - Default
   - TransparentFX
