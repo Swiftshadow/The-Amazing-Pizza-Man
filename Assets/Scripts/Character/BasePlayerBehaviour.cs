@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using Unity.Mathematics;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -42,6 +43,8 @@ public class BasePlayerBehaviour : MonoBehaviour
     public Sprite humanDefaultSprite;
     [Tooltip("The default sprite for the pizza form")]
     public Sprite pizzaDefaultSprite;
+    
+    public GameObject whipEffect;
 
     [Header("GameObjects")] 
     public GameObject humanForm;
@@ -52,6 +55,8 @@ public class BasePlayerBehaviour : MonoBehaviour
     public GameObject meleeHitbox1;
     [Tooltip("The Body Parts for the Human Form")]
     public List<GameObject> limbObjects;
+
+    
 
     // GameObject Properties
     private Vector3 humanScale = new Vector3(1,1);
@@ -91,6 +96,7 @@ public class BasePlayerBehaviour : MonoBehaviour
         PlayerMovement();
         GrapplingHook();
         GrappleLength();
+        WhipAttack(); // AK IR2
 
         if (Input.GetKeyDown("1"))
         {
@@ -327,7 +333,19 @@ public class BasePlayerBehaviour : MonoBehaviour
     // Human Functionalities
     //Taylor
 
-    
+    //Andrew
+    private void WhipAttack() // AK IR2
+    {
+        if (Input.GetButtonDown("Fire1") && playerHuman == true)
+        {
+            Vector3 screenPos = Input.mousePosition;
+            Vector3 targetPos = Camera.main.ScreenToWorldPoint(screenPos);
+            targetPos.z += 10f;
+            Debug.Log("ScreenPos = " + screenPos + " WorldPos = " + targetPos);
+
+            Instantiate(whipEffect, targetPos, quaternion.identity);
+        }
+    }
     
     
    // Pizza Functionalities
