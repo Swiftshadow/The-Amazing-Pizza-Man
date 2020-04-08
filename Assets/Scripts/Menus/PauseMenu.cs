@@ -43,6 +43,9 @@ public class PauseMenu : MonoBehaviour
 
     public void restartButton()
     {
+
+        Time.timeScale = 1;
+        gamePaused = false;
         SceneManager.LoadScene("WorldGenTest");
     }
 }

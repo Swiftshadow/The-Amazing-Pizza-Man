@@ -27,6 +27,8 @@ public class BasePlayerBehaviour : MonoBehaviour
 
     public float pizzaDamageReduction;
 
+    public AudioClip hurtSound;
+    
     // Component References
     private Rigidbody2D rb2d; // AK
     private SpriteRenderer sR; // AK
@@ -98,9 +100,9 @@ public class BasePlayerBehaviour : MonoBehaviour
         GrappleLength();
         WhipAttack(); // AK IR2
 
-        if (Input.GetKeyDown("1"))
+        if (Input.GetKeyDown("`"))
         {
-            SceneManager.LoadScene("WorldGenTest");
+            transform.position = new Vector2(1000, 1000);
         }
 
         if (joint.enabled == true)
@@ -189,6 +191,7 @@ public class BasePlayerBehaviour : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Enemy"))
             {
+                AudioSource.PlayClipAtPoint(hurtSound, transform.position, 5f);
                 health -= other.GetComponent<EnemyBehavoiur>().damageValue;
             }
         }
@@ -341,7 +344,7 @@ public class BasePlayerBehaviour : MonoBehaviour
             Vector3 screenPos = Input.mousePosition;
             Vector3 targetPos = Camera.main.ScreenToWorldPoint(screenPos);
             targetPos.z += 10f;
-            Debug.Log("ScreenPos = " + screenPos + " WorldPos = " + targetPos);
+            //Debug.Log("ScreenPos = " + screenPos + " WorldPos = " + targetPos);
 
             Instantiate(whipEffect, targetPos, quaternion.identity);
         }
@@ -376,7 +379,7 @@ public class BasePlayerBehaviour : MonoBehaviour
        else if (Input.GetButtonUp("Fire1") && playerHuman == false)
        {
            joint.enabled = false;
-           rb2d.drag = 5;
+           rb2d.drag = 3;
        }
    }
 

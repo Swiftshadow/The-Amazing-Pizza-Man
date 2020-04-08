@@ -31,15 +31,18 @@ public class BroccoliMonster : MonoBehaviour
 
         }
         
-        Vector3 direction = player.position - transform.position;
+            Vector3 direction = player.position - transform.position;
 
-        direction.Normalize();
-        movement = direction; 
-    }
+            direction.Normalize();
+            movement = direction;
+        }
 
     private void FixedUpdate()
     {
-        moveCharacter(movement);
+        if (Vector2.Distance(transform.position, player.transform.position) < 10)
+        {
+            moveCharacter(movement);
+        }
     }
 
     void moveCharacter(Vector2 direction)

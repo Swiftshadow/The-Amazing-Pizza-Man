@@ -49,7 +49,7 @@ public class PotatoGuardBehaviour : MonoBehaviour
         }
 
 
-        if (timeBetweenShots <= 0)
+        if (timeBetweenShots <= 0 && Vector2.Distance(transform.position, player.transform.position) < 5)
         {
 
             Instantiate(bullet, transform.position, Quaternion.identity);

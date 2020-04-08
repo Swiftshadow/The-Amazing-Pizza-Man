@@ -30,7 +30,7 @@ public class WhipAttackBehaviour : MonoBehaviour
         Destroy(gameObject, effectLifeTime);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         forceValue += forceValue;
         effectSize = new Vector3(forceValue, forceValue, 0);

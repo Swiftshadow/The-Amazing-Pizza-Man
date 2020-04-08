@@ -338,7 +338,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 13, y: -25}
-  m_SizeDelta: {x: 267, y: 122.8}
+  m_SizeDelta: {x: 338.71, y: 147.7}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &286178726
 MonoBehaviour:
@@ -375,7 +375,9 @@ MonoBehaviour:
 
     Left Alt - Switch Forms
 
-    Left Mouse - Whip Attack
+    Left Mouse As Human - Whip Attack
+
+    Left Mouse As Pizza - Grapple Hook
 
     Space - Punch
 

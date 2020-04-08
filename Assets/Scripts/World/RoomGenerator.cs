@@ -54,6 +54,7 @@ public class RoomGenerator : MonoBehaviour
     void Awake()
     {
         rooms = GetComponent<RoomHolder>();
+        player = Instantiate(player, playerSpawnpoint, Quaternion.identity);
         SpawnMap();
     }
     
@@ -67,7 +68,7 @@ public class RoomGenerator : MonoBehaviour
         // Spawns the starting room
         GameObject startRoom = Instantiate(rooms.startRoom);
         spawnedRooms.Add(startRoom);
-        Instantiate(player, playerSpawnpoint, Quaternion.identity);
+        player.transform.position = playerSpawnpoint;
         spawnDone = false;
         StartCoroutine("SpawnRooms");
     }
@@ -145,10 +146,10 @@ public class RoomGenerator : MonoBehaviour
         spawnDone = false;
         // Get all room objects
         List<GameObject> allSpawnpoints = GetAllSpawnpoints();
-        GameObject player = GameObject.FindWithTag("Player");
+        //GameObject player = GameObject.FindWithTag("Player");
         
         // Remove the player
-        Destroy(player);
+        //Destroy(player);
 
         // Remove all rooms
         foreach (var room in spawnedRooms)
@@ -235,7 +236,7 @@ public class RoomGenerator : MonoBehaviour
             // Find all spawnpoings
             GameObject[] roomSpawnpoints =
                 GameObject.FindGameObjectsWithTag("RoomSpawnpoint");
-            Debug.Log("Iteration " + i + ", " + (roomSpawnpoints.Length) + " spawnpoints");
+            //Debug.Log("Iteration " + i + ", " + (roomSpawnpoints.Length) + " spawnpoints");
             
             // Check if a room should be spawned on each spawnpoint
             foreach (var spawnpoint in roomSpawnpoints)
@@ -269,7 +270,7 @@ public class RoomGenerator : MonoBehaviour
 
             // Clear the array for next iteration
             Array.Clear(roomSpawnpoints, 0, roomSpawnpoints.Length);
-            Debug.Log("End of iteration, " + roomSpawnpoints.Length + " spawnpoints remain");
+            //Debug.Log("End of iteration, " + roomSpawnpoints.Length + " spawnpoints remain");
         }
         
         // Spawn walls once all the rooms have been spawned

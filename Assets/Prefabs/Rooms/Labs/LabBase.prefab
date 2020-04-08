@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 162373153480bee4587852bb59fec646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 2
+  difficulty: 4
 --- !u!50 &6370852666296364218
 Rigidbody2D:
   serializedVersion: 4

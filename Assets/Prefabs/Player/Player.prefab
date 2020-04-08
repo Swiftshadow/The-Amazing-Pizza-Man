@@ -56,8 +56,11 @@ MonoBehaviour:
   humanSpeedMultiplier: 10
   pizzaSpeedMultiplier: 10
   pizzaDamageReduction: 0
+  hurtSound: {fileID: 8300000, guid: 24170f58db2898640a7401dcd77e9de5, type: 3}
   humanDefaultSprite: {fileID: 21300000, guid: 636593ae6badf4a269563adaa5d5de67, type: 3}
   pizzaDefaultSprite: {fileID: 21300000, guid: b241ae42a911e4f6888c2047adc954da, type: 3}
+  whipEffect: {fileID: 4464733913487981754, guid: 17d236238a83fb048b1475882d71493b,
+    type: 3}
   humanForm: {fileID: 2303502717424213590}
   pizzaForm: {fileID: 1541647985327064267}
   greaseTrail: {fileID: 2639493250636727243, guid: 444edf471b5fe48438e1883c10fc3729,
@@ -187,7 +190,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 5
+  m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}

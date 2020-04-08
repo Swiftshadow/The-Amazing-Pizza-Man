@@ -32,25 +32,25 @@ public class RoomBehaviour : MonoBehaviour
     {
         if (other.CompareTag("RoomSpawnpoint") || other.CompareTag("WallSpawnpoint"))
         {
-            Debug.Log("Destorying " + other.name + " of " + other.transform.parent.name + " in " + gameObject.name);
+            //Debug.Log("Destorying " + other.name + " of " + other.transform.parent.name + " in " + gameObject.name);
             Destroy(other.gameObject);
         }
         
         if (gameObject.CompareTag("Wall") && (other.CompareTag("Room") || other.CompareTag("Startpoint")))
         {
-            Debug.Log("Destorying wall " + gameObject.name + " in room " + other.transform.name);
+            //Debug.Log("Destorying wall " + gameObject.name + " in room " + other.transform.name);
             Destroy(gameObject);
         }
 
         if (gameObject.CompareTag("Startpoint") && other.CompareTag("Room") && generator.spawnDone)
         {
-            Debug.Log("Destroying startpoint for being in another room");
+            //Debug.Log("Destroying startpoint for being in another room");
             Destroy(gameObject);
         }
 
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Setting room" + gameObject.name + " visible to minimap");
+            //Debug.Log("Setting room" + gameObject.name + " visible to minimap");
             ChangeLayer(gameObject.transform, "MinimapVisible");
         }
     }
