@@ -20,10 +20,12 @@ public class BasePlayerBehaviour : MonoBehaviour
     public int lives;
 
     private bool playerInvulnerable;
+    private bool playerInSlime;
 
     public float speed;
     public float humanSpeedMultiplier;
     public float pizzaSpeedMultiplier;
+    public float slimeSlowAmount; //SJ
 
     public float pizzaDamageReduction;
 
@@ -199,6 +201,19 @@ public class BasePlayerBehaviour : MonoBehaviour
             {
                 health -= 20;
             }
+        if (other.gameObject.tag == "Slime")
+        {
+            playerInSlime = true;
+
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Slime")
+        {
+            playerInSlime = false;
+        }
     }
 
     // General Functionalities
@@ -268,19 +283,28 @@ public class BasePlayerBehaviour : MonoBehaviour
             // Gets the player inputs 
             float xMove = Input.GetAxis("Horizontal"); 
             float yMove = Input.GetAxis("Vertical"); 
-            
-            xMove += xMove * speed *  humanSpeedMultiplier; 
-            yMove += yMove * speed *  humanSpeedMultiplier;
+
+            // Slow player if in slime - Shane
+            if (playerInSlime) //SJ
+            {
+                xMove += xMove * speed * humanSpeedMultiplier * slimeSlowAmount;
+                yMove += yMove * speed * humanSpeedMultiplier * slimeSlowAmount;
+
+            }
+            else
+            {
+                xMove += xMove * speed * humanSpeedMultiplier;
+                yMove += yMove * speed * humanSpeedMultiplier;
+            }
 
             Vector2 moveForce = new Vector2(xMove, yMove); 
         
             float velocityCap = 5f;
 
-            moveForce.x = Mathf.Clamp(moveForce.x, -velocityCap, velocityCap); 
-            moveForce.y = Mathf.Clamp(moveForce.y, -velocityCap, velocityCap); 
-        
+            moveForce.x = Mathf.Clamp(moveForce.x, -velocityCap, velocityCap);
+            moveForce.y = Mathf.Clamp(moveForce.y, -velocityCap, velocityCap);
+
             rb2d.AddForce(moveForce);
-            
 
             /*
             if (moveForce.x < 0.0f)
@@ -289,7 +313,7 @@ public class BasePlayerBehaviour : MonoBehaviour
             } */
 
             //animation
-          
+
 
             if (Input.GetAxis("Horizontal") < 1 && Input.GetAxis("Vertical") < 1)
             {

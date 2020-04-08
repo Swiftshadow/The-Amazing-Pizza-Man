@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5418704228197319236}
   - component: {fileID: 9097540369498773568}
-  - component: {fileID: 3924521364426968587}
   - component: {fileID: 2956276873604219231}
+  - component: {fileID: -7664961582316764183}
   m_Layer: 0
   m_Name: Slime Tile 1
   m_TagString: Slime
@@ -68,8 +68,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 765428761
-  m_SortingLayer: 1
+  m_SortingLayerID: -636150879
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4a1f6a5399a3fb04d96d6d0a466b7417, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -82,19 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &3924521364426968587
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 106094869618520099}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2956276873604219231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,4 +94,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cdeab2a49d51444992b635f3d0b7cab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageValue: 0
+  health: 10
+  damageRate: 1
+  damageValue: 0
+--- !u!61 &-7664961582316764183
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106094869618520099}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.5, y: 0.5}
+    newSize: {x: 0.5, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5}
+  m_EdgeRadius: 0
