@@ -33,6 +33,11 @@
           </e>
           <e p="EnumList.cs" t="Include" />
           <e p="GameControllerBehaviour.cs" t="Include" />
+          <e p="Menus" t="Include">
+            <e p="BackButton.cs" t="Include" />
+            <e p="PauseMenu.cs" t="Include" />
+            <e p="PlayButton.cs" t="Include" />
+          </e>
           <e p="SceneLoader.cs" t="Include" />
           <e p="World" t="Include">
             <e p="FullScreenMapBehaviour.cs" t="Include" />

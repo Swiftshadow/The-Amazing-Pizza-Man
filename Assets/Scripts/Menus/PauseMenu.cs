@@ -13,12 +13,12 @@ public class PauseMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             
-            gamePaused = !gamePaused;
             PauseGame();
         }
     }
     void PauseGame()
     {
+        gamePaused = !gamePaused;
         if (gamePaused)
         {
             pauseMenuUI.SetActive(true);
@@ -33,7 +33,7 @@ public class PauseMenu : MonoBehaviour
 
     public void continueButton()
     {
-        Time.timeScale = 1;
+        PauseGame();
     }
 
     public void quitButton()
