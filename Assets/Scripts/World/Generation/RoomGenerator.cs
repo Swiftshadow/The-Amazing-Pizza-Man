@@ -64,7 +64,7 @@ public class RoomGenerator : MonoBehaviour
     /// </summary>
     public void SpawnMap()
     {
-        RemoveRooms();
+        RemoveAllRooms();
         // Spawns the starting room
         GameObject startRoom = Instantiate(rooms.startRoom);
         spawnedRooms.Add(startRoom);
@@ -139,9 +139,76 @@ public class RoomGenerator : MonoBehaviour
     }
 
     /// <summary>
+    /// Removes rooms that are overlapping
+    /// </summary>
+    private void RemoveOverlappingRooms()
+    {
+        // Each sublist contains rooms with the same x-coordinate
+        List<List<GameObject>> orderedByX = new List<List<GameObject>>();
+
+        // Splits the rooms into lists of the same x value
+        foreach (var room in spawnedRooms)
+        {
+            // Has the room been placed in the sorted list
+            bool isPlaced = false;
+            
+            // Check if a row for the x-value already exists
+            foreach (var row in orderedByX)
+            {
+                // If it does, add the current room to the row
+                if (room.transform.position.x .Equals(row[0].transform.position.x))
+                {
+                    row.Add(room);
+                    isPlaced = true;
+                    break;
+                }
+            }
+
+            // If it does not, add a new row for the x value
+            if (!isPlaced)
+            {
+                orderedByX.Add(new List<GameObject>());
+                orderedByX[orderedByX.Count - 1].Add(room);
+            }
+        }
+
+        List<GameObject> overlappingRooms = new List<GameObject>();
+        // Check the y value of each room against the others in the list
+        foreach (var roomList in orderedByX)
+        {
+            // If there is only 1 room in the list, it is not overlapping with anything
+            if (roomList.Count == 1)
+            {
+                continue;
+            }
+
+            // Count through all the rooms in the given x-list starting with the first
+            for (int i = 0; i < (roomList.Count - 1); ++i)
+            {
+                // Only compare to ones ahead in the list - ones behind have been checked already
+                for (int j = (i + 1); j < roomList.Count; ++j)
+                {
+                    // IF they have the same y value, they are overlapping
+                    if (roomList[i].transform.position.y.Equals(roomList[j].transform.position.y))
+                    {
+                        // Add the room to removal list
+                        overlappingRooms.Add(roomList[j]);
+                    }
+                }
+            }
+        }
+
+        // Remove all rooms in the removal list
+        foreach (var room in overlappingRooms)
+        {
+            Destroy(room);
+        }
+    }
+
+    /// <summary>
     /// Removes the current map
     /// </summary>
-    private void RemoveRooms()
+    private void RemoveAllRooms()
     {
         spawnDone = false;
         // Get all room objects
@@ -272,6 +339,9 @@ public class RoomGenerator : MonoBehaviour
             Array.Clear(roomSpawnpoints, 0, roomSpawnpoints.Length);
             //Debug.Log("End of iteration, " + roomSpawnpoints.Length + " spawnpoints remain");
         }
+        
+        // Removes rooms that overlap
+        RemoveOverlappingRooms();
         
         // Spawn walls once all the rooms have been spawned
         StartCoroutine("SpawnWalls");
