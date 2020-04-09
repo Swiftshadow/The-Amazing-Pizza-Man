@@ -61,7 +61,7 @@ public class RoomBehaviour : MonoBehaviour
     /// </summary>
     /// <param name="toChange">The object to change the layer of</param>
     /// <param name="layerToSet">The layer to set the objects to</param>
-    private void ChangeLayer(Transform toChange, string layerToSet)
+    public void ChangeLayer(Transform toChange, string layerToSet)
     {
         foreach (Transform child in toChange)
         {

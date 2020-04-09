@@ -43,7 +43,7 @@ public class RoomGenerator : MonoBehaviour
     /// <summary>
     /// Holds a list of all spawned rooms and walls
     /// </summary>
-    private List<GameObject> spawnedRooms = new List<GameObject>();
+    public List<GameObject> spawnedRooms = new List<GameObject>();
     
     [Tooltip("Is the generator done spawning rooms")]
     public bool spawnDone = false;

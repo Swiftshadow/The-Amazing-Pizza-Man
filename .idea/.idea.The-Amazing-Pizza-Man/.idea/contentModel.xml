@@ -41,13 +41,20 @@
           <e p="SceneLoader.cs" t="Include" />
           <e p="World" t="Include">
             <e p="FullScreenMapBehaviour.cs" t="Include" />
+            <e p="Generation" t="Include">
+              <e p="Room Setup.txt" t="Include" />
+              <e p="RoomBehaviour.cs" t="Include" />
+              <e p="RoomGenerator.cs" t="Include" />
+              <e p="RoomHolder.cs" t="Include" />
+              <e p="RoomSpawnSettings.cs" t="Include" />
+            </e>
             <e p="MinimapBehaviour.cs" t="Include" />
             <e p="NextLevel.cs" t="Include" />
-            <e p="Room Setup.txt" t="Include" />
-            <e p="RoomBehaviour.cs" t="Include" />
-            <e p="RoomGenerator.cs" t="Include" />
-            <e p="RoomHolder.cs" t="Include" />
-            <e p="RoomSpawnSettings.cs" t="Include" />
+            <e p="Powerups" t="Include">
+              <e p="HealthPowerup.cs" t="Include" />
+              <e p="MapPowerup.cs" t="Include" />
+              <e p="PowerupBase.cs" t="Include" />
+            </e>
           </e>
         </e>
       </e>

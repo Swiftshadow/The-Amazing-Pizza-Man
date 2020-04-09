@@ -1713,12 +1713,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab54a3ee4ff86743af4cc1c4f6f80bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 1
+  difficulty: -1
   player: {fileID: 1541647984793045876, guid: c53398f9dbc66654caeef183cc31a373, type: 3}
   spawnRuns: 3
   spawnThresholdMax: 10
   spawnThreshold: 5
   playerSpawnpoint: {x: 0.2, y: 0.2, z: 0}
+  spawnedRooms: []
   spawnDone: 0
 --- !u!4 &1652066472
 Transform:
@@ -1750,22 +1751,21 @@ MonoBehaviour:
   - {fileID: 1550425477037291105, guid: 76c853155e3a76649bed1c61dd6b3985, type: 3}
   - {fileID: 6185815327714331085, guid: d06259c695bb37d40bb5d6d43adf56f1, type: 3}
   - {fileID: 2419591310846426197, guid: 667d45e11b11d554a9461788da737e09, type: 3}
-  - {fileID: 6624143559906030835, guid: d80f4fb5b176bf745a354b89446b56bd, type: 3}
+  - {fileID: 6169690335371212724, guid: d459c7e7c1206924a8ed4df8b0942cf4, type: 3}
   bottomRooms:
   - {fileID: 1550425477037291105, guid: 76c853155e3a76649bed1c61dd6b3985, type: 3}
   - {fileID: 2919999690223188006, guid: c0278cd2a9b24ae4b8a0b4bbf1cdd871, type: 3}
   - {fileID: 2419591310846426197, guid: 667d45e11b11d554a9461788da737e09, type: 3}
   - {fileID: 6185815327714331085, guid: d06259c695bb37d40bb5d6d43adf56f1, type: 3}
-  - {fileID: 6624143559906030835, guid: d80f4fb5b176bf745a354b89446b56bd, type: 3}
+  - {fileID: 6169690335371212724, guid: d459c7e7c1206924a8ed4df8b0942cf4, type: 3}
   leftRooms:
   - {fileID: 2919999690223188006, guid: c0278cd2a9b24ae4b8a0b4bbf1cdd871, type: 3}
   - {fileID: 2419591310846426197, guid: 667d45e11b11d554a9461788da737e09, type: 3}
-  - {fileID: 6624143559906030835, guid: d80f4fb5b176bf745a354b89446b56bd, type: 3}
+  - {fileID: 6169690335371212724, guid: d459c7e7c1206924a8ed4df8b0942cf4, type: 3}
   rightRooms:
   - {fileID: 2919999690223188006, guid: c0278cd2a9b24ae4b8a0b4bbf1cdd871, type: 3}
   - {fileID: 6185815327714331085, guid: d06259c695bb37d40bb5d6d43adf56f1, type: 3}
   - {fileID: 2419591310846426197, guid: 667d45e11b11d554a9461788da737e09, type: 3}
-  - {fileID: 6624143559906030835, guid: d80f4fb5b176bf745a354b89446b56bd, type: 3}
   startRoom: {fileID: 2919999690223188006, guid: c0278cd2a9b24ae4b8a0b4bbf1cdd871,
     type: 3}
   walls:
