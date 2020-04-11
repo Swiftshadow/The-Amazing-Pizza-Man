@@ -321,8 +321,17 @@ public class BasePlayerBehaviour : MonoBehaviour
                 moveForce.y *= 0f;
             }
             
-            
+            // Flipping Player AK
+            if (xMove < 0)
+            {
+                transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+            }
+            else if (moveForce.x == 0f)
+            {
+                transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+            }
         }
+        
         else if (playerHuman == false) 
         {
             // Gets the player inputs 
