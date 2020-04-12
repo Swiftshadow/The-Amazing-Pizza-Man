@@ -68,6 +68,7 @@ public class BasePlayerBehaviour : MonoBehaviour
 
     public bool playerHuman; // AK 
 
+    private bool isFlipped = false; // Doug
 
     //Taylor....Human behaviour
     public bool attack;
@@ -143,10 +144,11 @@ public class BasePlayerBehaviour : MonoBehaviour
                 attack = true;
                 Invoke("ResetAttack", 0.2f);
                 anim.Play("punch");
-                Vector3 hitboxSpawn = transform.position;
-                hitboxSpawn.x += 0.25f;
-                hitboxSpawn.y += 0.4f;
-                Instantiate(attackHitbox, hitboxSpawn, Quaternion.identity);
+                GameObject hitbox = Instantiate(attackHitbox, transform);
+                Vector2 hitboxSpawn = hitbox.transform.localPosition;
+                hitboxSpawn.x = 0.172f;
+                hitboxSpawn.y = 0.451f;
+                hitbox.transform.localPosition = hitboxSpawn;
                 AudioSource audio = GetComponent<AudioSource>();
                 audio.clip = punchClip;
                 audio.Play();
@@ -325,10 +327,12 @@ public class BasePlayerBehaviour : MonoBehaviour
             if (xMove < 0)
             {
                 transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+                isFlipped = true;
             }
-            else if (moveForce.x == 0f)
+            else if (xMove > 0f)
             {
                 transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+                isFlipped = false;
             }
         }
         
