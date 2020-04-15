@@ -64,7 +64,7 @@ public class BasePlayerBehaviour : MonoBehaviour
 
     // GameObject Properties
     private Vector3 humanScale = new Vector3(1,1);
-    private Vector3 pizzaScale = new Vector3(1,1);
+    private Vector3 pizzaScale = new Vector3(0.9f,0.9f);
 
     public bool playerHuman; // AK 
 
