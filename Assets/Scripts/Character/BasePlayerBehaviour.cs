@@ -97,11 +97,14 @@ public class BasePlayerBehaviour : MonoBehaviour
     /// </summary>
     void Update()
     {
-        FormSwitch();
-        PlayerMovement();
-        GrapplingHook();
-        GrappleLength();
-        WhipAttack(); // AK IR2
+        if (Time.timeScale != 0)
+        {
+            FormSwitch();
+            PlayerMovement();
+            GrapplingHook();
+            GrappleLength();
+            WhipAttack(); // AK IR2
+        }
 
         if (Input.GetKeyDown("`"))
         {
