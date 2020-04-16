@@ -8,12 +8,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/PlayerTestingForGrappling.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 0
+    path: Assets/Scenes/WorldGenTest.unity
+    guid: 3189f05dda6d7aa40bacfe9e983fc20b
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 3b5fb896a30af4e49a48cd90e7369634
   - enabled: 1
-    path: Assets/Scenes/WorldGenTest.unity
-    guid: 3189f05dda6d7aa40bacfe9e983fc20b
+    path: Assets/Scenes/MasterScene.unity
+    guid: 4b783b74f4fba4445a7603a6f9291701
   - enabled: 1
     path: Assets/Scenes/Death.unity
     guid: 6e150ccc5053837499cf1932131d5a62

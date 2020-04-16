@@ -46,6 +46,6 @@ public class PauseMenu : MonoBehaviour
 
         Time.timeScale = 1;
         gamePaused = false;
-        SceneManager.LoadScene("WorldGenTest");
+        SceneManager.LoadScene("MasterScene");
     }
 }
