@@ -5,6 +5,8 @@
 //
 // Brief Description : Bullet projectile
 *****************************************************************************/
+
+using System;
 using UnityEngine;
 
 public class PotatoBullet : MonoBehaviour
@@ -13,21 +15,29 @@ public class PotatoBullet : MonoBehaviour
 
     private Transform player;
     private Vector2 target;
+    private Rigidbody2D rb2d;
     
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
+        rb2d = GetComponent<Rigidbody2D>();
+        
         target = new Vector2(player.position.x, player.position.y);
+
+        Vector2 heading = player.position - transform.position;
+
+        Vector2 normalizedDirection = heading / heading.magnitude; 
+
+        rb2d.AddForce(normalizedDirection * speed);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        //transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
 
-        if (transform.position.x == target.x && transform.position.y == target.y)
+        if ((transform.position.x == target.x && transform.position.y == target.y))
         {
             DestroyBullet();
         }
@@ -40,6 +50,11 @@ public class PotatoBullet : MonoBehaviour
         {
             DestroyBullet();
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        DestroyBullet();
     }
 
     void DestroyBullet()

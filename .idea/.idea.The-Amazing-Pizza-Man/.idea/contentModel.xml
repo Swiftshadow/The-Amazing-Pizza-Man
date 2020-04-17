@@ -13,6 +13,7 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="Character" t="Include">
+            <e p="AttackBehaviour.cs" t="Include" />
             <e p="BasePlayerBehaviour.cs" t="Include" />
             <e p="CameraBehaviour.cs" t="Include" />
             <e p="HitboxBehaviour.cs" t="Include" />

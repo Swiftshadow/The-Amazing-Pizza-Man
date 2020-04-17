@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -6620671849537320986}
   - component: {fileID: 635355184095730727}
   - component: {fileID: 6775971051538616636}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Potato Guard
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -99,6 +99,7 @@ MonoBehaviour:
   speed: 0.5
   stopDistance: 2
   retreatDistance: 1
+  trackingDistance: 5
   player: {fileID: 0}
   startTimeBetweenShots: 2
   bullet: {fileID: 2043297779847951623, guid: fb9821c4b04694a1183e86523b3a281c, type: 3}
@@ -114,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cdeab2a49d51444992b635f3d0b7cab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
+  health: 8
   damageValue: 1
 --- !u!70 &635355184095730727
 CapsuleCollider2D:

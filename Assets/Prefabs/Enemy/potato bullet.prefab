@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -5702468986324868233}
   - component: {fileID: 3750489695835520668}
   - component: {fileID: 3532749724170251482}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: potato bullet
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c96cf1e7c95c4455962b6cfc2b51f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 75
 --- !u!114 &-5702468986324868233
 MonoBehaviour:
   m_ObjectHideFlags: 0

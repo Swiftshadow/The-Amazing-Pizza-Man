@@ -8,6 +8,7 @@
 *****************************************************************************/
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 //using UnityEditor.Experimental.GraphView;
@@ -139,13 +140,13 @@ public class BasePlayerBehaviour : MonoBehaviour
         
 
         //Taylor... attack animation
-        if (Input.GetKeyDown(KeyCode.Space) && playerHuman == true)
+        if (Input.GetKeyDown(KeyCode.Space) && playerHuman == true && !attack)
         {
             if (anim)
             {
                 playerInvulnerable = true;
                 attack = true;
-                Invoke("ResetAttack", 0.2f);
+                Invoke("ResetAttack", 0.4f);
                 anim.Play("punch");
                 GameObject hitbox = Instantiate(attackHitbox, transform);
                 Vector2 hitboxSpawn = hitbox.transform.localPosition;
@@ -190,35 +191,6 @@ public class BasePlayerBehaviour : MonoBehaviour
         lives = 3;
 
         playerInvulnerable = false;
-    }
-
-    private void OnTriggerEnter2D(Collider2D other) //SJ
-    {
-        if (!playerInvulnerable)
-        {
-            if (other.gameObject.CompareTag("Enemy"))
-            {
-                AudioSource.PlayClipAtPoint(hurtSound, transform.position, 5f);
-                health -= other.GetComponent<EnemyBehavoiur>().damageValue;
-            }
-        }
-        if (other.gameObject.tag == "enemy")
-            {
-                health -= 20;
-            }
-        if (other.gameObject.tag == "Slime")
-        {
-            playerInSlime = true;
-
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Slime")
-        {
-            playerInSlime = false;
-        }
     }
 
     // General Functionalities
@@ -360,19 +332,7 @@ public class BasePlayerBehaviour : MonoBehaviour
             
         }
     }
-    
-    
-   private void OnCollisionEnter2D(Collision2D other)
-   {
-       if(other.gameObject.CompareTag("Enemy"))
-       {
-           if (playerInvulnerable == false)
-           {
-               health -= other.gameObject.GetComponent<EnemyBehavoiur>().damageValue;
-           }
-       }
-   } 
-    
+
     // Human Functionalities
     //Taylor
 
@@ -440,13 +400,46 @@ public class BasePlayerBehaviour : MonoBehaviour
 
    private void DamageTick(EnemyBehavoiur enemy)
    {
+       StartCoroutine(EnableIFrames());
+       AudioSource.PlayClipAtPoint(hurtSound, transform.position, 5f);
        health -= enemy.damageValue;
+   }
+
+   private IEnumerator EnableIFrames()
+   {
+       playerInvulnerable = true;
+       yield return new WaitForSeconds(0.4f);
+       playerInvulnerable = false;
+   }
+   
+   private void OnTriggerEnter2D(Collider2D other) //SJ
+   {
+       if (!playerInvulnerable)
+       {
+           if (other.gameObject.CompareTag("Enemy"))
+           {
+               DamageTick(other.GetComponent<EnemyBehavoiur>());
+           }
+       }
+        
+       if (other.gameObject.CompareTag("Slime"))
+       {
+           playerInSlime = true;
+       }
+   }
+
+   private void OnTriggerExit2D(Collider2D collision)
+   {
+       if (collision.gameObject.CompareTag("Slime"))
+       {
+           playerInSlime = false;
+       }
    }
    
    // Pizza Grease Trail Sliding
    private void OnTriggerStay(Collider other)
    {
-       if (other.tag == "Grease")
+       if (other.CompareTag("Grease"))
        {
            rb2d.velocity *= new Vector2(0.5f, 0.5f);
        }
@@ -456,5 +449,16 @@ public class BasePlayerBehaviour : MonoBehaviour
            Invoke("DamageTick", 0.5f);
        }
    }
+   
+   private void OnCollisionEnter2D(Collision2D other)
+   {
+       if(other.gameObject.CompareTag("Enemy"))
+       {
+           if (playerInvulnerable == false)
+           {
+               DamageTick(other.gameObject.GetComponent<EnemyBehavoiur>());
+           }
+       }
+   } 
    
 }

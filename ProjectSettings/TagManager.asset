@@ -31,9 +31,9 @@ TagManager:
   - Room
   - Wall
   - MinimapVisible
-  - 
-  - 
-  - 
+  - Bullet
+  - Enemy
+  - Player
   - 
   - 
   - 

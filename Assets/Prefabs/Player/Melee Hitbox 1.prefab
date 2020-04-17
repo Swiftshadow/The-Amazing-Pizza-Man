@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 357458135576884946}
   - component: {fileID: 357458135576884973}
   - component: {fileID: -216394627176387746}
+  - component: {fileID: -16538258814017216}
   m_Layer: 0
   m_Name: Melee Hitbox 1
   m_TagString: PlayerAttack
@@ -70,3 +71,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be45eb14d44ab8c42966fdab0ef55fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-16538258814017216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357458135576884947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfec53770d511ad419cf877923ab5161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1

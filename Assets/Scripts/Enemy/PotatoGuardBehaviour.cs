@@ -13,7 +13,8 @@ public class PotatoGuardBehaviour : MonoBehaviour
     public float speed;
     public float stopDistance;
     public float retreatDistance;
-
+    public float trackingDistance = 5f;
+    
     public Transform player;
 
     private float timeBetweenShots;
@@ -28,38 +29,46 @@ public class PotatoGuardBehaviour : MonoBehaviour
         timeBetweenShots = startTimeBetweenShots;
     }
 
-    
+
     void Update()
     {
-        if (Vector2.Distance(transform.position, player.position) > stopDistance)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+        Vector2 heading = player.position - transform.position;
 
-            } else if (Vector2.Distance(transform.position, player.position) < stopDistance &&
-
-                 Vector2.Distance(transform.position, player.position) > retreatDistance)
+        Vector2 normalizedDirection = heading / heading.magnitude;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, normalizedDirection, trackingDistance, 15);
+        if (hit.collider != null)
         {
-            transform.position = this.transform.position;
+            if (Vector2.Distance(transform.position, player.position) > stopDistance)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+
+            }
+            else if (Vector2.Distance(transform.position, player.position) < stopDistance &&
+
+                     Vector2.Distance(transform.position, player.position) > retreatDistance)
+            {
+                transform.position = this.transform.position;
+            }
+
+            else if (Vector2.Distance(transform.position, player.position) < retreatDistance)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
+
+            }
+
+            if (timeBetweenShots <= 0 && Vector2.Distance(transform.position, player.transform.position) < 5)
+            {
+
+                Instantiate(bullet, transform.position, Quaternion.identity);
+
+                timeBetweenShots = startTimeBetweenShots;
+
+            }
+            else
+            {
+                timeBetweenShots -= Time.deltaTime;
+            }
+
         }
-
-        else if (Vector2.Distance(transform.position, player.position) < retreatDistance)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
-
-        }
-
-
-        if (timeBetweenShots <= 0 && Vector2.Distance(transform.position, player.transform.position) < 5)
-        {
-
-            Instantiate(bullet, transform.position, Quaternion.identity);
-
-            timeBetweenShots = startTimeBetweenShots;
-
-        } else
-        {
-            timeBetweenShots -= Time.deltaTime; 
-        }
-        
     }
 }

@@ -752,6 +752,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2043297779847951623, guid: fb9821c4b04694a1183e86523b3a281c,
         type: 3}
+    - target: {fileID: 2737242424102040087, guid: 2d02ec1b2195643fa9a54155043d0f6a,
+        type: 3}
+      propertyPath: trackingDistance
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d02ec1b2195643fa9a54155043d0f6a, type: 3}
 --- !u!1001 &7011049108620423651
