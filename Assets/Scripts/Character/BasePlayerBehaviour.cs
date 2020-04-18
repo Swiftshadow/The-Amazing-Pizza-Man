@@ -22,6 +22,7 @@ public class BasePlayerBehaviour : MonoBehaviour
 
     private bool playerInvulnerable;
     private bool playerInSlime;
+    private bool whipCast;
 
     public float speed;
     public float humanSpeedMultiplier;
@@ -121,7 +122,17 @@ public class BasePlayerBehaviour : MonoBehaviour
             lineRenderer.positionCount = 2;
             lineRenderer.SetPositions(points);
         }
-        else if (joint.enabled == false)
+        else if (whipCast == true)
+        {
+            lineRenderer.enabled = true;
+
+            
+        }
+        else if (joint.enabled == false && whipCast != true)
+        {
+            lineRenderer.enabled = false;
+        } 
+        else if (joint.enabled == false && whipCast != true)
         {
             lineRenderer.enabled = false;
         }
@@ -346,8 +357,33 @@ public class BasePlayerBehaviour : MonoBehaviour
             targetPos.z += 10f;
             //Debug.Log("ScreenPos = " + screenPos + " WorldPos = " + targetPos);
 
+            whipCast = true;
+
+            
+            Vector3 targetPosLine = targetPos;
+            targetPosLine.z -= 10f;
+            
             Instantiate(whipEffect, targetPos, quaternion.identity);
+            //Vector3 whipImpact = GameObject.FindWithTag("WhipAttack").transform.position;
+            //Debug.Log("Whip Impact: " + whipImpact + " H " + "PlayerPos: " + gameObject.transform.position);
+            
+            var points = new Vector3[] {gameObject.transform.position, targetPosLine};
+            
+            lineRenderer.positionCount = 2;
+            lineRenderer.SetPositions(points);
+            
+            lineRenderer.enabled = true;
+
+            Debug.Log("WhipCast: " + whipCast + " / " + "Line Renderer Enabled: " + lineRenderer.enabled);
+            
+            Invoke("BreakWhip", .25f);
         }
+    }
+
+    private void BreakWhip()
+    {
+        whipCast = false;
+        //lineRenderer.enabled = false;
     }
     
     

@@ -2042,6 +2042,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4464733913487981754, guid: 17d236238a83fb048b1475882d71493b,
         type: 3}
+    - target: {fileID: 1541647984793045878, guid: c53398f9dbc66654caeef183cc31a373,
+        type: 3}
+      propertyPath: humanSpeedMultiplier
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541647984793045878, guid: c53398f9dbc66654caeef183cc31a373,
+        type: 3}
+      propertyPath: pizzaSpeedMultiplier
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1541647985090788629, guid: c53398f9dbc66654caeef183cc31a373,
         type: 3}
       propertyPath: m_Enabled
