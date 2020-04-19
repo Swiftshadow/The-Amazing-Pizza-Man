@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Experimental.U2D;
 using UnityEngine.SceneManagement;
 public class BasePlayerBehaviour : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class BasePlayerBehaviour : MonoBehaviour
     private bool playerInvulnerable;
     private bool playerInSlime;
     private bool whipCast;
+    private bool whipReady;
 
     public float speed;
     public float humanSpeedMultiplier;
@@ -90,8 +92,6 @@ public class BasePlayerBehaviour : MonoBehaviour
         SetValues();
         
         playerHuman = true;
-
-       
     }
 
     /// <summary>
@@ -132,10 +132,7 @@ public class BasePlayerBehaviour : MonoBehaviour
         {
             lineRenderer.enabled = false;
         } 
-        else if (joint.enabled == false && whipCast != true)
-        {
-            lineRenderer.enabled = false;
-        }
+        
 
         if (health <= 0)
         {
@@ -167,8 +164,6 @@ public class BasePlayerBehaviour : MonoBehaviour
                 AudioSource audio = GetComponent<AudioSource>();
                 audio.clip = punchClip;
                 audio.Play();
-
-
             }
 
         }
@@ -202,6 +197,7 @@ public class BasePlayerBehaviour : MonoBehaviour
         lives = 3;
 
         playerInvulnerable = false;
+        whipReady = true;
     }
 
     // General Functionalities
@@ -350,7 +346,7 @@ public class BasePlayerBehaviour : MonoBehaviour
     //Andrew
     private void WhipAttack() // AK IR2
     {
-        if (Input.GetButtonDown("Fire1") && playerHuman == true)
+        if (Input.GetButtonDown("Fire1") && playerHuman == true && whipReady == true)
         {
             Vector3 screenPos = Input.mousePosition;
             Vector3 targetPos = Camera.main.ScreenToWorldPoint(screenPos);
@@ -359,7 +355,15 @@ public class BasePlayerBehaviour : MonoBehaviour
 
             whipCast = true;
 
-            
+            LayerMask player = LayerMask.GetMask("Player");
+
+            RaycastHit2D hitWall = Physics2D.Linecast(transform.position, targetPos, 15);
+            if (hitWall == true)
+            {
+                targetPos = hitWall.point;
+                Debug.Log(hitWall.collider.name);
+            }
+
             Vector3 targetPosLine = targetPos;
             targetPosLine.z -= 10f;
             
@@ -374,7 +378,7 @@ public class BasePlayerBehaviour : MonoBehaviour
             
             lineRenderer.enabled = true;
 
-            Debug.Log("WhipCast: " + whipCast + " / " + "Line Renderer Enabled: " + lineRenderer.enabled);
+            whipReady = false;
             
             Invoke("BreakWhip", .25f);
         }
@@ -383,6 +387,7 @@ public class BasePlayerBehaviour : MonoBehaviour
     private void BreakWhip()
     {
         whipCast = false;
+        whipReady = true;
         //lineRenderer.enabled = false;
     }
     
@@ -402,6 +407,17 @@ public class BasePlayerBehaviour : MonoBehaviour
            Vector3 screenPos = Input.mousePosition;
            Vector3 targetPos = Camera.main.ScreenToWorldPoint(screenPos);
            Debug.Log("ScreenPos = " + screenPos + " WorldPos = " + targetPos);
+
+           Vector2 delta = transform.position - targetPos;
+
+           LayerMask player = LayerMask.GetMask("Player");
+
+           RaycastHit2D hitWall = Physics2D.Linecast(transform.position, targetPos, 15);
+           if (hitWall == true)
+           {
+               targetPos = hitWall.point;
+               Debug.Log(hitWall.collider.name);
+           }
 
            joint.connectedAnchor = targetPos;
            //joint.distance = Vector3.Distance(targetPos, transform.position);
