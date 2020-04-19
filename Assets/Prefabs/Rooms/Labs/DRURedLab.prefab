@@ -72,6 +72,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DRURedLab
       objectReference: {fileID: 0}
+    - target: {fileID: 6632814951289301289, guid: d80f4fb5b176bf745a354b89446b56bd,
+        type: 3}
+      propertyPath: doorAttachSide
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d80f4fb5b176bf745a354b89446b56bd, type: 3}
 --- !u!4 &6185815327714331123 stripped

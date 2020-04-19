@@ -19,14 +19,15 @@ public class EnumList
         DIFFICULTY_HARD = 4
     }
     
+    [Flags]
     public enum RoomDoors
     {
-        DOOR_NONE,
-        DOOR_LEFT,
-        DOOR_RIGHT,
-        DOOR_UP,
-        DOOR_DOWN,
-        DOOR_WIN
+        DOOR_NONE = 0,
+        DOOR_LEFT = 1,
+        DOOR_RIGHT = 2,
+        DOOR_UP = 4,
+        DOOR_DOWN = 8,
+        DOOR_WIN = 16
     }
     
 }

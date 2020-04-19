@@ -1713,7 +1713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab54a3ee4ff86743af4cc1c4f6f80bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 1
+  difficulty: -1
   player: {fileID: 1541647984793045876, guid: c53398f9dbc66654caeef183cc31a373, type: 3}
   spawnRuns: 3
   spawnThresholdMax: 10

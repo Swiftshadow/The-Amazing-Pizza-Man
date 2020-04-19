@@ -7,7 +7,7 @@ public class PlayButton : MonoBehaviour
 {
     public void playGame()
     {
-        SceneManager.LoadScene("WorldGenTest");
+        SceneManager.LoadScene("MasterScene");
     }
 
     public void howTo()

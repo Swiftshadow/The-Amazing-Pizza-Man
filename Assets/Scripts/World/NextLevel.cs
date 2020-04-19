@@ -34,4 +34,13 @@ public class NextLevel : MonoBehaviour
             generator.SpawnMap();
         }
     }
+
+    /// <summary>
+    /// Set the number of levels completed
+    /// </summary>
+    /// <param name="num">How many levels are complete</param>
+    public static void SetLevelsComplete(int num)
+    {
+        levelsCompleted = num;
+    }
 }

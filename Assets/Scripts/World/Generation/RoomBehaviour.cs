@@ -65,6 +65,10 @@ public class RoomBehaviour : MonoBehaviour
     {
         foreach (Transform child in toChange)
         {
+            if (child.gameObject.CompareTag("Enemy"))
+            {
+                continue;
+            }
             child.gameObject.layer = LayerMask.NameToLayer("MinimapVisible");
             ChangeLayer(child, layerToSet);
         }

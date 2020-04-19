@@ -25685,7 +25685,7 @@ GameObject:
   - component: {fileID: 2731213245117554162}
   m_Layer: 0
   m_Name: WinRoomLayout
-  m_TagString: Wall
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

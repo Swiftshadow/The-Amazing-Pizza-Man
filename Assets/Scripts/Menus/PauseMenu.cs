@@ -46,6 +46,7 @@ public class PauseMenu : MonoBehaviour
 
         Time.timeScale = 1;
         gamePaused = false;
+        NextLevel.SetLevelsComplete(0);
         SceneManager.LoadScene("MasterScene");
     }
 }

@@ -208,6 +208,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4152975717047570413, guid: d80f4fb5b176bf745a354b89446b56bd,
+        type: 3}
+      propertyPath: doorAttachSide
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6539712437842807645, guid: d80f4fb5b176bf745a354b89446b56bd,
         type: 3}
       propertyPath: difficulty
@@ -271,12 +276,17 @@ PrefabInstance:
     - target: {fileID: 6624143559906030835, guid: d80f4fb5b176bf745a354b89446b56bd,
         type: 3}
       propertyPath: m_Name
-      value: DULabOffice
+      value: DUOrangeLab
       objectReference: {fileID: 0}
     - target: {fileID: 6624143559906030835, guid: d80f4fb5b176bf745a354b89446b56bd,
         type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6632814951289301289, guid: d80f4fb5b176bf745a354b89446b56bd,
+        type: 3}
+      propertyPath: doorAttachSide
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7080693338052186359, guid: d80f4fb5b176bf745a354b89446b56bd,
         type: 3}

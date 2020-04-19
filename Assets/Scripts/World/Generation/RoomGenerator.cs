@@ -55,6 +55,7 @@ public class RoomGenerator : MonoBehaviour
     {
         rooms = GetComponent<RoomHolder>();
         player = Instantiate(player, playerSpawnpoint, Quaternion.identity);
+        NextLevel.SetLevelsComplete(0);
         SpawnMap();
     }
     
@@ -263,7 +264,7 @@ public class RoomGenerator : MonoBehaviour
             Vector3 spawnLocation = spawnpoint.transform.position;
             EnumList.RoomDoors typeToSpawn = EnumList.RoomDoors.DOOR_NONE;
             // Make sure the win room will be connected by a room
-            if (spawnpoint.CompareTag("RoomSpawnpoint") && !hasSpawnedWin)
+            if (spawnpoint.CompareTag("RoomSpawnpoint") && !hasSpawnedWin && spawnpoint.GetComponent<RoomSpawnSettings>().doorAttachSide != EnumList.RoomDoors.DOOR_NONE)
             {
                 // The longer it has gone without spawning the room, the higher the chance
                 float spawnChance = Random.Range(winSpawnChance, wallsToSpawn);
