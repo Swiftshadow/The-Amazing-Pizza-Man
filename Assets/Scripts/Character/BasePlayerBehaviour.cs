@@ -78,9 +78,9 @@ public class BasePlayerBehaviour : MonoBehaviour
     public bool attack;
     public AudioClip punchClip;
     public GameObject attackHitbox;
-   
 
 
+    public LayerMask grappleLayer;
 
 
     /// <summary>
@@ -357,7 +357,7 @@ public class BasePlayerBehaviour : MonoBehaviour
 
             LayerMask player = LayerMask.GetMask("Player");
 
-            RaycastHit2D hitWall = Physics2D.Linecast(transform.position, targetPos, 15);
+            RaycastHit2D hitWall = Physics2D.Linecast(transform.position, targetPos, grappleLayer);
             if (hitWall == true)
             {
                 targetPos = hitWall.point;
@@ -406,13 +406,13 @@ public class BasePlayerBehaviour : MonoBehaviour
        {
            Vector3 screenPos = Input.mousePosition;
            Vector3 targetPos = Camera.main.ScreenToWorldPoint(screenPos);
-           Debug.Log("ScreenPos = " + screenPos + " WorldPos = " + targetPos);
+           //Debug.Log("ScreenPos = " + screenPos + " WorldPos = " + targetPos);
 
            Vector2 delta = transform.position - targetPos;
 
            LayerMask player = LayerMask.GetMask("Player");
 
-           RaycastHit2D hitWall = Physics2D.Linecast(transform.position, targetPos, 15);
+           RaycastHit2D hitWall = Physics2D.Linecast(transform.position, targetPos, grappleLayer);
            if (hitWall == true)
            {
                targetPos = hitWall.point;

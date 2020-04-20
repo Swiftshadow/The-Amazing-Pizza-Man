@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 6539712437842807645}
   - component: {fileID: 6370852666296364218}
   - component: {fileID: 2460877876249532606}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LabBase
   m_TagString: Room
   m_Icon: {fileID: 0}

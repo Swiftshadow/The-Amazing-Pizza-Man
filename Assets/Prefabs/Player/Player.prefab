@@ -82,6 +82,9 @@ MonoBehaviour:
   punchClip: {fileID: 8300000, guid: ab486e6ae607643329ecfa3ca92fe0bb, type: 3}
   attackHitbox: {fileID: 357458135576884947, guid: c10892960a2b8b64784e92b6a460253c,
     type: 3}
+  grappleLayer:
+    serializedVersion: 2
+    m_Bits: 4097
 --- !u!82 &1541647984793045879
 AudioSource:
   m_ObjectHideFlags: 0
