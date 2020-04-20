@@ -117,6 +117,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 8
   damageValue: 1
+  healthDrop: {fileID: 3415174237086599546, guid: d9e2a6ea2a2490f4097eafdf54a3286d,
+    type: 3}
 --- !u!70 &635355184095730727
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

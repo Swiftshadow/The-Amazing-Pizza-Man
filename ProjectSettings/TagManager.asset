@@ -17,6 +17,7 @@ TagManager:
   - MinimapCam
   - NextLevel
   - ShowOnPause
+  - WallMinimapCollider
   layers:
   - Default
   - TransparentFX
@@ -34,7 +35,7 @@ TagManager:
   - Bullet
   - Enemy
   - Player
-  - 
+  - WallMinimapVisible
   - 
   - 
   - 

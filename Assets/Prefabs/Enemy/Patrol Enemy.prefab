@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -6873133173369221881}
   - component: {fileID: 2254695662765147104}
   - component: {fileID: 4223442444890900020}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Patrol Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -120,6 +120,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   damageValue: 2
+  healthDrop: {fileID: 3415174237086599546, guid: d9e2a6ea2a2490f4097eafdf54a3286d,
+    type: 3}
+  dropChance: 5
 --- !u!70 &2254695662765147104
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -159,7 +159,7 @@ public class BasePlayerBehaviour : MonoBehaviour
                 GameObject hitbox = Instantiate(attackHitbox, transform);
                 Vector2 hitboxSpawn = hitbox.transform.localPosition;
                 hitboxSpawn.x = 0.172f;
-                hitboxSpawn.y = 0.451f;
+                hitboxSpawn.y = 0.16f;
                 hitbox.transform.localPosition = hitboxSpawn;
                 AudioSource audio = GetComponent<AudioSource>();
                 audio.clip = punchClip;

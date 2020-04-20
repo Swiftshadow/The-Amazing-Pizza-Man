@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 2359308920173558780}
   - component: {fileID: 7488195941318701399}
   - component: {fileID: 2105366553310748408}
+  - component: {fileID: 5869694395595005274}
   m_Layer: 0
   m_Name: Houseplant
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,3 +130,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5869694395595005274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7285015839543440545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cdeab2a49d51444992b635f3d0b7cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
+  damageValue: 0
+  healthDrop: {fileID: 3415174237086599546, guid: d9e2a6ea2a2490f4097eafdf54a3286d,
+    type: 3}
+  dropChance: 2

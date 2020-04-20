@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4202919016145239195}
   m_Layer: 0
   m_Name: Slime Corner 1
-  m_TagString: Slime
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,8 +95,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  damageRate: 1
-  damageValue: 0
+  damageValue: 1
+  healthDrop: {fileID: 3415174237086599546, guid: d9e2a6ea2a2490f4097eafdf54a3286d,
+    type: 3}
+  dropChance: 0
 --- !u!61 &4202919016145239195
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyBehavoiur : MonoBehaviour
 {
@@ -12,6 +14,10 @@ public class EnemyBehavoiur : MonoBehaviour
     private SpriteRenderer rend;
 
     private bool isInvulnerable = false;
+
+    public GameObject healthDrop;
+
+    public int dropChance = 5;
     
     private void Start()
     {
@@ -33,10 +39,22 @@ public class EnemyBehavoiur : MonoBehaviour
     {
         if (health <= 0)
         {
-            Destroy(gameObject);
+            DestroyEnemy();
         }
     }
 
+    private void DestroyEnemy()
+    {
+        int spawnRng = Random.Range(0, 10);
+
+        if (spawnRng <= dropChance)
+        {
+            Instantiate(healthDrop, transform.position, Quaternion.identity);
+        }
+
+        Destroy(gameObject);
+    }
+    
     private IEnumerator FlashColor(Color toFlash)
     {
         Color startColor = rend.color;

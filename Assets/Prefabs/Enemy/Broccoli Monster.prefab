@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6497289238379219134}
   - component: {fileID: -4369380824617041359}
   - component: {fileID: 701769195182966021}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Broccoli Monster
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -166,3 +166,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   damageValue: 2
+  healthDrop: {fileID: 3415174237086599546, guid: d9e2a6ea2a2490f4097eafdf54a3286d,
+    type: 3}
+  dropChance: 5

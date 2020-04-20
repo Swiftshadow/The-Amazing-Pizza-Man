@@ -38,7 +38,7 @@ public class RoomBehaviour : MonoBehaviour
         
         if (gameObject.CompareTag("Wall") && (other.CompareTag("Room") || other.CompareTag("Startpoint")))
         {
-            //Debug.Log("Destorying wall " + gameObject.name + " in room " + other.transform.name);
+            Debug.Log("Destorying wall " + gameObject.name + " in room " + other.transform.name);
             Destroy(gameObject);
         }
 
@@ -51,6 +51,7 @@ public class RoomBehaviour : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             //Debug.Log("Setting room" + gameObject.name + " visible to minimap");
+            gameObject.layer = LayerMask.NameToLayer("MinimapVisible");
             ChangeLayer(gameObject.transform, "MinimapVisible");
         }
     }
@@ -69,7 +70,17 @@ public class RoomBehaviour : MonoBehaviour
             {
                 continue;
             }
-            child.gameObject.layer = LayerMask.NameToLayer("MinimapVisible");
+
+            if (child.gameObject.CompareTag("WallMinimapCollider"))
+            {
+                Debug.Log("Setting wall!");
+                child.gameObject.layer = LayerMask.NameToLayer("WallMinimapVisible");
+            }
+            else
+            {
+                child.gameObject.layer = LayerMask.NameToLayer("MinimapVisible");
+            }
+
             ChangeLayer(child, layerToSet);
         }
     }
