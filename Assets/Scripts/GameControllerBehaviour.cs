@@ -16,6 +16,9 @@ public class GameControllerBehaviour : MonoBehaviour
     [Header("UI Object References")]
     [Tooltip("The text that displays the player's remaining health")]
     public Text healthText; // AK
+    
+    [Tooltip("Slider to display the player's health")]
+    public Slider healthSlider;
     [Tooltip("The text that displays the number of lives the player has left")]
     public Text livesText; // AK
     //[Tooltip("The number of the room the player is currently in")]
@@ -86,6 +89,8 @@ public class GameControllerBehaviour : MonoBehaviour
         health = player.GetComponent<BasePlayerBehaviour>().health; // AK
         healthText.text = "Health Remaining: " + health + "%"; // AK
 
+        healthSlider.value = (float)health / 100;
+        
         lives = player.GetComponent<BasePlayerBehaviour>().lives; // AK
         livesText.text = "Lives Remaining: " + lives; // AK
     }

@@ -28,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2737242424102040072}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.503, y: -1.487, z: 0}
-  m_LocalScale: {x: 0.032802615, y: 0.032802615, z: 0.032802615}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2737242424102040073
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -73,12 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7478fa26e674e47bd978cb14f51e8218, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 073503f36190d431a98596b712f5f962, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 23.604755, y: 17.45}
+  m_Size: {x: 0.37, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -115,10 +115,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cdeab2a49d51444992b635f3d0b7cab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  death: {fileID: 8300000, guid: 24170f58db2898640a7401dcd77e9de5, type: 3}
   health: 8
   damageValue: 1
   healthDrop: {fileID: 3415174237086599546, guid: d9e2a6ea2a2490f4097eafdf54a3286d,
     type: 3}
+  dropChance: 5
 --- !u!70 &635355184095730727
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -132,9 +134,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.1339442, y: 0.41234353}
-  m_Size: {x: 21.336876, y: 14.327046}
-  m_Direction: 1
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.29, y: 0.55}
+  m_Direction: 0
 --- !u!50 &6775971051538616636
 Rigidbody2D:
   serializedVersion: 4
@@ -148,7 +150,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.5
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}

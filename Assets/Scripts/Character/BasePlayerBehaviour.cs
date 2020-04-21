@@ -64,14 +64,14 @@ public class BasePlayerBehaviour : MonoBehaviour
     [Tooltip("The Body Parts for the Human Form")]
     public List<GameObject> limbObjects;
 
-    
-
     // GameObject Properties
     private Vector3 humanScale = new Vector3(1,1);
     private Vector3 pizzaScale = new Vector3(0.9f,0.9f);
 
     public bool playerHuman; // AK 
 
+    private bool canTransform = true;    
+    
     private bool isFlipped = false; // Doug
 
     //Taylor....Human behaviour
@@ -152,10 +152,11 @@ public class BasePlayerBehaviour : MonoBehaviour
         {
             if (anim)
             {
+                canTransform = false;
+                anim.SetBool("Punch", true);
                 playerInvulnerable = true;
                 attack = true;
-                Invoke("ResetAttack", 0.4f);
-                anim.Play("punch");
+                Invoke("ResetAttack", .4f);
                 GameObject hitbox = Instantiate(attackHitbox, transform);
                 Vector2 hitboxSpawn = hitbox.transform.localPosition;
                 hitboxSpawn.x = 0.172f;
@@ -173,6 +174,8 @@ public class BasePlayerBehaviour : MonoBehaviour
     {
         playerInvulnerable = false;
         attack = false;
+        canTransform = true;
+        anim.SetBool("Punch", false);
     }
     
     /// <summary>
@@ -204,7 +207,7 @@ public class BasePlayerBehaviour : MonoBehaviour
 
     private void FormSwitch()
     {
-        if(Input.GetButtonDown("FormSwitch")) // AK 
+        if(Input.GetButtonDown("FormSwitch") && canTransform) // AK 
         {
             playerHuman = !playerHuman; // AK 
 
@@ -267,7 +270,6 @@ public class BasePlayerBehaviour : MonoBehaviour
             // Gets the player inputs 
             float xMove = Input.GetAxis("Horizontal"); 
             float yMove = Input.GetAxis("Vertical");
-            anim.Play("Walk");
 
             // Slow player if in slime - Shane
             if (playerInSlime) //SJ
@@ -317,6 +319,8 @@ public class BasePlayerBehaviour : MonoBehaviour
                 transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
                 isFlipped = false;
             }
+             anim.SetFloat("xMove", xMove);
+             anim.SetFloat("yMove", yMove);
         }
         
         else if (playerHuman == false) 

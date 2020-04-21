@@ -26,6 +26,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.14159758, y: 0.46010578}
   m_EdgeRadius: 0
+--- !u!61 &3455851561055739208
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761855080473103735}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.02112536, y: 0.5453918}
+  m_SpriteTilingProperty:
+    border: {x: 0.22, y: 0, z: 0.29, w: 0}
+    pivot: {x: 0.45, y: 0.5}
+    oldSize: {x: 0.64, y: 0.64}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.081962004, y: 0.19142342}
+  m_EdgeRadius: 0
 --- !u!212 &852684347
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -94,32 +120,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!61 &3455851561055739208
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 761855080473103735}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.02112536, y: 0.5453918}
-  m_SpriteTilingProperty:
-    border: {x: 0.22, y: 0, z: 0.29, w: 0}
-    pivot: {x: 0.45, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.081962004, y: 0.19142342}
-  m_EdgeRadius: 0
 --- !u!61 &537936336
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -231,7 +231,7 @@ PrefabInstance:
     - target: {fileID: 632655102498399964, guid: a0fe09deb9f79419bbf5316cb00ab14c,
         type: 3}
       propertyPath: m_Name
-      value: HumanForm
+      value: Player Variant
       objectReference: {fileID: 0}
     - target: {fileID: 632655102498399964, guid: a0fe09deb9f79419bbf5316cb00ab14c,
         type: 3}

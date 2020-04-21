@@ -7,6 +7,9 @@ public class PlayButton : MonoBehaviour
 {
     public void playGame()
     {
+        Time.timeScale = 1;
+        NextLevel.SetLevelsComplete(0);
+        PauseMenu.gamePaused = false;
         SceneManager.LoadScene("MasterScene");
     }
 

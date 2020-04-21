@@ -36,6 +36,7 @@
           <e p="GameControllerBehaviour.cs" t="Include" />
           <e p="Menus" t="Include">
             <e p="BackButton.cs" t="Include" />
+            <e p="LifeTracker.cs" t="Include" />
             <e p="PauseMenu.cs" t="Include" />
             <e p="PlayButton.cs" t="Include" />
           </e>

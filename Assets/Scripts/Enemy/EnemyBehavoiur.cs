@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 public class EnemyBehavoiur : MonoBehaviour
 {
 
-    public AudioSource death;
+    public AudioClip death;
 
     public int health = 10;
     
@@ -43,7 +43,7 @@ public class EnemyBehavoiur : MonoBehaviour
         if (health <= 0)
         {
             DestroyEnemy();
-            death.Play();
+            AudioSource.PlayClipAtPoint(death, transform.position);
         }
     }
 
