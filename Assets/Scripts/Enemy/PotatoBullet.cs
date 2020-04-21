@@ -16,6 +16,8 @@ public class PotatoBullet : MonoBehaviour
     private Transform player;
     private Vector2 target;
     private Rigidbody2D rb2d;
+
+    public AudioSource shot;
     
     void Start()
     {
@@ -29,6 +31,8 @@ public class PotatoBullet : MonoBehaviour
         Vector2 normalizedDirection = heading / heading.magnitude; 
 
         rb2d.AddForce(normalizedDirection * speed);
+
+        shot.Play();
     }
 
     // Update is called once per frame

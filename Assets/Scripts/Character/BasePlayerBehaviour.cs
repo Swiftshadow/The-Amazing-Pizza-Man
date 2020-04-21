@@ -266,7 +266,8 @@ public class BasePlayerBehaviour : MonoBehaviour
         {
             // Gets the player inputs 
             float xMove = Input.GetAxis("Horizontal"); 
-            float yMove = Input.GetAxis("Vertical"); 
+            float yMove = Input.GetAxis("Vertical");
+            anim.Play("Walk");
 
             // Slow player if in slime - Shane
             if (playerInSlime) //SJ

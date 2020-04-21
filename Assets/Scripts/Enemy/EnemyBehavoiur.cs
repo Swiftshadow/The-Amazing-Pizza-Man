@@ -7,6 +7,8 @@ using Random = UnityEngine.Random;
 public class EnemyBehavoiur : MonoBehaviour
 {
 
+    public AudioSource death;
+
     public int health = 10;
     
     public int damageValue;
@@ -20,6 +22,7 @@ public class EnemyBehavoiur : MonoBehaviour
     public int dropChance = 5;
     
     private void Start()
+
     {
         rend = GetComponent<SpriteRenderer>();
     }
@@ -40,6 +43,7 @@ public class EnemyBehavoiur : MonoBehaviour
         if (health <= 0)
         {
             DestroyEnemy();
+            death.Play();
         }
     }
 
