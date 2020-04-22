@@ -363,6 +363,11 @@ PrefabInstance:
       propertyPath: hurtSound
       value: 
       objectReference: {fileID: 8300000, guid: 3dd2f939c317e4be9936519d147bc9f5, type: 3}
+    - target: {fileID: 1541647984793045878, guid: c53398f9dbc66654caeef183cc31a373,
+        type: 3}
+      propertyPath: health
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 1541647984793045879, guid: c53398f9dbc66654caeef183cc31a373,
         type: 3}
       propertyPath: OutputAudioMixerGroup
