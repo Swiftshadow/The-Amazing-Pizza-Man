@@ -50,7 +50,11 @@
               <e p="RoomHolder.cs" t="Include" />
               <e p="RoomSpawnSettings.cs" t="Include" />
             </e>
-            <e p="MinimapBehaviour.cs" t="Include" />
+            <e p="Minimap" t="Include">
+              <e p="MinimapBehaviour.cs" t="Include" />
+              <e p="RotationCalculator.cs" t="Include" />
+              <e p="RotationCollector.cs" t="Include" />
+            </e>
             <e p="NextLevel.cs" t="Include" />
             <e p="Powerups" t="Include">
               <e p="HealthPowerup.cs" t="Include" />
