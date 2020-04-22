@@ -18,6 +18,7 @@ TagManager:
   - NextLevel
   - ShowOnPause
   - WallMinimapCollider
+  - Plant
   layers:
   - Default
   - TransparentFX

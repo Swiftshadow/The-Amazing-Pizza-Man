@@ -66,7 +66,7 @@ public class RoomBehaviour : MonoBehaviour
     {
         foreach (Transform child in toChange)
         {
-            if (child.gameObject.CompareTag("Enemy"))
+            if (child.gameObject.CompareTag("Enemy") || child.gameObject.CompareTag("Plant"))
             {
                 continue;
             }
