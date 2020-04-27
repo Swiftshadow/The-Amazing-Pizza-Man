@@ -2512,6 +2512,12 @@ RectTransform:
   m_AnchoredPosition: {x: -0.000030517578, y: 0.000015258789}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1675662873 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2191097561475479413, guid: d020ec7d8ce81b84fb0dd5738fb68893,
+    type: 3}
+  m_PrefabInstance: {fileID: 1952084793}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1701493139
 GameObject:
   m_ObjectHideFlags: 0
@@ -2827,6 +2833,7 @@ MonoBehaviour:
   playerSpawnpoint: {x: 0.2, y: 0.2, z: 0}
   spawnedRooms: []
   spawnDone: 0
+  roomArrow: {fileID: 1675662873}
 --- !u!4 &1855009144
 Transform:
   m_ObjectHideFlags: 0
@@ -3079,6 +3086,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ArrowRotation
+      objectReference: {fileID: 0}
+    - target: {fileID: 2191097561475479413, guid: d020ec7d8ce81b84fb0dd5738fb68893,
+        type: 3}
+      propertyPath: m_TagString
+      value: MapArrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 2191097561475479413, guid: d020ec7d8ce81b84fb0dd5738fb68893,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2191097561475479414, guid: d020ec7d8ce81b84fb0dd5738fb68893,
         type: 3}

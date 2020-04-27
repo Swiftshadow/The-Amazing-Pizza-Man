@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class MapPowerup : PowerupBase
 {
+    public float arrowTime = 5f;
+    private GameObject arrow;
+
+    private void Awake()
+    {
+        arrow = GameObject.FindWithTag("MapArrow");
+    }
     protected override void ApplyPowerup()
     {
         RoomGenerator generator = GameObject.FindWithTag("Generator").GetComponent<RoomGenerator>();
-
+        
         bool newRoomVisible = false;
         //int counter = 0;
         
@@ -30,5 +37,16 @@ public class MapPowerup : PowerupBase
 
             //++counter;
         }
+        
+        StartCoroutine(ToggleObjectOnOff(arrow, arrowTime));
+    }
+
+    private IEnumerator ToggleObjectOnOff(GameObject toToggle, float time)
+    {
+        Debug.Log("setting object visible");
+        toToggle.SetActive(true);
+        yield return new WaitForSeconds(time);
+        Debug.Log("setting object invisible");
+        toToggle.SetActive(false);
     }
 }

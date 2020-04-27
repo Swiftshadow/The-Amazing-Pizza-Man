@@ -19,6 +19,7 @@ TagManager:
   - ShowOnPause
   - WallMinimapCollider
   - Plant
+  - MapArrow
   layers:
   - Default
   - TransparentFX

@@ -47,6 +47,9 @@ public class RoomGenerator : MonoBehaviour
     
     [Tooltip("Is the generator done spawning rooms")]
     public bool spawnDone = false;
+
+    [Tooltip("The arrow that points towards the end")]
+    public GameObject roomArrow;
     
     /// <summary>
     /// Spawns the rooms on the map
@@ -286,6 +289,7 @@ public class RoomGenerator : MonoBehaviour
             SpawnRoom(EnumList.RoomDoors.DOOR_WIN, roomSpawns[0].transform.position);
         }
         Debug.Log("Spawning Done!");
+        roomArrow.SetActive(false);
         spawnDone = true;
     }
     
