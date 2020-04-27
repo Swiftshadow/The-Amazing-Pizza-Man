@@ -7,27 +7,37 @@ using Random = UnityEngine.Random;
 
 public class MapPowerup : PowerupBase
 {
+    /// <summary>
+    /// Reference to the game controller
+    /// </summary>
     private GameControllerBehaviour gc;
 
+    /// <summary>
+    /// Sets the reference to the game controller
+    /// </summary>
     private void Awake()
     {
         gc = GameObject.FindWithTag("GameController").GetComponent<GameControllerBehaviour>();
     }
 
+    /// <summary>
+    /// Sets the ability of the powerup. Method overrides parent class, which runs it on trigger enter.
+    /// </summary>
     protected override void ApplyPowerup()
     {
+        // Finds the room generator
         RoomGenerator generator = GameObject.FindWithTag("Generator").GetComponent<RoomGenerator>();
         
+        // We have not made a random room visible yet
         bool newRoomVisible = false;
-        //int counter = 0;
-        
+
+        // While a new room is not visible
         while (!newRoomVisible)
         {
-
-            //newRoomVisible = (counter >= generator.spawnedRooms.Count);
-            
+            // Generate a random number up to the number of spawned rooms
             int indexToShow = Random.Range(0, generator.spawnedRooms.Count);
 
+            // If the selected room is not visible to the minimap, and is not a wall, make it visible to the minimap
             if (generator.spawnedRooms[indexToShow].layer != 12 && !generator.spawnedRooms[indexToShow].CompareTag("Wall"))
             {
                 generator.spawnedRooms[indexToShow].GetComponent<RoomBehaviour>()
@@ -35,12 +45,12 @@ public class MapPowerup : PowerupBase
 
                 Debug.Log("Setting room " + generator.spawnedRooms[indexToShow].name);
                 
+                // We have made a room visible, exit the loop
                 newRoomVisible = true;
             }
-
-            //++counter;
         }
         
+        // Tell the game controller to toggle the minimap arrow
         gc.ToggleMapArrow();
     }
 

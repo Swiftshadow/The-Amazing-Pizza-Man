@@ -21,6 +21,7 @@ TagManager:
   - Plant
   - MapArrow
   - LoadingCanvas
+  - Powerup
   layers:
   - Default
   - TransparentFX

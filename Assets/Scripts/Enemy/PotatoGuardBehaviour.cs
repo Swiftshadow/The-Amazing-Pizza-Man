@@ -32,43 +32,35 @@ public class PotatoGuardBehaviour : MonoBehaviour
 
     void Update()
     {
-        Vector2 heading = player.position - transform.position;
-
-        Vector2 normalizedDirection = heading / heading.magnitude;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, normalizedDirection, trackingDistance, 15);
-        if (hit.collider != null)
+        if (Vector2.Distance(transform.position, player.position) > stopDistance)
         {
-            if (Vector2.Distance(transform.position, player.position) > stopDistance)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
 
-            }
-            else if (Vector2.Distance(transform.position, player.position) < stopDistance &&
+        }
+        else if (Vector2.Distance(transform.position, player.position) < stopDistance &&
 
-                     Vector2.Distance(transform.position, player.position) > retreatDistance)
-            {
-                transform.position = this.transform.position;
-            }
+                 Vector2.Distance(transform.position, player.position) > retreatDistance)
+        {
+            transform.position = this.transform.position;
+        }
 
-            else if (Vector2.Distance(transform.position, player.position) < retreatDistance)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
+        else if (Vector2.Distance(transform.position, player.position) < retreatDistance)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
 
-            }
+        }
 
-            if (timeBetweenShots <= 0 && Vector2.Distance(transform.position, player.transform.position) < 5)
-            {
+        if (timeBetweenShots <= 0 && Vector2.Distance(transform.position, player.transform.position) < 5)
+        {
 
-                Instantiate(bullet, transform.position, Quaternion.identity);
+            Instantiate(bullet, transform.position, Quaternion.identity);
 
-                timeBetweenShots = startTimeBetweenShots;
+            timeBetweenShots = startTimeBetweenShots;
 
-            }
-            else
-            {
-                timeBetweenShots -= Time.deltaTime;
-            }
-
+        }
+        else
+        {
+            timeBetweenShots -= Time.deltaTime;
         }
     }
 }

@@ -145,6 +145,6 @@ MonoBehaviour:
   death: {fileID: 0}
   health: 3
   damageValue: 0
-  healthDrop: {fileID: 3415174237086599546, guid: d9e2a6ea2a2490f4097eafdf54a3286d,
+  enemyDrop: {fileID: 3415174237086599546, guid: d9e2a6ea2a2490f4097eafdf54a3286d,
     type: 3}
   dropChance: 2

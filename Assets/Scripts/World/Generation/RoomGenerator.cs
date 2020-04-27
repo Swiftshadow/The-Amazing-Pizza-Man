@@ -51,6 +51,7 @@ public class RoomGenerator : MonoBehaviour
     [Tooltip("The arrow that points towards the end")]
     public GameObject roomArrow;
 
+    [Tooltip("The canvas that covers the screen when generating a level")]
     public GameObject loadingCanvas;
     
     /// <summary>
@@ -198,7 +199,7 @@ public class RoomGenerator : MonoBehaviour
                     // IF they have the same y value, they are overlapping
                     if (roomList[i].transform.position.y.Equals(roomList[j].transform.position.y))
                     {
-                        // Add the room to removal list
+                        // Add the later spawned room to removal list
                         overlappingRooms.Add(roomList[j]);
                     }
                 }
@@ -220,10 +221,7 @@ public class RoomGenerator : MonoBehaviour
         spawnDone = false;
         // Get all room objects
         List<GameObject> allSpawnpoints = GetAllSpawnpoints();
-        //GameObject player = GameObject.FindWithTag("Player");
-        
-        // Remove the player
-        //Destroy(player);
+        GameObject[] allPowerups = GameObject.FindGameObjectsWithTag("Powerup");
 
         // Remove all rooms
         foreach (var room in spawnedRooms)
@@ -235,6 +233,12 @@ public class RoomGenerator : MonoBehaviour
         foreach (var spawnpoint in allSpawnpoints)
         {
             Destroy(spawnpoint);
+        }
+        
+        // Remove any unused powerups
+        foreach (var powerup in allPowerups)
+        {
+            Destroy(powerup);
         }
         
         spawnedRooms.Clear();

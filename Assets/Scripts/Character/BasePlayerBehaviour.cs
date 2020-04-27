@@ -72,7 +72,7 @@ public class BasePlayerBehaviour : MonoBehaviour
 
     private bool canTransform = true;    
     
-    private bool isFlipped = false; // Doug
+    private bool isFlipped = false;
 
     //Taylor....Human behaviour
     public bool attack;

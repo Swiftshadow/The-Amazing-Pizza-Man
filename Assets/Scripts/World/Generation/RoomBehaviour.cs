@@ -14,8 +14,6 @@ public class RoomBehaviour : MonoBehaviour
 
     private RoomGenerator generator;
 
-    private Camera minimapCam;
-    
     [Tooltip("The difficulty level of this room")]
     public EnumList.RoomDifficulty difficulty;
     
@@ -23,8 +21,6 @@ public class RoomBehaviour : MonoBehaviour
     {
         generator = GameObject.FindWithTag("Generator").GetComponent<RoomGenerator>();
         generator.spawnDone = false;
-
-        minimapCam = GameObject.FindWithTag("MinimapCam").GetComponent<Camera>();
     }
 
 
@@ -56,7 +52,8 @@ public class RoomBehaviour : MonoBehaviour
         }
     }
 
-    // Taken from https://answers.unity.com/questions/168084/change-layer-of-child.html
+    // Adapted from https://answers.unity.com/questions/168084/change-layer-of-child.html
+    // New/changes liens are marked with // NEW or // CHANGED
     /// <summary>
     /// Changes the layer of an object and all its children
     /// </summary>
@@ -64,23 +61,28 @@ public class RoomBehaviour : MonoBehaviour
     /// <param name="layerToSet">The layer to set the objects to</param>
     public void ChangeLayer(Transform toChange, string layerToSet)
     {
+        // Iterated through all children of the current object
         foreach (Transform child in toChange)
         {
-            if (child.gameObject.CompareTag("Enemy") || child.gameObject.CompareTag("Plant"))
-            {
-                continue;
-            }
+            // If the current object is an enemy or plant, skip it
+            if (child.gameObject.CompareTag("Enemy") || child.gameObject.CompareTag("Plant")) // NEW
+            { // NEW
+                continue; // NEW
+            } // NEW
 
-            if (child.gameObject.CompareTag("WallMinimapCollider"))
-            {
-                Debug.Log("Setting wall!");
-                child.gameObject.layer = LayerMask.NameToLayer("WallMinimapVisible");
-            }
-            else
-            {
+            // If the current object is a wall, set it to a special layer still visible to the minimap
+            if (child.gameObject.CompareTag("WallMinimapCollider")) // NEW
+            { // NEW
+                Debug.Log("Setting wall!"); // NEW
+                child.gameObject.layer = LayerMask.NameToLayer("WallMinimapVisible"); // NEW
+            } // NEW
+            else // NEW
+            { // NEW
+                // Set the layer of the current object
                 child.gameObject.layer = LayerMask.NameToLayer("MinimapVisible");
-            }
+            } // NEW
 
+            // Recursivly change the layer of all the current object's children
             ChangeLayer(child, layerToSet);
         }
     }

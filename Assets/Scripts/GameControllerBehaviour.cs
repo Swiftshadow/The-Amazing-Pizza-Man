@@ -127,11 +127,20 @@ public class GameControllerBehaviour : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Toggles the minimap arrow on and off
+    /// </summary>
     public void ToggleMapArrow()
     {
         StartCoroutine(ToggleObjectOnOff(mapArrow, arrowTime));
     }
     
+    /// <summary>
+    /// Toggles a given object on for a set time, then off
+    /// </summary>
+    /// <param name="toToggle">The object to toggle activity</param>
+    /// <param name="time">How long to keep the object active for</param>
+    /// <returns>Waits for time seconds before reentering coroutine</returns>
     private IEnumerator ToggleObjectOnOff(GameObject toToggle, float time)
     {
         Debug.Log("setting object visible");
