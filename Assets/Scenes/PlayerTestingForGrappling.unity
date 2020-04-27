@@ -216,6 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthText: {fileID: 820000522}
+  healthSlider: {fileID: 0}
   livesText: {fileID: 1237293930}
   respawnText: {fileID: 1593606599}
   gameOverText: {fileID: 791525544}
@@ -1201,7 +1202,7 @@ Transform:
   m_LocalScale: {x: 0.65, y: 0.65, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1275589427
 GameObject:
@@ -2009,7 +2010,7 @@ PrefabInstance:
     - target: {fileID: 1541647984793045865, guid: c53398f9dbc66654caeef183cc31a373,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1541647984793045865, guid: c53398f9dbc66654caeef183cc31a373,
         type: 3}
