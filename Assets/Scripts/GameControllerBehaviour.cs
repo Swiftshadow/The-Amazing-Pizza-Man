@@ -7,6 +7,8 @@
 //
 // Brief Description : ADD BRIEF DESCRIPTION OF THE FILE HERE
 *****************************************************************************/
+
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -33,8 +35,12 @@ public class GameControllerBehaviour : MonoBehaviour
     private int lives; // AK
 
     private bool playerAlive;
-    
 
+    [Tooltip("The arrow on the minimap that points to the exit")]
+    public GameObject mapArrow; // Doug
+    [Tooltip("The amount of time to show the arrow for when collecting the map powerup")]
+    public float arrowTime = 5f;
+    
     private GameObject player;
     
     /// <summary>
@@ -120,6 +126,19 @@ public class GameControllerBehaviour : MonoBehaviour
             }
         }
     }
+
+    public void ToggleMapArrow()
+    {
+        StartCoroutine(ToggleObjectOnOff(mapArrow, arrowTime));
+    }
     
+    private IEnumerator ToggleObjectOnOff(GameObject toToggle, float time)
+    {
+        Debug.Log("setting object visible");
+        toToggle.SetActive(true);
+        yield return new WaitForSeconds(time);
+        Debug.Log("setting object invisible");
+        toToggle.SetActive(false);
+    }
     
 }

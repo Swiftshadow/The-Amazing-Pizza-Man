@@ -50,6 +50,8 @@ public class RoomGenerator : MonoBehaviour
 
     [Tooltip("The arrow that points towards the end")]
     public GameObject roomArrow;
+
+    public GameObject loadingCanvas;
     
     /// <summary>
     /// Spawns the rooms on the map
@@ -68,6 +70,7 @@ public class RoomGenerator : MonoBehaviour
     /// </summary>
     public void SpawnMap()
     {
+        loadingCanvas.SetActive(true);
         RemoveAllRooms();
         // Spawns the starting room
         GameObject startRoom = Instantiate(rooms.startRoom);
@@ -290,6 +293,7 @@ public class RoomGenerator : MonoBehaviour
         }
         Debug.Log("Spawning Done!");
         roomArrow.SetActive(false);
+        loadingCanvas.SetActive(false);
         spawnDone = true;
     }
     

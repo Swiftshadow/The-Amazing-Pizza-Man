@@ -1,17 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class MapPowerup : PowerupBase
 {
-    public float arrowTime = 5f;
-    private GameObject arrow;
+    private GameControllerBehaviour gc;
 
     private void Awake()
     {
-        arrow = GameObject.FindWithTag("MapArrow");
+        gc = GameObject.FindWithTag("GameController").GetComponent<GameControllerBehaviour>();
     }
+
     protected override void ApplyPowerup()
     {
         RoomGenerator generator = GameObject.FindWithTag("Generator").GetComponent<RoomGenerator>();
@@ -39,16 +41,7 @@ public class MapPowerup : PowerupBase
             //++counter;
         }
         
-        StartCoroutine(ToggleObjectOnOff(arrow, arrowTime));
-    }
-
-    private IEnumerator ToggleObjectOnOff(GameObject toToggle, float time)
-    {
-        Debug.Log("setting object visible");
-        toToggle.SetActive(true);
-        yield return new WaitForSeconds(time);
-        Debug.Log("setting object invisible");
-        toToggle.SetActive(false);
+        gc.ToggleMapArrow();
     }
 
     // AK IR2
