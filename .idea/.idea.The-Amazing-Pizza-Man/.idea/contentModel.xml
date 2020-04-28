@@ -26,6 +26,7 @@
             <e p="ChaseBehaviour.cs" t="Include" />
             <e p="EnemyBehavoiur.cs" t="Include" />
             <e p="IdleBehaviour.cs" t="Include" />
+            <e p="ParticleBehaviour.cs" t="Include" />
             <e p="PatrolBehaviour.cs" t="Include" />
             <e p="PatrolEnemy.cs" t="Include" />
             <e p="PotatoBullet.cs" t="Include" />

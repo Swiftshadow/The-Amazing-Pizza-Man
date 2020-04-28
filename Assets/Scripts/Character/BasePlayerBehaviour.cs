@@ -15,6 +15,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Experimental.U2D;
 using UnityEngine.SceneManagement;
+
 public class BasePlayerBehaviour : MonoBehaviour
 {
     // Player Stats
@@ -34,7 +35,7 @@ public class BasePlayerBehaviour : MonoBehaviour
     public float pizzaDamageReduction;
 
     public AudioClip hurtSound;
-    
+
     // Component References
     private Rigidbody2D rb2d; // AK
     private SpriteRenderer sR; // AK
@@ -46,32 +47,34 @@ public class BasePlayerBehaviour : MonoBehaviour
     private TrailRenderer trailRenderer;
 
     // Object References
-    [Header("Sprites")]
-    [Tooltip("The default sprite for the human form")]
+    [Header("Sprites")] [Tooltip("The default sprite for the human form")]
     public Sprite humanDefaultSprite;
+
     [Tooltip("The default sprite for the pizza form")]
     public Sprite pizzaDefaultSprite;
-    
+
     public GameObject whipEffect;
 
-    [Header("GameObjects")] 
-    public GameObject humanForm;
+    [Header("GameObjects")] public GameObject humanForm;
     public GameObject pizzaForm;
+
     [Tooltip("The prefab for the pizza's grease trail")]
     public GameObject greaseTrail;
+
     [Tooltip("The prefab for the pizza's grease trail")]
     public GameObject meleeHitbox1;
+
     [Tooltip("The Body Parts for the Human Form")]
     public List<GameObject> limbObjects;
 
     // GameObject Properties
-    private Vector3 humanScale = new Vector3(1,1);
-    private Vector3 pizzaScale = new Vector3(0.9f,0.9f);
+    private Vector3 humanScale = new Vector3(1, 1);
+    private Vector3 pizzaScale = new Vector3(0.9f, 0.9f);
 
     public bool playerHuman; // AK 
 
-    private bool canTransform = true;    
-    
+    private bool canTransform = true;
+
     private bool isFlipped = false;
 
     //Taylor....Human behaviour
@@ -82,6 +85,9 @@ public class BasePlayerBehaviour : MonoBehaviour
 
     public LayerMask grappleLayer;
 
+    // AK IR2 Flash Red Stuff
+    private SpriteRenderer pizzaRend;
+
 
     /// <summary>
     /// Start is called before the first frame update
@@ -90,7 +96,7 @@ public class BasePlayerBehaviour : MonoBehaviour
     {
         GetComponents();
         SetValues();
-        
+
         playerHuman = true;
     }
 
@@ -117,8 +123,11 @@ public class BasePlayerBehaviour : MonoBehaviour
         {
             lineRenderer.enabled = true;
 
-            var points = new Vector3[] {joint.connectedAnchor,
-                                        gameObject.transform.position};
+            var points = new Vector3[]
+            {
+                joint.connectedAnchor,
+                gameObject.transform.position
+            };
             lineRenderer.positionCount = 2;
             lineRenderer.SetPositions(points);
         }
@@ -126,13 +135,13 @@ public class BasePlayerBehaviour : MonoBehaviour
         {
             lineRenderer.enabled = true;
 
-            
+
         }
         else if (joint.enabled == false && whipCast != true)
         {
             lineRenderer.enabled = false;
-        } 
-        
+        }
+
 
         if (health <= 0)
         {
@@ -145,7 +154,7 @@ public class BasePlayerBehaviour : MonoBehaviour
         {
             SceneManager.LoadScene("Death");
         }
-        
+
 
         //Taylor... attack animation
         if (Input.GetKeyDown(KeyCode.Space) && playerHuman == true && !attack)
@@ -177,21 +186,24 @@ public class BasePlayerBehaviour : MonoBehaviour
         canTransform = true;
         anim.SetBool("Punch", false);
     }
-    
+
     /// <summary>
     /// Gets all of the components that are called in the code in a condensed
     /// function.
     /// </summary>
-    private void GetComponents() 
+    private void GetComponents()
     {
-        rb2d = GetComponent<Rigidbody2D>(); 
-        sR = GetComponent<SpriteRenderer>(); 
-        anim = GetComponentInChildren<Animator>(); 
-        joint = GetComponent<DistanceJoint2D>(); 
+        rb2d = GetComponent<Rigidbody2D>();
+        sR = GetComponent<SpriteRenderer>();
+        anim = GetComponentInChildren<Animator>();
+        joint = GetComponent<DistanceJoint2D>();
         humanCollider = GetComponentInChildren<BoxCollider2D>();
         pizzaCollider = GetComponentInChildren<CircleCollider2D>();
         lineRenderer = GetComponent<LineRenderer>();
         trailRenderer = GetComponentInChildren<TrailRenderer>();
+
+        // AK IR2
+        pizzaRend = pizzaForm.GetComponent<SpriteRenderer>();
     }
 
     private void SetValues()
@@ -207,21 +219,21 @@ public class BasePlayerBehaviour : MonoBehaviour
 
     private void FormSwitch()
     {
-        if(Input.GetButtonDown("FormSwitch") && canTransform) // AK 
+        if (Input.GetButtonDown("FormSwitch") && canTransform) // AK 
         {
             playerHuman = !playerHuman; // AK 
 
-            if(playerHuman == true) // AK 6
+            if (playerHuman == true) // AK 6
             {
                 humanForm.SetActive(true);
                 pizzaForm.SetActive(false);
-                
+
                 // Sets the joint to false when the player transform from pizza
                 // to human 
                 joint.enabled = false;
                 anim.SetBool("playerHuman", true); //(AK 18)
                 rb2d.velocity = Vector2.zero;
-                
+
                 trailRenderer.emitting = false;
 
                 foreach (GameObject limbs in limbObjects)
@@ -229,7 +241,7 @@ public class BasePlayerBehaviour : MonoBehaviour
                     enabled = true;
                 }
                 //limbs.
-                
+
                 gameObject.transform.localScale = humanScale;
 
                 CancelInvoke();
@@ -241,34 +253,34 @@ public class BasePlayerBehaviour : MonoBehaviour
             {
                 humanForm.SetActive(false);
                 pizzaForm.SetActive(true);
-                
+
                 anim.SetBool("playerHuman", false); //(AK 18)
-                
+
                 gameObject.transform.localScale = pizzaScale;
 
                 rb2d.freezeRotation = false;
-                
+
                 foreach (GameObject limbs in limbObjects)
                 {
-                    print(limbs.gameObject.name);
+                    //print(limbs.gameObject.name);
                     //limbs.gameObject.SetActive(true);
                 }
 
                 trailRenderer.emitting = true;
-                
+
                 InvokeRepeating("SpawnGrease", 0f, 0.1f);
-                
+
             }
         }
     }
-    
+
     private void PlayerMovement()
     {
         // Human movement needs to be 
-        if (playerHuman == true) 
+        if (playerHuman == true)
         {
             // Gets the player inputs 
-            float xMove = Input.GetAxis("Horizontal"); 
+            float xMove = Input.GetAxis("Horizontal");
             float yMove = Input.GetAxis("Vertical");
 
             // Slow player if in slime - Shane
@@ -284,8 +296,8 @@ public class BasePlayerBehaviour : MonoBehaviour
                 yMove += yMove * speed * humanSpeedMultiplier;
             }
 
-            Vector2 moveForce = new Vector2(xMove, yMove); 
-        
+            Vector2 moveForce = new Vector2(xMove, yMove);
+
             float velocityCap = 5f;
 
             moveForce.x = Mathf.Clamp(moveForce.x, -velocityCap, velocityCap);
@@ -307,7 +319,7 @@ public class BasePlayerBehaviour : MonoBehaviour
                 moveForce.x *= 0f;
                 moveForce.y *= 0f;
             }
-            
+
             // Flipping Player AK
             if (xMove < 0)
             {
@@ -319,29 +331,30 @@ public class BasePlayerBehaviour : MonoBehaviour
                 transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
                 isFlipped = false;
             }
-             anim.SetFloat("xMove", xMove);
-             anim.SetFloat("yMove", yMove);
+
+            anim.SetFloat("xMove", xMove);
+            anim.SetFloat("yMove", yMove);
         }
-        
-        else if (playerHuman == false) 
+
+        else if (playerHuman == false)
         {
             // Gets the player inputs 
-            float xMove = Input.GetAxis("Horizontal"); 
-            float yMove = Input.GetAxis("Vertical"); 
+            float xMove = Input.GetAxis("Horizontal");
+            float yMove = Input.GetAxis("Vertical");
 
-        
-            xMove += xMove * speed *  pizzaSpeedMultiplier; 
-            yMove += yMove * speed *  pizzaSpeedMultiplier; 
-        
-            Vector2 moveForce = new Vector2(xMove, yMove); 
-        
+
+            xMove += xMove * speed * pizzaSpeedMultiplier;
+            yMove += yMove * speed * pizzaSpeedMultiplier;
+
+            Vector2 moveForce = new Vector2(xMove, yMove);
+
             float velocityCap = 10f;
 
-            moveForce.x = Mathf.Clamp(moveForce.x, -velocityCap, velocityCap); 
-            moveForce.y = Mathf.Clamp(moveForce.y, -velocityCap, velocityCap); 
-        
+            moveForce.x = Mathf.Clamp(moveForce.x, -velocityCap, velocityCap);
+            moveForce.y = Mathf.Clamp(moveForce.y, -velocityCap, velocityCap);
+
             rb2d.AddForce(moveForce);
-            
+
         }
     }
 
@@ -371,20 +384,20 @@ public class BasePlayerBehaviour : MonoBehaviour
 
             Vector3 targetPosLine = targetPos;
             targetPosLine.z -= 10f;
-            
+
             Instantiate(whipEffect, targetPos, quaternion.identity);
             //Vector3 whipImpact = GameObject.FindWithTag("WhipAttack").transform.position;
             //Debug.Log("Whip Impact: " + whipImpact + " H " + "PlayerPos: " + gameObject.transform.position);
-            
+
             var points = new Vector3[] {gameObject.transform.position, targetPosLine};
-            
+
             lineRenderer.positionCount = 2;
             lineRenderer.SetPositions(points);
-            
+
             lineRenderer.enabled = true;
 
             whipReady = false;
-            
+
             Invoke("BreakWhip", .25f);
         }
     }
@@ -395,72 +408,115 @@ public class BasePlayerBehaviour : MonoBehaviour
         whipReady = true;
         //lineRenderer.enabled = false;
     }
+
+
+    // Pizza Functionalities
+
+    /// <summary>
+    /// Controls the behaviour and functionality of the pizza's grappling hook
+    /// ability
+    /// Written by Andrew Krenzel
+    /// Adapted from Wabble - Unity Tutorials Grappling Hook Tutorial Series
+    /// </summary>
+    private void GrapplingHook()
+    {
+        if (Input.GetButtonDown("Fire1") && playerHuman == false)
+        {
+            Vector3 screenPos = Input.mousePosition;
+            Vector3 targetPos = Camera.main.ScreenToWorldPoint(screenPos);
+            //Debug.Log("ScreenPos = " + screenPos + " WorldPos = " + targetPos);
+
+            Vector2 delta = transform.position - targetPos;
+
+            LayerMask player = LayerMask.GetMask("Player");
+
+            RaycastHit2D hitWall = Physics2D.Linecast(transform.position, targetPos, grappleLayer);
+            if (hitWall == true)
+            {
+                targetPos = hitWall.point;
+                Debug.Log(hitWall.collider.name);
+            }
+
+            joint.connectedAnchor = targetPos;
+            //joint.distance = Vector3.Distance(targetPos, transform.position);
+            joint.enabled = true;
+
+            rb2d.drag = 0.0f;
+
+
+        }
+        // On Mouse Up, clears existing values and when it goes down it resests them
+        else if (Input.GetButtonUp("Fire1") && playerHuman == false)
+        {
+            joint.enabled = false;
+            rb2d.drag = 3;
+        }
+    }
+
+    private void GrappleLength()
+    {
+        if (joint.enabled == true)
+        {
+            joint.distance = Vector2.Distance(transform.position, joint.connectedAnchor);
+
+            // Move Towards
+        }
+    }
+
+    private void SpawnGrease()
+    {
+        Instantiate(greaseTrail, transform.position, Quaternion.identity);
+    }
+
+    private void DamageTick(EnemyBehavoiur enemy)
+    {
+        StartCoroutine(EnableIFrames());
+        AudioSource.PlayClipAtPoint(hurtSound, transform.position, 5f);
+        health -= enemy.damageValue;
+
+        FlashRed();
+
+    }
+
     
+    // AK IR2
+    private void FlashRed()
+    {
+        if (humanForm == true)
+        {
+            foreach (GameObject limbs in limbObjects)
+            {
+                limbs.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+                Debug.Log("Turned Red");
+                Invoke("ResetColor", 0.4f);
+                Debug.Log("Limbs Reset");
+            }
+        }
+        else
+        {
+            pizzaForm.GetComponent<SpriteRenderer>().color = Color.red;
+            Debug.Log("Pizza Red");
+            Invoke("ResetColor", 0.4f);
+            Debug.Log("Pizza Reset");
+        }
+    }
     
-   // Pizza Functionalities
-   
-   /// <summary>
-   /// Controls the behaviour and functionality of the pizza's grappling hook
-   /// ability
-   /// Written by Andrew Krenzel
-   /// Adapted from Wabble - Unity Tutorials Grappling Hook Tutorial Series
-   /// </summary>
-   private void GrapplingHook()
-   {
-       if (Input.GetButtonDown("Fire1") && playerHuman == false)
-       {
-           Vector3 screenPos = Input.mousePosition;
-           Vector3 targetPos = Camera.main.ScreenToWorldPoint(screenPos);
-           //Debug.Log("ScreenPos = " + screenPos + " WorldPos = " + targetPos);
-
-           Vector2 delta = transform.position - targetPos;
-
-           LayerMask player = LayerMask.GetMask("Player");
-
-           RaycastHit2D hitWall = Physics2D.Linecast(transform.position, targetPos, grappleLayer);
-           if (hitWall == true)
-           {
-               targetPos = hitWall.point;
-               Debug.Log(hitWall.collider.name);
-           }
-
-           joint.connectedAnchor = targetPos;
-           //joint.distance = Vector3.Distance(targetPos, transform.position);
-           joint.enabled = true;
-
-           rb2d.drag = 0.0f;
-
-
-       }
-       // On Mouse Up, clears existing values and when it goes down it resests them
-       else if (Input.GetButtonUp("Fire1") && playerHuman == false)
-       {
-           joint.enabled = false;
-           rb2d.drag = 3;
-       }
-   }
-
-   private void GrappleLength()
-   {
-       if (joint.enabled == true)
-       {
-           joint.distance = Vector2.Distance(transform.position, joint.connectedAnchor);
-
-           // Move Towards
-       }
-   }
-
-   private void SpawnGrease()
-   {
-       Instantiate(greaseTrail, transform.position, Quaternion.identity);
-   }
-
-   private void DamageTick(EnemyBehavoiur enemy)
-   {
-       StartCoroutine(EnableIFrames());
-       AudioSource.PlayClipAtPoint(hurtSound, transform.position, 5f);
-       health -= enemy.damageValue;
-   }
+    // AK IR2
+    private void ResetColor()
+    {
+        if (playerHuman == true)
+        {
+            
+            foreach (GameObject limbs in limbObjects)
+            {
+                limbs.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+        }
+        else if(playerHuman == false)
+        {
+            pizzaForm.GetComponent<SpriteRenderer>().color = Color.white;
+        }
+    }
 
    private IEnumerator EnableIFrames()
    {
