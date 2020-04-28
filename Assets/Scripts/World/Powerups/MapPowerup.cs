@@ -28,36 +28,17 @@ public class MapPowerup : PowerupBase
         // Finds the room generator
         RoomGenerator generator = GameObject.FindWithTag("Generator").GetComponent<RoomGenerator>();
 
-        int counter = 0;
-        
-        // We have not made a random room visible yet
-        bool newRoomVisible = false;
-
-        // While a new room is not visible
-        while (!newRoomVisible)
+        // Loop through all spawned rooms. Map powerup will show them in order spawned
+        for(int i = 0; i < generator.spawnedRooms.Count; ++i)
         {
-            // Prevent an infinite loop if all the rooms have been visited already
-            if (counter >= generator.spawnedRooms.Count)
-            {
-                break;
-            }
-            
-            // Generate a random number up to the number of spawned rooms
-            int indexToShow = Random.Range(0, generator.spawnedRooms.Count);
-
             // If the selected room is not visible to the minimap, and is not a wall, make it visible to the minimap
-            if (generator.spawnedRooms[indexToShow].layer != 12 && !generator.spawnedRooms[indexToShow].CompareTag("Wall"))
+            if (generator.spawnedRooms[i].layer != 12 && !generator.spawnedRooms[i].CompareTag("Wall"))
             {
-                generator.spawnedRooms[indexToShow].GetComponent<RoomBehaviour>()
-                    .ChangeLayer(generator.spawnedRooms[indexToShow].transform, "MinimapVisible");
+                generator.spawnedRooms[i].GetComponent<RoomBehaviour>()
+                    .ChangeLayer(generator.spawnedRooms[i].transform, "MinimapVisible");
 
-                Debug.Log("Setting room " + generator.spawnedRooms[indexToShow].name);
-                
-                // We have made a room visible, exit the loop
-                newRoomVisible = true;
+                Debug.Log("Setting room " + generator.spawnedRooms[i].name);
             }
-
-            ++counter;
         }
         
         // Tell the game controller to toggle the minimap arrow
