@@ -96,7 +96,6 @@ public class BasePlayerBehaviour : MonoBehaviour
     {
         GetComponents();
         SetValues();
-
         playerHuman = true;
     }
 
@@ -221,6 +220,7 @@ public class BasePlayerBehaviour : MonoBehaviour
     {
         if (Input.GetButtonDown("FormSwitch") && canTransform) // AK 
         {
+            ResetColor();
             playerHuman = !playerHuman; // AK 
 
             if (playerHuman == true) // AK 6
@@ -482,10 +482,14 @@ public class BasePlayerBehaviour : MonoBehaviour
     // AK IR2
     private void FlashRed()
     {
-        if (humanForm == true)
+        if (playerHuman)
         {
             foreach (GameObject limbs in limbObjects)
             {
+                if (limbs.GetComponent<SpriteRenderer>() == null)
+                {
+                    continue;
+                }
                 limbs.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
                 Debug.Log("Turned Red");
                 Invoke("ResetColor", 0.4f);
@@ -494,6 +498,7 @@ public class BasePlayerBehaviour : MonoBehaviour
         }
         else
         {
+            Debug.Log("Attempt to flash pizza");
             pizzaForm.GetComponent<SpriteRenderer>().color = Color.red;
             Debug.Log("Pizza Red");
             Invoke("ResetColor", 0.4f);
@@ -509,6 +514,10 @@ public class BasePlayerBehaviour : MonoBehaviour
             
             foreach (GameObject limbs in limbObjects)
             {
+                if (limbs.GetComponent<SpriteRenderer>() == null)
+                {
+                    continue;
+                }
                 limbs.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
             }
         }
@@ -572,6 +581,5 @@ public class BasePlayerBehaviour : MonoBehaviour
                DamageTick(other.gameObject.GetComponent<EnemyBehavoiur>());
            }
        }
-   } 
-   
+   }
 }
