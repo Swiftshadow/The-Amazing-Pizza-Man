@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Auri\.Rider2019.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Auri\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_The-Amazing-Pizza-Man.-312587509.00" t="ExcludeRecursive" />
-    <e p="H:\Bradley\2019-2020\Semester 2\IM 289\The-Amazing-Pizza-Man" t="IncludeRecursive">
-      <e p=".git\info\exclude" t="IncludeRecursive" />
+    <e p="C:\Users\AK-116\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\AK-116\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_The-Amazing-Pizza-Man.-1156659839.00" t="ExcludeRecursive" />
+    <e p="E:\Documents\College\Sophomore\Semester 2\IM 289\The-Amazing-Pizza-Man" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
@@ -27,6 +26,7 @@
             <e p="ChaseBehaviour.cs" t="Include" />
             <e p="EnemyBehavoiur.cs" t="Include" />
             <e p="IdleBehaviour.cs" t="Include" />
+            <e p="ParticleBehaviour.cs" t="Include" />
             <e p="PatrolBehaviour.cs" t="Include" />
             <e p="PatrolEnemy.cs" t="Include" />
             <e p="PotatoBullet.cs" t="Include" />
