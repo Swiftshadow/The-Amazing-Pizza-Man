@@ -27,6 +27,8 @@ public class MapPowerup : PowerupBase
     {
         // Finds the room generator
         RoomGenerator generator = GameObject.FindWithTag("Generator").GetComponent<RoomGenerator>();
+
+        int counter = 0;
         
         // We have not made a random room visible yet
         bool newRoomVisible = false;
@@ -34,6 +36,12 @@ public class MapPowerup : PowerupBase
         // While a new room is not visible
         while (!newRoomVisible)
         {
+            // Prevent an infinite loop if all the rooms have been visited already
+            if (counter >= generator.spawnedRooms.Count)
+            {
+                break;
+            }
+            
             // Generate a random number up to the number of spawned rooms
             int indexToShow = Random.Range(0, generator.spawnedRooms.Count);
 
@@ -48,6 +56,8 @@ public class MapPowerup : PowerupBase
                 // We have made a room visible, exit the loop
                 newRoomVisible = true;
             }
+
+            ++counter;
         }
         
         // Tell the game controller to toggle the minimap arrow
