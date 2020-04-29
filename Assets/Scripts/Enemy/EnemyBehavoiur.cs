@@ -31,6 +31,9 @@ public class EnemyBehavoiur : MonoBehaviour
 
     [Tooltip("The change to spawn the drop, 0-10")]
     public int dropChance = 5;
+
+    [Tooltip("The particles spawned when the enemy is killed")] //AK IR2
+    public GameObject enemyParticles; //AK IR2
     
     /// <summary>
     /// Gets the components needed
@@ -81,6 +84,7 @@ public class EnemyBehavoiur : MonoBehaviour
         {
             // Spawn the drop at the enemy's position
             Instantiate(enemyDrop, transform.position, Quaternion.identity);
+            Instantiate(enemyParticles, transform.position, Quaternion.identity);
         }
 
         // Remove the enemy

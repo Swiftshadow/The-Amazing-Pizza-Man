@@ -486,12 +486,12 @@ public class BasePlayerBehaviour : MonoBehaviour
         {
             foreach (GameObject limbs in limbObjects)
             {
-                /*
+                //DG
                 if (limbs.GetComponent<SpriteRenderer>() == null)
                 {
                     continue;
                 }
-                */
+                
                 limbs.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
                 Debug.Log("Turned Red");
                 Invoke("ResetColor", 0.4f);
@@ -516,12 +516,12 @@ public class BasePlayerBehaviour : MonoBehaviour
             
             foreach (GameObject limbs in limbObjects)
             {
-                /*
+                // DG
                 if (limbs.GetComponent<SpriteRenderer>() == null)
                 {
                     continue;
                 }
-                */
+                
                 limbs.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
             }
         }

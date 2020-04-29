@@ -12,7 +12,7 @@ public class ParticleBehaviour : MonoBehaviour
     
     private void SelfDestruct()
     {
-        Destroy(gameObject, 0.1f);
+        Destroy(gameObject, 0.5f);
     }
     
 }
