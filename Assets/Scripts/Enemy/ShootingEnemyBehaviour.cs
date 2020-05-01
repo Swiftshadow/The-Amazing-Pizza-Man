@@ -1,13 +1,13 @@
 /*****************************************************************************
-// File Name :         PatrolEnemy.cs
+// File Name :         ShootingEnemyBehaviour.cs
 // Author :            Taylor Zarvell 100%
-// Creation Date :     4/2/20
+// Creation Date :     5/28/20
 //
-// Brief Description : Basic Patrolling enemy movement
+// Brief Description : Patrolling and shooting enemy
 *****************************************************************************/
 using UnityEngine;
 
-public class PatrolEnemy : MonoBehaviour
+public class ShootingEnemyBehaviour : MonoBehaviour
 {
 
     public float speed;
@@ -43,7 +43,7 @@ public class PatrolEnemy : MonoBehaviour
         timeBetweenShots = startTimeBetweenShots;
     }
 
-    
+
     void Update()
     {
         transform.position = Vector2.MoveTowards(transform.position, patrolMarkers[randomMarker].position,
@@ -51,14 +51,14 @@ public class PatrolEnemy : MonoBehaviour
 
         if (Vector2.Distance(transform.position, patrolMarkers[randomMarker].position) < .2f)
         {
-           if (waitTime <= 0)
+            if (waitTime <= 0)
             {
 
                 randomMarker = Random.Range(0, patrolMarkers.Length);
                 waitTime = startWaitTime;
             }
 
-           else
+            else
             {
                 waitTime -= Time.deltaTime;
             }

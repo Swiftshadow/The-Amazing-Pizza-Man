@@ -120,6 +120,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &132608104 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4311575226543111100, guid: 4ea3292d9199b4a6d8bce6ee8ae33a91,
+    type: 3}
+  m_PrefabInstance: {fileID: 1151680882711821588}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &132608105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132608104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5676cd7dca42c4defab816ed462ed919, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  waitTime: 0
+  startWaitTime: 0
+  patrolMarkers: []
+  randomMarker: 0
+  bulletSpeed: 0
+  stopDistance: 0
+  retreatDistance: 0
+  trackingDistance: 5
+  player: {fileID: 0}
+  timeBetweenShots: 0
+  startTimeBetweenShots: 0
+  bullet: {fileID: 0}
 --- !u!1 &139229180
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,6 +622,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1291952056 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1541647984793045865, guid: c53398f9dbc66654caeef183cc31a373,
+    type: 3}
+  m_PrefabInstance: {fileID: 611657878}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1515651450 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2303502717424213590, guid: c53398f9dbc66654caeef183cc31a373,
@@ -887,6 +924,37 @@ PrefabInstance:
       propertyPath: patrolMarkers.Array.data[4]
       value: 
       objectReference: {fileID: 1219319519}
+    - target: {fileID: -5911539826656401171, guid: 4ea3292d9199b4a6d8bce6ee8ae33a91,
+        type: 3}
+      propertyPath: bulletSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -5911539826656401171, guid: 4ea3292d9199b4a6d8bce6ee8ae33a91,
+        type: 3}
+      propertyPath: stopDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5911539826656401171, guid: 4ea3292d9199b4a6d8bce6ee8ae33a91,
+        type: 3}
+      propertyPath: retreatDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5911539826656401171, guid: 4ea3292d9199b4a6d8bce6ee8ae33a91,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1291952056}
+    - target: {fileID: -5911539826656401171, guid: 4ea3292d9199b4a6d8bce6ee8ae33a91,
+        type: 3}
+      propertyPath: startTimeBetweenShots
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5911539826656401171, guid: 4ea3292d9199b4a6d8bce6ee8ae33a91,
+        type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 2043297779847951623, guid: fb9821c4b04694a1183e86523b3a281c,
+        type: 3}
     - target: {fileID: 4311575226543111100, guid: 4ea3292d9199b4a6d8bce6ee8ae33a91,
         type: 3}
       propertyPath: m_Name
@@ -1072,6 +1140,11 @@ PrefabInstance:
         type: 3}
       propertyPath: trackingDistance
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775971051538616636, guid: 2d02ec1b2195643fa9a54155043d0f6a,
+        type: 3}
+      propertyPath: m_Mass
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d02ec1b2195643fa9a54155043d0f6a, type: 3}
