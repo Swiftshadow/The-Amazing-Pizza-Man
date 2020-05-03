@@ -20,7 +20,9 @@ public class PowerupBase : MonoBehaviour
     // AK IR2
     void Update()
     {
-        Movement();
+        if (Time.timeScale != 0) {
+            Movement();
+        }
     }
     
     // AK IR2
