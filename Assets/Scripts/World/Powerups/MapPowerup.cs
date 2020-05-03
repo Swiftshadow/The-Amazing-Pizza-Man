@@ -38,6 +38,7 @@ public class MapPowerup : PowerupBase
                     .ChangeLayer(generator.spawnedRooms[i].transform, "MinimapVisible");
 
                 Debug.Log("Setting room " + generator.spawnedRooms[i].name);
+                break;
             }
         }
         
