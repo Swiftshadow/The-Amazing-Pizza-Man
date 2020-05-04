@@ -31,6 +31,7 @@
             <e p="PatrolEnemy.cs" t="Include" />
             <e p="PotatoBullet.cs" t="Include" />
             <e p="PotatoGuardBehaviour.cs" t="Include" />
+            <e p="ShootingEnemyBehaviour.cs" t="Include" />
           </e>
           <e p="EnumList.cs" t="Include" />
           <e p="GameControllerBehaviour.cs" t="Include" />

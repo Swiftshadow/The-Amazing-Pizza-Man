@@ -72,6 +72,8 @@ public class BasePlayerBehaviour : MonoBehaviour
 
     [Tooltip("The Body Parts for the Human Form")]
     public List<GameObject> limbObjects;
+    
+    public GameObject enemyParticles; //AK IR2
 
     public AudioClip hurtSound;
     
@@ -152,9 +154,8 @@ public class BasePlayerBehaviour : MonoBehaviour
 
         if (health <= 0)
         {
-            health = 100;
-            --lives;
-            transform.position = new Vector2(0, 0);
+            FlashRed();
+            Invoke("Respawn", 0.5f);
         }
 
         if (lives <= 0)
@@ -184,6 +185,15 @@ public class BasePlayerBehaviour : MonoBehaviour
             }
 
         }
+    }
+
+    private void Respawn()
+    {
+        Instantiate(enemyParticles, transform.position, Quaternion.identity);
+        ResetColor();
+        health = 100;
+        --lives;
+        transform.position = new Vector2(0, 0);
     }
 
     private void ResetAttack()
