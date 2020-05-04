@@ -18,6 +18,11 @@ public class PlayButton : MonoBehaviour
         SceneManager.LoadScene("HowTo");
     }
 
+    public void credits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
+
     public void exitGame()
     {
         Application.Quit();
