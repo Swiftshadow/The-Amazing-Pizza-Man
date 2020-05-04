@@ -18,23 +18,28 @@ using UnityEngine.SceneManagement;
 
 public class BasePlayerBehaviour : MonoBehaviour
 {
-    // Player Stats
+    [Header("Player Stats")]
+    [Tooltip("The player's starting health value")]
     public int health;
+    [Tooltip("The player's total number of lives")]
     public int lives;
+    //[Tooltip("The player's total number of lives")]
+    public float speed;
+    //[Tooltip("The player's total number of lives")]
+    public float humanSpeedMultiplier;
+    //[Tooltip("The player's total number of lives")]
+    public float pizzaSpeedMultiplier;
+    //[Tooltip("The player's total number of lives")]
+    public float slimeSlowAmount; //SJ
+    //[Tooltip("The player's total number of lives")]
+    public float pizzaDamageReduction;
 
     private bool playerInvulnerable;
     private bool playerInSlime;
     private bool whipCast;
     private bool whipReady;
-
-    public float speed;
-    public float humanSpeedMultiplier;
-    public float pizzaSpeedMultiplier;
-    public float slimeSlowAmount; //SJ
-
-    public float pizzaDamageReduction;
-
-    public AudioClip hurtSound;
+    
+    
 
     // Component References
     private Rigidbody2D rb2d; // AK
@@ -47,7 +52,8 @@ public class BasePlayerBehaviour : MonoBehaviour
     private TrailRenderer trailRenderer;
 
     // Object References
-    [Header("Sprites")] [Tooltip("The default sprite for the human form")]
+    [Header("Sprites")] 
+    [Tooltip("The default sprite for the human form")]
     public Sprite humanDefaultSprite;
 
     [Tooltip("The default sprite for the pizza form")]
@@ -67,6 +73,8 @@ public class BasePlayerBehaviour : MonoBehaviour
     [Tooltip("The Body Parts for the Human Form")]
     public List<GameObject> limbObjects;
 
+    public AudioClip hurtSound;
+    
     // GameObject Properties
     private Vector3 humanScale = new Vector3(1, 1);
     private Vector3 pizzaScale = new Vector3(0.9f, 0.9f);
