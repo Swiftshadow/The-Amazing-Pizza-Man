@@ -16,9 +16,7 @@
             <e p="BasePlayerBehaviour.cs" t="Include" />
             <e p="CameraBehaviour.cs" t="Include" />
             <e p="HitboxBehaviour.cs" t="Include" />
-            <e p="HumanPlayerBehaviour.cs" t="Include" />
             <e p="PizzaGreaseTrailBehaviour.cs" t="Include" />
-            <e p="PizzaPlayerBehaviour.cs" t="Include" />
             <e p="WhipAttackBehaviour.cs" t="Include" />
           </e>
           <e p="Enemy" t="Include">

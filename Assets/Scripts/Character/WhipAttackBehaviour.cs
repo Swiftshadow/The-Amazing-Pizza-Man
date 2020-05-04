@@ -1,9 +1,10 @@
 /*****************************************************************************
 // File Name :         WhipAttackBehaviour.cs
 // Author :            Andrew Krenzel
-// Creation Date :     March 05, 2020
+// Creation Date :     April 07, 2020
 //
-// Brief Description : ADD BRIEF DESCRIPTION OF THE FILE HERE
+// Brief Description : Creates the shockwave effect for the player's whip 
+                        ability
 *****************************************************************************/
 using UnityEngine;
 

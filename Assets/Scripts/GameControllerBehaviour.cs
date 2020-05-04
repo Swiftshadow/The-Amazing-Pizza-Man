@@ -1,11 +1,12 @@
 ﻿/*****************************************************************************
 // File Name :         GameControllerBehaviour.cs
-// Author :            Andrew Krenzel (??%)
-                       Doug Guzman (??%)
+// Author :            Andrew Krenzel (75%)
+                       Doug Guzman (25%)
                        
 // Creation Date :     2/13/2020
 //
-// Brief Description : ADD BRIEF DESCRIPTION OF THE FILE HERE
+// Brief Description : Controls the setting of UI elements, scene switching, and
+                        the map power-up's arrow.
 *****************************************************************************/
 
 using System.Collections;

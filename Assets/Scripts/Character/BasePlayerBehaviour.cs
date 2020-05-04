@@ -4,7 +4,8 @@
 // Creation Date :     2/13/2020
 //
 // Brief Description : Controls the overall behaviors of the players that 
-                       transfer across forms.
+                       transfer across forms, form-specific abilities, and
+                       respawning functionality.
 *****************************************************************************/
 
 using System;

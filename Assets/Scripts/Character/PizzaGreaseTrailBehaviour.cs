@@ -1,3 +1,11 @@
+/*****************************************************************************
+// File Name :         WhipAttackBehaviour.cs
+// Author :            Andrew Krenzel
+// Creation Date :     March 07, 2020
+//
+// Brief Description : Controls the fading effect of the grease trail the pizza
+                       leaves behind as it moves around the map.
+*****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;

@@ -1,3 +1,11 @@
+/*****************************************************************************
+// File Name :         ParticleBehaviour.cs
+// Author :            Andrew Krenzel 
+// Creation Date :     2/13/2020
+//
+// Brief Description : Creates and then destroys the particle effect that the
+                        script is attached to.
+*****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
