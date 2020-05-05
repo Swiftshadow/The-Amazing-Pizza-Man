@@ -87,6 +87,7 @@ public class BasePlayerBehaviour : MonoBehaviour
     private bool canTransform = true;
 
     private bool isFlipped = false;
+    private bool isRespawning = false;
 
     //Taylor....Human behaviour
     public bool attack;
@@ -156,12 +157,7 @@ public class BasePlayerBehaviour : MonoBehaviour
         if (health <= 0)
         {
             FlashRed();
-            Invoke("Respawn", 0.5f);
-        }
-
-        if (lives <= 0)
-        {
-            SceneManager.LoadScene("Death");
+            StartCoroutine(Respawn());
         }
 
 
@@ -188,13 +184,24 @@ public class BasePlayerBehaviour : MonoBehaviour
         }
     }
 
-    private void Respawn()
+    private IEnumerator Respawn()
     {
-        Instantiate(enemyParticles, transform.position, Quaternion.identity);
-        ResetColor();
-        health = 100;
-        --lives;
-        transform.position = new Vector2(0, 0);
+        if (!isRespawning)
+        {
+            isRespawning = true;
+            Instantiate(enemyParticles, transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(0.5f);
+            ResetColor();
+            health = 100;
+            --lives;
+            transform.position = new Vector2(0, 0);
+            isRespawning = false;
+        }
+
+        if (lives <= 0)
+        {
+            SceneManager.LoadScene("Death");
+        }
     }
 
     private void ResetAttack()

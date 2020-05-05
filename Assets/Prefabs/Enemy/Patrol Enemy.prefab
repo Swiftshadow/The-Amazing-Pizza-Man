@@ -106,6 +106,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  bulletSpeed: 0
+  stopDistance: 0
+  retreatDistance: 0
+  trackingDistance: 5
+  player: {fileID: 0}
+  startTimeBetweenShots: 0
+  bullet: {fileID: 0}
 --- !u!114 &-6873133173369221881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,6 +131,8 @@ MonoBehaviour:
   enemyDrop: {fileID: 3415174237086599546, guid: d9e2a6ea2a2490f4097eafdf54a3286d,
     type: 3}
   dropChance: 5
+  enemyParticles: {fileID: 4824399590806893411, guid: 421aa64d0fc2ac24496ef84cace2c2ee,
+    type: 3}
 --- !u!70 &2254695662765147104
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

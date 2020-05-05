@@ -57,7 +57,6 @@ MonoBehaviour:
   pizzaSpeedMultiplier: 10
   slimeSlowAmount: 0.5
   pizzaDamageReduction: 0
-  hurtSound: {fileID: 8300000, guid: 3dd2f939c317e4be9936519d147bc9f5, type: 3}
   humanDefaultSprite: {fileID: 21300000, guid: 636593ae6badf4a269563adaa5d5de67, type: 3}
   pizzaDefaultSprite: {fileID: 21300000, guid: b241ae42a911e4f6888c2047adc954da, type: 3}
   whipEffect: {fileID: 4464733913487981754, guid: 17d236238a83fb048b1475882d71493b,
@@ -77,6 +76,9 @@ MonoBehaviour:
   - {fileID: 1540774482736870344}
   - {fileID: 7313550790160032055}
   - {fileID: 4403136509673128333}
+  enemyParticles: {fileID: 4824399590806893411, guid: 421aa64d0fc2ac24496ef84cace2c2ee,
+    type: 3}
+  hurtSound: {fileID: 8300000, guid: 3dd2f939c317e4be9936519d147bc9f5, type: 3}
   playerHuman: 0
   attack: 0
   punchClip: {fileID: 8300000, guid: ab486e6ae607643329ecfa3ca92fe0bb, type: 3}
