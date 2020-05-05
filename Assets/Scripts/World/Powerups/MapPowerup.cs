@@ -1,9 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+/*****************************************************************************
+// File Name :         MapPowerup.cs
+// Author :            Doug Guzman
+                       
+// Creation Date :     4/15/2020
+//
+// Brief Description : Map powerup class. Turns the minimap arrow on, and
+                       shows the rooms on the minimap in spawn order
+*****************************************************************************/
+
 using UnityEngine;
-using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 public class MapPowerup : PowerupBase
 {

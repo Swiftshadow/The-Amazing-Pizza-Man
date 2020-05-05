@@ -1,5 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+/*****************************************************************************
+// File Name :         PowerupBase.cs
+// Author :            Doug Guzman (50%)
+                       Andrew Krenzel (50%)
+                       
+// Creation Date :     4/15/2020
+//
+// Brief Description : Base class for other powerups to extent. Handles
+                       the triggering of the powerup, and the floating
+*****************************************************************************/
+
 using UnityEngine;
 
 public class PowerupBase : MonoBehaviour

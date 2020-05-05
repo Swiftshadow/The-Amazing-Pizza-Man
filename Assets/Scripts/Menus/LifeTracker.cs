@@ -1,5 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+/*****************************************************************************
+// File Name :         LifeTracker.cs
+// Author :            Doug Guzman
+                       
+// Creation Date :     4/15/2020
+//
+// Brief Description : Shows and hides the life icons on the menu. Each life
+                       icon gets this individually
+*****************************************************************************/
 using UnityEngine;
 
 public class LifeTracker : MonoBehaviour

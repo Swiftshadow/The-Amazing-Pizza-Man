@@ -1,5 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+/*****************************************************************************
+// File Name :         HealthPowerup.cs
+// Author :            Doug Guzman
+                       
+// Creation Date :     4/15/2020
+//
+// Brief Description : Health powerup. Heals the player by a configurable
+                       amount, and makes sure the player is not overhealed.
+*****************************************************************************/
 using UnityEngine;
 
 public class HealthPowerup : PowerupBase

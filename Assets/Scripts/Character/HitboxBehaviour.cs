@@ -1,5 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+/*****************************************************************************
+// File Name :         HitboxBehaviour.cs
+// Author :            Doug Guzman
+                       
+// Creation Date :     4/15/2020
+//
+// Brief Description : Destroys the hitbox after a set amount of time
+*****************************************************************************/
 using UnityEngine;
 
 public class HitboxBehaviour : MonoBehaviour

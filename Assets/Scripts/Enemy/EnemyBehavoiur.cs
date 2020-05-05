@@ -1,6 +1,14 @@
+/*****************************************************************************
+// File Name :         GameControllerBehaviour.cs
+// Author :            Doug Guzman (80%)
+                       Andrew Krenzel (20%)
+                       
+// Creation Date :     4/15/2020
+//
+// Brief Description : Base enemy behaviour. Handles enemy health, damage,
+                       drop chance, drop items, sounds, and feedback
+*****************************************************************************/
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

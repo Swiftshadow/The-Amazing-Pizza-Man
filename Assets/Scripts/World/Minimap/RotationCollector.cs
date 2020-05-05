@@ -1,5 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+/*****************************************************************************
+// File Name :         RotationCollector.cs
+// Author :            Doug Guzman
+                       
+// Creation Date :     4/25/2020
+//
+// Brief Description : Matches the objects rotation to that of the given
+                       object.
+*****************************************************************************/
 using UnityEngine;
 
 public class RotationCollector : MonoBehaviour

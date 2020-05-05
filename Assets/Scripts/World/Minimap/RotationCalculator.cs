@@ -1,6 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
+/*****************************************************************************
+// File Name :         RotationCalculator.cs
+// Author :            Doug Guzman
+                       
+// Creation Date :     4/25/2020
+//
+// Brief Description : Rotates the object its on to the given target object.
+                       Used to rotate an invisible object on the player to
+                       the end door
+*****************************************************************************/
 using UnityEngine;
 
 public class RotationCalculator : MonoBehaviour
