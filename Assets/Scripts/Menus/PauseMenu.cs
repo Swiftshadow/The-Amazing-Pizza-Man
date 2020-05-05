@@ -1,3 +1,11 @@
+/*****************************************************************************
+// File Name :         PauseMenu.cs
+// Author :            Shane Jackson (100%)
+// Creation Date :     4/09/2020
+//
+// Brief Description : Controls the pause menu and all subsequent buttons 
+                        therein. 
+*****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

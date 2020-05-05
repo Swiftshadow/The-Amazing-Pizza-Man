@@ -1,3 +1,10 @@
+/*****************************************************************************
+// File Name :         PlayButton.cs
+// Author :            Shane Jackson (100%)
+// Creation Date :     4/05/2020
+//
+// Brief Description : Controls the main menu and all connected scenes.
+*****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
