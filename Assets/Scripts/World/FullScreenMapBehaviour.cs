@@ -30,4 +30,5 @@ public class FullScreenMapBehaviour : MonoBehaviour
         
         fullScreenMap.SetActive(showMap);
     }
+    
 }

@@ -27,7 +27,7 @@ public class PowerupBase : MonoBehaviour
     protected virtual void ApplyPowerup() { }
 
     // AK IR2
-    void Update()
+    private void Update()
     {
         if (Time.timeScale != 0) {
             Movement();
@@ -39,7 +39,7 @@ public class PowerupBase : MonoBehaviour
     public float magnitude = 0.005f;
     
     // AK IR2
-    void Movement()
+    private void Movement()
     {
         var pos = transform.position;
 
